@@ -44,7 +44,7 @@ const faqs = [
       { q: "Do your products come with a manufacturer's warranty?", a: "Yes. Every product includes full brand-backed warranty with repair/replacement coverage." },
       { q: "How do I claim warranty for HP products?", a: "You can contact HP Support directly or reach out to us for guidance and warranty assistance." },
       { q: "What if my printer arrives damaged?", a: "Contact us within 48 hours with photos/videos. We’ll arrange a replacement or initiate a claim." },
-      { q: "Do you provide technical support?", a: "Yes. We offer setup help, troubleshooting, installation support, and product-related guidance." },
+      { q: "Do you provide hardware support?", a: "Yes. We offer setup help, troubleshooting, installation support, and product-related guidance." },
       { q: "How do I contact customer support?", a: "You can reach us via email, chat, or our contact form. Support is available 7 days a week." }
     ]
   },
@@ -70,7 +70,7 @@ const faqs = [
   {
     category: "Printer & Ink",
     questions: [
-      { q: "How do I choose the right printer?", a: "Consider your usage — home, office, photos, or bulk printing — and our team can recommend the best match." },
+      { q: "How do I choose the right printer?", a: "Consider your usage — home, business, photos, or bulk printing — and our team can recommend the best match." },
       { q: "Do you sell original HP ink and toner?", a: "Yes. We sell 100% original HP ink and toner, plus compatible options for other brands." },
       { q: "Why is my printer showing “Offline”?", a: "This usually indicates a driver issue or Wi-Fi interruption. Our support team can fix this quickly." },
       { q: "How do I improve print quality?", a: "Try cleaning printheads, using genuine supplies, adjusting paper settings, or contacting support." }
@@ -89,7 +89,7 @@ const faqs = [
     category: "Business Orders",
     questions: [
       { q: "Do you offer corporate or bulk discounts?", a: "Yes. Contact us for custom pricing on large orders." },
-      { q: "Can businesses request custom quotes?", a: "Absolutely. Our team provides quotes for offices, institutions, and resellers." },
+      { q: "Can businesses request custom quotes?", a: "Absolutely. Our team provides quotes for print hubs, institutions, and resellers." },
       { q: "Do you offer managed printing or device solutions?", a: "Yes. We support businesses with printer fleet management and bulk supply programs." }
     ]
   },
@@ -137,7 +137,7 @@ export default function FAQ() {
             </div>
             <div className="lg:text-right pb-2">
               <p className="text-gray-500 text-sm md:text-lg font-medium leading-relaxed max-w-md lg:ml-auto">
-                Everything you need to know about our hardware, deployment processes, and how we help you scale your office infrastructure.
+                Everything you need to know about our hardware, deployment processes, and how we help you scale your printing infrastructure.
               </p>
             </div>
           </div>

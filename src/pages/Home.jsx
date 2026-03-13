@@ -96,7 +96,7 @@ export default function Home() {
       <ProductGrid products={data.mixedArrivals.slice(0, 30)} />
        <Collections />
       <CategorySlider 
-        title="Office Printers"  
+        title="Professional Printers"  
         products={data.printers} 
       />
        
@@ -113,7 +113,7 @@ export default function Home() {
                   Need help with your <span className="text-[#0047ab]">printing setup?</span>
                 </h2>
                 <p className="text-gray-500 text-sm md:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
-                  Our experts are ready to provide simple and reliable advice to help you pick the best professional tools for your office environment.
+                  Our experts are ready to provide simple and reliable advice to help you pick the best professional tools for your printing environment.
                 </p>
               </div>
 

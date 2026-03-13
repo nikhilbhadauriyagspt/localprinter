@@ -131,7 +131,7 @@ export default function Header() {
                 <PackageCheck size={13} />
                 <span>Checkout</span>
               </Link>
-              <Link to="/faq" className="hover:text-white transition-colors">
+              <Link to="/contact" className="hover:text-white transition-colors">
                 <span>Contact Us</span>
               </Link>
             </div>

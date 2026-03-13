@@ -18,7 +18,7 @@ export default function Collections() {
                 Exclusive Offer
               </div>
               <h2 className="text-2xl md:text-4xl font-black text-white leading-tight italic tracking-tighter">
-                Premium Office <br /> <span className="text-[#ffb700]">Hardware.</span>
+                Premium Printing <br /> <span className="text-[#ffb700]">Hardware.</span>
               </h2>
               <p className="text-blue-100/70 text-sm font-medium leading-relaxed max-w-lg">
                 Maximize your productivity with our latest enterprise-grade printing solutions. Built for high-volume environments that demand absolute precision and reliability.

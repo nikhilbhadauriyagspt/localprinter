@@ -58,8 +58,8 @@ export default function Contact() {
                  <span className="text-[11px] font-black uppercase tracking-[0.3em] text-[#0047ab]">Support Center</span>
               </div>
               <h1 className="text-4xl md:text-7xl font-black text-black uppercase italic tracking-tighter leading-[0.9]">
-                Initiate <br />
-                <span className="text-[#0047ab]">Contact.</span>
+                Get In <br />
+                <span className="text-[#0047ab]">Touch.</span>
               </h1>
             </div>
             <div className="lg:text-right pb-2">
@@ -124,7 +124,7 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-10 relative z-10">
                   <div className="space-y-2 mb-4">
-                     <h3 className="text-2xl font-black text-black uppercase italic tracking-tighter">Submit Ticket</h3>
+                     <h3 className="text-2xl font-black text-black uppercase italic tracking-tighter">Contact Us</h3>
                      <p className="text-xs font-bold text-gray-400">Complete the form below to connect with our support infrastructure.</p>
                   </div>
 
@@ -191,7 +191,7 @@ export default function Contact() {
                       {loading ? (
                         <Loader2 className="animate-spin" size={20} />
                       ) : (
-                        <>Transmit Request <ArrowRight size={20} strokeWidth={3} /></>
+                        <>Send Request <ArrowRight size={20} strokeWidth={3} /></>
                       )}
                     </button>
                   </div>

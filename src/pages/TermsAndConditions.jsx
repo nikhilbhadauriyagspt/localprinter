@@ -20,7 +20,7 @@ export default function TermsAndConditions() {
       <p>
         PrinterBrother
  
-  is your trusted destination for authentic, high-performance printers and printing accessories from HP and other leading technology brands.
+  is your trusted destination for authentic, high-performance printers and printing accessories from HP and other leading printing brands.
       </p>
       <p>
         You can contact us by email at <a href="mailto:info@printerbrother.shop">info@printerbrother.shop</a>, or by mail to 11872 Sunrise Valley Dr, Reston, VA 20191, USA.

@@ -9,7 +9,7 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
 
     // Update Description
     const metaDescription = document.querySelector('meta[name="description"]');
-    const finalDesc = description || "Premium printing specialist specializing in pro workstations, precision printing, and genuine tech accessories.";
+    const finalDesc = description || "Premium printing specialist specializing in pro workstations, precision printing, and genuine printing accessories.";
     if (metaDescription) {
       metaDescription.setAttribute('content', finalDesc);
     }
@@ -21,7 +21,7 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
       metaKeywords.name = "keywords";
       document.head.appendChild(metaKeywords);
     }
-    metaKeywords.setAttribute('content', keywords || "Premium Printer Specialist, Business Printers, Office Hardware, Tech Support");
+    metaKeywords.setAttribute('content', keywords || "Premium Printer Specialist, Business Printers, Printing Hardware, Print Support");
 
     // Update Canonical
     let canonical = document.querySelector('link[rel="canonical"]');

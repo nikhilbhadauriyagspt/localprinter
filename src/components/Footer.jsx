@@ -67,7 +67,7 @@ export default function Footer() {
               <img src="/logo/MYPRINTERMANNN.png" alt="Printer Brother" className="h-12 w-auto object-contain brightness-0 invert " />
             </Link>
             <p className="text-blue-100/70 text-md font-medium leading-relaxed max-w-sm mt-5">
-              Your premier destination for high-performance laser printers, precision document scanners, and high-quality hardware solutions engineered for the modern office.
+              Your premier destination for high-performance laser printers, precision document scanners, and high-quality hardware solutions engineered for the modern printing workspace.
             </p>
           </div>
 

@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
         <li>Visit our website at <a href="http://printerbrother.shop/">http://printerbrother.shop/</a> or any website of ours that links to this Privacy Notice</li>
                  <li>Use Printers, Consumables & Accessories. Printer Brother
  
-  is your trusted destination for authentic, high-performance printers and printing accessories from HP and other leading technology brands.</li>        <li>Engage with us in other related ways, including any marketing or events</li>
+  is your trusted destination for authentic, high-performance printers and printing accessories from HP and other leading printing brands.</li>        <li>Engage with us in other related ways, including any marketing or events</li>
       </ul>
       <p>
         Questions or concerns? Reading this Privacy Notice will help you understand your privacy rights and choices. We are responsible for making decisions about how your personal information is processed. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:info@printerbrother.shop">info@printerbrother.shop</a>.

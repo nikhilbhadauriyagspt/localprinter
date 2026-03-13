@@ -184,7 +184,7 @@ export default function ProductDetail() {
             )}
           </div>
 
-          {/* --- RIGHT: TECHNICAL SPECIFICATIONS --- */}
+          {/* --- RIGHT: HARDWARE SPECIFICATIONS --- */}
           <div className="lg:col-span-5 space-y-12">
             <div className="space-y-6">
               <div className="flex items-center gap-3">
@@ -240,7 +240,7 @@ export default function ProductDetail() {
                 </button>
               </div>
 
-              {/* Technical Trust Grid */}
+              {/* Hardware Trust Grid */}
               <div className="grid grid-cols-3 gap-2">
                 {[
                   { icon: <Truck size={16} />, label: "Express" },

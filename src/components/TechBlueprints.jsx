@@ -35,14 +35,14 @@ export default function TechBlueprints() {
   return (
     <section className="px-6 md:px-10 lg:px-12 py-24 bg-white font-urbanist">
       
-      {/* --- UNIQUE HEADING: TECHNICAL LINE STYLE --- */}
+      {/* --- UNIQUE HEADING: HARDWARE LINE STYLE --- */}
       <div className="flex items-center gap-8 mb-20">
         <div className="h-[100px] w-px bg-gray-200 relative hidden sm:block">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-blue-600 rounded-full"></div>
         </div>
         <div>
           <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">
-            Technical <br /><span className="text-blue-600 italic">Blueprints.</span>
+            Hardware <br /><span className="text-blue-600 italic">Blueprints.</span>
           </h2>
           <p className="text-slate-400 font-bold text-xs uppercase tracking-widest mt-4 flex items-center gap-2">
             <span className="w-4 h-px bg-gray-300"></span> Performance Benchmarks 2026

@@ -4,7 +4,7 @@ const features = [
   {
     icon: <Truck size={32} strokeWidth={1.5} />,
     title: "FREE SHIPPING",
-    desc: "On all orders above $500 across USA",
+    desc: "On all orders",
   },
   {
     icon: <RefreshCcw size={32} strokeWidth={1.5} />,
@@ -19,7 +19,7 @@ const features = [
   {
     icon: <Headset size={32} strokeWidth={1.5} />,
     title: "EXPERT SUPPORT",
-    desc: "24/7 Dedicated help for your office",
+    desc: "24/7 Dedicated help for your printer",
   }
 ];
 
