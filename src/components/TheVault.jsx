@@ -47,7 +47,7 @@ export default function TheVault({ products = [] }) {
               <div className="max-w-3xl">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="h-[1px] w-4 bg-blue-600 animate-pulse" />
-                  <span className="text-[9px] font-black text-blue-600 uppercase tracking-[0.4em]">Premium Hardware</span>
+                  <span className="text-[9px] font-black text-blue-600 uppercase tracking-[0.4em]">Quality Hardware</span>
                 </div>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.85]">
                   <span className="block mb-2">THE</span>

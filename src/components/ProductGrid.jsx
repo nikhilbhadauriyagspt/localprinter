@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, Plus, ArrowRight } from "lucide-react";
+import { Heart, Plus, ArrowRight, Sparkles, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
@@ -25,104 +25,102 @@ export default function ProductGrid({ products = [] }) {
   };
 
   return (
-    <section className="bg-white py-12 md:py-16 w-full font-jakarta">
-      <div className="max-w-[1920px] mx-auto px-6 lg:px-20">
+    <section className="bg-[#FAF9F6] py-16 md:py-24 w-full font-jakarta overflow-hidden border-t border-red-900/5">
+      <div className="max-w-[1920px] mx-auto px-6 lg:px-16">
         
-        {/* --- REFINED MINIMAL HEADER --- */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-          <div className="space-y-4">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-3"
-            >
-              <span className="w-8 h-[1px] bg-[#333330]"></span>
-              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#333330]/40">Just Dropped</span>
-            </motion.div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-light text-[#333330] tracking-tight uppercase"
-            >
-              New <span className="font-medium italic text-[#96968B]">Arrivals</span>
-            </motion.h2>
-          </div>
+        {/* --- CENTERED REFINED HEADER --- */}
+        <div className="flex flex-col items-center text-center mb-12 space-y-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-3"
+          >
+           
+          </motion.div>
           
-          <Link to="/shop" className="hidden md:flex items-center gap-2 group/link border-b border-[#333330]/10 pb-1 hover:border-[#333330] transition-all">
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#333330]">View All</span>
-            <ArrowRight size={14} className="text-[#333330] group-hover/link:translate-x-1 transition-transform" />
-          </Link>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#450a0a] tracking-tight leading-tight"
+          >
+            New <span className="italic font-medium text-red-900">Arrivals</span>
+          </motion.h2>
         </div>
 
-        {/* --- COMPACT PRODUCT GRID --- */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 md:gap-8">
+        {/* --- COMPACT BENTO GRID --- */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 md:gap-6">
           {products.slice(0, 18).map((p, idx) => (
             <motion.div 
               key={p.id}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: (idx % 6) * 0.05 }}
+              transition={{ delay: (idx % 6) * 0.05, duration: 0.6 }}
               className="group relative flex flex-col"
               onMouseEnter={() => setHoveredId(p.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              {/* Image Area: Small & Clean */}
-              <Link to={`/product/${p.slug}`} className="relative aspect-square w-full bg-[#F8F8F6] rounded-[24px] flex items-center justify-center p-6 overflow-hidden transition-all duration-700 group-hover:bg-[#E5E5E0] group-hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)]">
+              {/* Image Area: NEW "Floating Frame" Design */}
+              <div className="relative aspect-square w-full bg-white rounded-3xl flex items-center justify-center p-6 overflow-hidden transition-all duration-500 border border-gray-100 shadow-sm group-hover:border-[#450a0a]/10 group-hover:shadow-xl group-hover:bg-[#FAF9F6]">
+                <Link to={`/product/${p.slug}`} className="absolute inset-0 z-10" />
+                
                 <motion.img 
                   src={getImagePath(p.images)} 
                   alt={p.name} 
-                  className="max-h-full max-w-full object-contain mix-blend-multiply"
-                  animate={hoveredId === p.id ? { scale: 1.05 } : { scale: 1 }}
-                  transition={{ duration: 0.6 }}
+                  className="max-h-full max-w-full object-contain mix-blend-multiply relative z-10"
+                  animate={hoveredId === p.id ? { scale: 1.1, y: -5 } : { scale: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
                 />
 
-                {/* Top Actions: Floating Icons */}
-                <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+                {/* Top Wishlist Overlay */}
+                <div className="absolute top-3 right-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
                   <button 
                     onClick={(e) => { e.preventDefault(); toggleWishlist(p); }}
                     className={cn(
-                      "h-8 w-8 rounded-full flex items-center justify-center bg-white shadow-sm border border-gray-100 transition-all",
-                      isInWishlist(p.id) ? "text-red-500" : "text-[#333330] hover:bg-[#333330] hover:text-white"
+                      "h-8 w-8 rounded-full flex items-center justify-center border border-red-900/5 bg-white/90 backdrop-blur-md shadow-sm transition-all",
+                      isInWishlist(p.id) ? "text-red-600" : "text-[#450a0a] hover:bg-[#450a0a] hover:text-white"
                     )}
                   >
-                    <Heart size={14} fill={isInWishlist(p.id) ? "currentColor" : "none"} />
+                    <Heart size={14} fill={isInWishlist(p.id) ? "currentColor" : "none"} strokeWidth={1.5} />
                   </button>
                 </div>
 
-                {/* Bottom Quick Add: Plus Circle */}
-                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                {/* Bottom Quick Add: Minimal Pill */}
+                <div className="absolute bottom-3 left-3 right-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                   <button 
                     onClick={(e) => handleAddToCart(e, p)}
-                    className="h-9 w-9 bg-[#333330] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#4A4A45] active:scale-90 transition-all"
+                    className="w-full h-10 bg-[#450a0a] text-white rounded-xl flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all"
                   >
-                    <Plus size={18} />
+                    <ShoppingBag size={12} />
+                    <span className="text-[9px] font-bold uppercase tracking-widest">Add</span>
                   </button>
                 </div>
-              </Link>
+              </div>
 
-              {/* Minimal Text Details */}
+              {/* Minimalist Details Below */}
               <div className="pt-4 px-1 space-y-1 text-center">
-                <Link to={`/product/${p.slug}`} className="block text-center">
-                  <h3 className="text-[12px] font-medium text-[#333330] uppercase tracking-tight line-clamp-1 group-hover:text-[#96968B] transition-colors">
+                <Link to={`/product/${p.slug}`} className="block">
+                  <h3 className="text-[13px] font-bold text-[#450a0a] uppercase  line-clamp-1 group-hover:text-red-600 transition-colors">
                     {p.name}
                   </h3>
                 </Link>
-                <div className="flex items-center justify-center pt-1">
-                  <span className="text-[12px] font-semibold text-[#333330]">${p.price}</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-[14px] font-black text-[#450a0a] opacity-40 tracking-tight">${p.price}</span>
+                  <div className="h-px w-0 bg-red-900/20 transition-all duration-500 group-hover:w-8 mt-1" />
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* --- MOBILE VIEW ALL --- */}
-        <div className="mt-16 md:hidden text-center">
-          <Link to="/shop" className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#333330] border-b border-[#333330]/10 pb-1">
-            Browse All Arrivals <ArrowRight size={14} />
+        {/* --- VIEW ALL BUTTON --- */}
+        <div className="mt-16 text-center">
+          <Link to="/shop" className="group inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#450a0a] border border-gray-200 px-8 py-3 rounded-full hover:bg-[#450a0a] hover:text-white transition-all duration-500">
+            View All Arrivals
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 

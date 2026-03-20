@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
-import { Mail, MapPin, CheckCircle2, Loader2, ArrowRight, ChevronDown } from 'lucide-react';
+import { Mail, MapPin, CheckCircle2, Loader2, ArrowRight, ChevronDown, Sparkles, MessageCircle, Send, Globe } from 'lucide-react';
 import API_BASE_URL from '../config';
 import { cn } from '../lib/utils';
 
@@ -42,201 +42,181 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-[#F8F8F6] min-h-screen font-jakarta text-[#333330] overflow-x-hidden">
+    <div className="bg-[#FAF9F6] min-h-screen font-jakarta text-[#450a0a] overflow-x-hidden">
       <SEO 
-        title="Contact Us | Yankee's Printer" 
-        description="Connect with Yankee's Printer. Our dedicated team is here to provide expert assistance for all your printing needs."
+        title="Contact Our Atelier | DominicPrinters" 
+        description="Connect with DominicPrinters. Our dedicated team is here to help you."
       />
 
-      {/* --- BACKGROUND DESIGN --- */}
+      {/* --- ARCHITECTURAL BACKGROUND --- */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Soft Organic Shape (Subtle) */}
         <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ duration: 4 }}
-          className="absolute -bottom-[10%] -right-[10%] w-[50%] h-[60%] bg-[#EFEFE9] rounded-full blur-[180px]"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.5 }}
+          className="absolute top-0 right-0 w-1/3 h-1/2 bg-red-900/[0.02] border-l border-b border-red-900/[0.05] rounded-bl-[10rem]"
         />
       </div>
       
       {/* --- HERO HEADER --- */}
-      <section className="relative pt-24 pb-16 px-6 lg:px-20">
-        <div className="max-w-[1920px] mx-auto text-center space-y-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-center gap-3"
-          >
-            <span className="w-8 h-[1px] bg-[#96968B]"></span>
-            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#333330]/40">Connect With Us</span>
-            <span className="w-8 h-[1px] bg-[#96968B]"></span>
-          </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-light text-black uppercase tracking-tight leading-[1.1]"
-          >
-            Get In <span className="font-medium italic text-[#96968B]">Touch</span>
-          </motion.h1>
-
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-lg md:text-xl text-[#666660] font-light leading-relaxed max-w-2xl mx-auto"
-          >
-            Our dedicated specialists are available to provide tailored solutions for your printing requirements.
-          </motion.p>
-        </div>
+      <section className="relative pt-28 pb-12 px-6 lg:px-16 text-center">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#450a0a] tracking-tight leading-[0.9]"
+        >
+          Contact <span className="font-black italic text-red-900 whitespace-nowrap">Us</span>
+        </motion.h1>
       </section>
 
       {/* --- MAIN CONTACT CONTENT --- */}
-      <section className="py-20 md:py-32 px-6 lg:px-20 relative z-10">
-        <div className="max-w-[1920px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 xl:gap-32">
+      <section className="py-12 md:py-20 px-6 lg:px-16 relative z-10">
+        <div className="max-w-[1440px] mx-auto space-y-20">
+          
+          {/* --- COMPACT INFO PILLS ROW (REDUCED) --- */}
+          <div className="flex flex-col md:flex-row justify-center gap-6">
+            {[
+              { icon: <Mail />, title: "Send an Email", value: "info@dominicprinters.shop" },
+              { icon: <Globe />, title: "Visit Atelier", value: "1330 Keosauqua Way, Des Moines, IA 50309, United States" }
+            ].map((card, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group bg-white p-6 rounded-[2.5rem] border border-red-900/5 shadow-sm hover:shadow-xl hover:border-[#450a0a]/10 transition-all duration-500 flex items-center gap-6 min-w-[320px]"
+              >
+                <div className="h-14 w-14 rounded-2xl bg-[#FAF9F6] flex items-center justify-center text-[#450a0a] group-hover:bg-[#450a0a] group-hover:text-white transition-all duration-500 shadow-inner">
+                  {React.cloneElement(card.icon, { size: 20, strokeWidth: 1.5 })}
+                </div>
+                <div className="space-y-0.5">
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-red-900/20">{card.title}</p>
+                  <p className="text-[15px] font-bold text-[#450a0a]">{card.value}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
             
-            {/* --- CONTACT INFO --- */}
-            <div className="lg:col-span-4 space-y-16">
-              <div className="space-y-12">
-                <div className="space-y-4">
-                  <h3 className="text-[11px] font-bold uppercase tracking-[0.3em] text-black">Direct Assistance</h3>
-                  <div className="w-12 h-[1.5px] bg-[#96968B]/30" />
+            {/* LEFT: SIMPLIFIED CONTENT */}
+            <div className="lg:col-span-4 space-y-10">
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="h-px w-10 bg-red-900/20" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#450a0a]">Direct Assistance</span>
                 </div>
-
-                <div className="space-y-12">
-                  <motion.div 
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className="group flex items-start gap-6"
-                  >
-                    <div className="h-12 w-12 rounded-2xl bg-white flex items-center justify-center shrink-0 border border-[#333330]/5 group-hover:bg-[#333330] group-hover:text-white transition-all duration-500 shadow-sm">
-                      <Mail size={18} strokeWidth={1.2} />
-                    </div>
-                    <div className="space-y-1 pt-1">
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#96968B]">Email Us</p>
-                      <p className="text-base font-medium text-black">info@yankeesprinter.shop</p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div 
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                    className="group flex items-start gap-6"
-                  >
-                    <div className="h-12 w-12 rounded-2xl bg-white flex items-center justify-center shrink-0 border border-[#333330]/5 group-hover:bg-[#333330] group-hover:text-white transition-all duration-500 shadow-sm">
-                      <MapPin size={18} strokeWidth={1.2} />
-                    </div>
-                    <div className="space-y-1 pt-1">
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#96968B]">Location</p>
-                      <p className="text-base font-medium text-black leading-relaxed">
-                        
-                        Saint Anthony Main Minneapolis, MN, USA
-                      </p>
-                    </div>
-                  </motion.div>
-                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#450a0a] tracking-tight leading-tight">
+                  How can we <br /> <span className="italic font-black text-red-900 text-5xl">help you?</span>
+                </h2>
+                <p className="text-lg text-[#7A7A75] font-light leading-relaxed">
+                  Our team is here to listen and help you find exactly what you're looking for. Reach out to us for any questions or support.
+                </p>
               </div>
             </div>
 
-            {/* --- CONTACT FORM: GLASS CANVAS --- */}
+            {/* RIGHT: CONTACT FORM CANVAS */}
             <div className="lg:col-span-8">
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="relative bg-white/50 backdrop-blur-md rounded-[40px] md:rounded-[60px] p-8 md:p-16 lg:p-20 border border-[#333330]/5 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)]"
+                className="bg-white p-8 md:p-12 lg:p-16 rounded-[4rem] border border-red-900/5 shadow-[0_30px_80px_-20px_rgba(69,10,10,0.08)]"
               >
-                {status === 'success' ? (
-                  <div className="text-center py-12">
-                    <div className="h-20 w-20 bg-white text-[#96968B] rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl border border-[#333330]/5">
-                      <CheckCircle2 size={32} strokeWidth={1} />
-                    </div>
-                    <h2 className="text-3xl font-light uppercase tracking-tight mb-4 text-black">Message Received</h2>
-                    <p className="text-[#666660] mb-10 max-w-sm mx-auto font-light leading-relaxed">Thank you for connecting. A specialist will review your request and respond shortly.</p>
-                    <button 
-                      onClick={() => setStatus(null)} 
-                      className="text-[11px] font-bold uppercase tracking-[0.3em] text-black border-b border-black pb-1 hover:text-[#96968B] hover:border-[#96968B] transition-all"
+                <AnimatePresence mode="wait">
+                  {status === 'success' ? (
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="text-center py-12"
                     >
-                      Send Another Inquiry
-                    </button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      <div className="space-y-3">
-                        <label className="text-[10px] font-bold text-[#333330]/40 uppercase tracking-[0.2em] pl-1">Full Name</label>
-                        <input 
-                          required type="text" placeholder="ENTER YOUR NAME" value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="w-full h-14 bg-white border border-[#333330]/5 rounded-2xl px-6 focus:border-[#96968B] outline-none text-[13px] font-medium transition-all placeholder:text-[#333330]/10 uppercase tracking-widest"
-                        />
+                      <div className="h-24 w-24 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl border border-red-100">
+                        <CheckCircle2 size={40} strokeWidth={1} />
                       </div>
-                      <div className="space-y-3">
-                        <label className="text-[10px] font-bold text-[#333330]/40 uppercase tracking-[0.2em] pl-1">Email Address</label>
-                        <input 
-                          required type="email" placeholder="ENTER YOUR EMAIL" value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full h-14 bg-white border border-[#333330]/5 rounded-2xl px-6 focus:border-[#96968B] outline-none text-[13px] font-medium transition-all placeholder:text-[#333330]/10 uppercase tracking-widest"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      <div className="space-y-3">
-                        <label className="text-[10px] font-bold text-[#333330]/40 uppercase tracking-[0.2em] pl-1">Phone Number</label>
-                        <input 
-                          type="tel" placeholder="OPTIONAL" value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                          className="w-full h-14 bg-white border border-[#333330]/5 rounded-2xl px-6 focus:border-[#96968B] outline-none text-[13px] font-medium transition-all placeholder:text-[#333330]/10 uppercase tracking-widest"
-                        />
-                      </div>
-                      <div className="space-y-3">
-                        <label className="text-[10px] font-bold text-[#333330]/40 uppercase tracking-[0.2em] pl-1">Inquiry Type</label>
-                        <div className="relative">
-                          <select 
-                            value={formData.subject}
-                            onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                            className="w-full h-14 bg-white border border-[#333330]/5 rounded-2xl px-6 focus:border-[#96968B] outline-none text-[13px] font-medium transition-all appearance-none cursor-pointer pr-12 uppercase tracking-widest"
-                          >
-                            <option>General Question</option>
-                            <option>Printer Help</option>
-                            <option>Order Status</option>
-                            <option>Support</option>
-                          </select>
-                          <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-[#96968B] pointer-events-none" size={16} />
+                      <h2 className="text-4xl font-bold text-[#450a0a] mb-4">Message Received.</h2>
+                      <p className="text-[#7A7A75] mb-10 max-w-sm mx-auto font-light leading-relaxed">Thank you for reaching out. Our team will be in touch with you shortly.</p>
+                      <button 
+                        onClick={() => setStatus(null)} 
+                        className="text-[11px] font-black uppercase tracking-[0.3em] text-[#450a0a] border-b-2 border-red-600 pb-1 hover:text-red-600 transition-all"
+                      >
+                        Send Another Inquiry
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-12">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div className="space-y-4">
+                          <label className="text-[10px] font-black text-[#450a0a]/40 uppercase tracking-[0.2em] ml-1">Identity</label>
+                          <input 
+                            required type="text" placeholder="YOUR FULL NAME" value={formData.name}
+                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            className="w-full h-14 bg-[#FAF9F6] border-b border-red-900/5 focus:border-[#450a0a] outline-none text-[13px] font-bold transition-all placeholder:text-[#450a0a]/10"
+                          />
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] font-black text-[#450a0a]/40 uppercase tracking-[0.2em] ml-1">Contact Email</label>
+                          <input 
+                            required type="email" placeholder="YOUR EMAIL ADDRESS" value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            className="w-full h-14 bg-[#FAF9F6] border-b border-red-900/5 focus:border-[#450a0a] outline-none text-[13px] font-bold transition-all placeholder:text-[#450a0a]/10"
+                          />
                         </div>
                       </div>
-                    </div>
 
-                    <div className="space-y-3">
-                      <label className="text-[10px] font-bold text-[#333330]/40 uppercase tracking-[0.2em] pl-1">Message Details</label>
-                      <textarea 
-                        required rows="4" placeholder="HOW CAN WE ASSIST YOU?" value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        className="w-full py-6 bg-white border border-[#333330]/5 rounded-[32px] px-6 focus:border-[#96968B] outline-none text-[13px] font-medium transition-all resize-none placeholder:text-[#333330]/10 uppercase tracking-widest"
-                      ></textarea>
-                    </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div className="space-y-4">
+                          <label className="text-[10px] font-black text-[#450a0a]/40 uppercase tracking-[0.2em] ml-1">Phone (Optional)</label>
+                          <input 
+                            type="tel" placeholder="YOUR MOBILE NUMBER" value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            className="w-full h-14 bg-[#FAF9F6] border-b border-red-900/5 focus:border-[#450a0a] outline-none text-[13px] font-bold transition-all placeholder:text-[#450a0a]/10"
+                          />
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] font-black text-[#450a0a]/40 uppercase tracking-[0.2em] ml-1">Inquiry Motif</label>
+                          <div className="relative">
+                            <select 
+                              value={formData.subject}
+                              onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                              className="w-full h-14 bg-[#FAF9F6] border-b border-red-900/5 focus:border-[#450a0a] outline-none text-[13px] font-bold transition-all appearance-none cursor-pointer pr-12 text-[#450a0a]"
+                            >
+                              <option>General Inquiry</option>
+                              <option>Product Support</option>
+                              <option>Order Help</option>
+                              <option>Other</option>
+                            </select>
+                            <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 text-red-900/20 pointer-events-none" size={16} />
+                          </div>
+                        </div>
+                      </div>
 
-                    <div className="pt-6">
-                      <button 
-                        disabled={loading}
-                        className="group relative inline-flex items-center gap-8 bg-black text-white h-16 px-12 rounded-full overflow-hidden transition-all duration-500 hover:shadow-2xl active:scale-95 disabled:opacity-50"
-                      >
-                        <span className="relative z-10 text-[11px] font-bold uppercase tracking-[0.3em]">
-                          {loading ? "Processing..." : "Send Message"}
-                        </span>
-                        {!loading && <ArrowRight size={18} className="relative z-10 transition-transform duration-500 group-hover:translate-x-2" />}
-                        <div className="absolute inset-0 bg-[#333330] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                      </button>
-                    </div>
-                    {status === 'error' && <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-6">Transmission failure. Please try again.</p>}
-                  </form>
-                )}
+                      <div className="space-y-4">
+                        <label className="text-[10px] font-black text-[#450a0a]/40 uppercase tracking-[0.2em] ml-1">Message Detail</label>
+                        <textarea 
+                          required rows="4" placeholder="HOW CAN WE ASSIST YOU TODAY?" value={formData.message}
+                          onChange={(e) => setFormData({...formData, message: e.target.value})}
+                          className="w-full py-6 bg-[#FAF9F6] border-b border-red-900/5 focus:border-[#450a0a] outline-none text-[13px] font-bold transition-all resize-none placeholder:text-[#450a0a]/10 min-h-[120px]"
+                        ></textarea>
+                      </div>
+
+                      <div className="pt-6">
+                        <button 
+                          disabled={loading}
+                          className="group relative inline-flex items-center gap-10 bg-[#450a0a] text-white h-16 px-12 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-xl shadow-red-900/20 active:scale-95 disabled:opacity-50"
+                        >
+                          <span className="relative z-10 text-[12px] font-bold uppercase tracking-[0.3em]">
+                            {loading ? "Transmitting..." : "Send Inquiry"}
+                          </span>
+                          {!loading && <Send size={18} className="relative z-10 transition-transform duration-500 group-hover:translate-x-2 group-hover:-translate-y-1" />}
+                          <div className="absolute inset-0 bg-gradient-to-r from-red-900 to-[#450a0a] opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </button>
+                      </div>
+                      {status === 'error' && <p className="text-red-600 text-[10px] font-black uppercase tracking-widest mt-6">Transmission failed. Please verify detail.</p>}
+                    </form>
+                  )}
+                </AnimatePresence>
               </motion.div>
             </div>
 

@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 export default function SEO({ title, description, keywords, schemaType = "Website" }) {
   useEffect(() => {
     // Update Title
-    const baseTitle = "Yankee's Printer";
+    const baseTitle = "DominicPrinters";
     const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
     document.title = fullTitle;
 
     // Update Description
     const metaDescription = document.querySelector('meta[name="description"]');
-    const finalDesc = description || "Premium printing specialist specializing in pro workstations, precision printing, and genuine printing accessories.";
+    const finalDesc = description || "Quality printing specialist specializing in pro workstations, precision printing, and reliable printing accessories.";
     if (metaDescription) {
       metaDescription.setAttribute('content', finalDesc);
     }
@@ -21,7 +21,7 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
       metaKeywords.name = "keywords";
       document.head.appendChild(metaKeywords);
     }
-    metaKeywords.setAttribute('content', keywords || "Premium Printer Specialist, Business Printers, Printing Hardware, Print Support");
+    metaKeywords.setAttribute('content', keywords || "Quality Printer Specialist, Business Printers, Printing Hardware, Print Support");
 
     // Update Canonical
     let canonical = document.querySelector('link[rel="canonical"]');
@@ -44,9 +44,9 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
     const schemaData = {
       "@context": "https://schema.org",
       "@type": schemaType === "Product" ? "Product" : "Organization",
-      "name": "Yankee's Printer",
-      "url": "https://yankeesprinter.shop",
-      "logo": "https://yankeesprinter.shop/logo/logo.png",
+      "name": "DominicPrinters",
+      "url": "https://dominicprinters.shop",
+      "logo": "https://dominicprinters.shop/logo/logo.png",
       "description": finalDesc,
       "address": {
         "@type": "PostalAddress",

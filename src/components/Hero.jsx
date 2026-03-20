@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { MoveRight, Sparkles, ChevronLeft, ChevronRight, Cpu, Layers, Zap, Printer } from 'lucide-react';
 import { cn } from '../lib/utils';
-import bg1 from '@/assets/bannerr/bg-1.jpg';
+
+// Assets
 import png1 from '@/assets/bannerr/png-1.png';
 import png2 from '@/assets/bannerr/png-2.png';
 import png3 from '@/assets/bannerr/png-3.png';
+import banner1 from '@/assets/bannerr/newban1.jpg';
+import banner2 from '@/assets/bannerr/newban2.jpg';
+import banner3 from '@/assets/bannerr/newban3.jpg';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -14,197 +18,250 @@ const Hero = () => {
   const slides = [
     {
       id: 1,
-      tag: "New Collection 2026",
-      title: "Better Printing",
-      subtitle: "Made Simple",
-      desc: "Discover the easiest way to print everything you need. Quality work, every single time.",
+      tag: "Imperial Collection",
+      title: "The Best Modern",
+      subtitle: "Digital Printer Series",
+      desc: "Experience the pinnacle of printing luxury. Engineered with crimson-tier technology for the most discerning creators.",
       image: png1,
-      btnText: "Start Printing"
+      banner: banner1,
+      specs: [
+        { label: "4K Precision", icon: <Layers size={12} /> },
+        { label: "Crimson Core", icon: <Cpu size={12} /> },
+        { label: "Elite Tier", icon: <Zap size={12} /> }
+      ]
     },
     {
       id: 2,
-      tag: "Home Essentials",
-      title: "Quality Prints",
-      subtitle: "For Your Home",
-      desc: "Simple, reliable, and ready when you are. Perfect results for your daily needs.",
+      tag: "Elite Performance",
+      title: "High Speed Laser",
+      subtitle: "Professional Quality Output",
+      desc: "Unleash a spectrum of vivid excellence. Our flagship series redefined for the modern high-end workspace.",
       image: png2,
-      btnText: "Explore More"
+      banner: banner2,
+      specs: [
+        { label: "Vivid Sync", icon: <Layers size={12} /> },
+        { label: "Pro Optics", icon: <Cpu size={12} /> },
+        { label: "Zero Noise", icon: <Zap size={12} /> }
+      ]
     },
     {
       id: 3,
-      tag: "Office Series",
-      title: "Effortless Work",
-      subtitle: "Just Works",
-      desc: "Make your workday smoother with printing that just works. Fast, clean, and elegant.",
+      tag: "The Craft 2026",
+      title: "Ultimate Inkjet Tech",
+      subtitle: "Reliable Office Solutions",
+      desc: "Where heritage meets the future of hardware. A bold statement in every print, delivered with silent efficiency.",
       image: png3,
-      btnText: "Shop Now"
+      banner: banner3,
+      specs: [
+        { label: "Eco Shield", icon: <Layers size={12} /> },
+        { label: "Grand Flow", icon: <Cpu size={12} /> },
+        { label: "2026 Spec", icon: <Zap size={12} /> }
+      ]
     }
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 8000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  return (
-    <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden bg-[#F8F8F6] font-jakarta pt-20">
-      
-      {/* --- REFINED LUXURY BACKGROUND DESIGN --- */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large Architectural Circle (Centered exactly at Top-Left Corner) */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute -top-[600px] -left-[600px] md:-top-[800px] md:-left-[800px] w-[1200px] h-[1200px] md:w-[1600px] md:h-[1600px] bg-[#F1F1E9] rounded-full border border-[#1A1A1A]/[0.03] shadow-[inset_0_0_120px_rgba(0,0,0,0.01)]"
-        />
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
-        {/* Oversized Faded Organic Shape (Deep Background) */}
+  return (
+    <section className="relative w-full h-screen flex flex-col bg-[#FAF9F6] font-jakarta overflow-hidden pt-20">
+      
+      {/* --- ARCHITECTURAL BACKGROUND --- */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 0.5, scale: 1 }}
-          transition={{ duration: 3, ease: "easeOut" }}
-          className="absolute top-[10%] -left-[10%] w-[70%] h-[90%] bg-gradient-to-br from-white/60 to-transparent rounded-full blur-[150px]"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="absolute top-0 right-0 w-1/3 h-2/3 bg-red-900/[0.02] border-l border-b border-red-900/[0.05] rounded-bl-[10rem]"
         />
+        <div className="absolute inset-0 bg-gradient-to-tr from-red-900/[0.01] via-transparent to-transparent" />
       </div>
 
-      <div className="max-w-[1920px] mx-auto w-full px-6 lg:px-20 relative z-10">
-        <AnimatePresence mode="wait">
-          <motion.div 
-            key={currentSlide}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
-          >
-            
-            {/* Left Side: Simple Content */}
-            <div className="flex flex-col justify-center py-12 lg:py-0">
-              <div className="max-w-xl space-y-8">
-                <div className="space-y-6">
-                  <motion.div 
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="flex items-center gap-3"
-                  >
-                    <span className="w-8 h-[1px] bg-[#333330]"></span>
-                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#333330]/40">{slides[currentSlide].tag}</span>
-                  </motion.div>
+      <div className="max-w-[1800px] mx-auto w-full px-6 lg:px-12 relative z-10 flex-1 flex flex-col justify-between py-8">
+        
+        {/* TOP SECTION: REFINED BOLD TYPOGRAPHY & CTA */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-20">
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={currentSlide}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+              className="max-w-5xl"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <span className="h-px w-10 bg-red-900/20" />
+                <span className="text-[10px] font-extrabold tracking-widest uppercase text-[#450a0a]/60">
+                  {slides[currentSlide].tag}
+                </span>
+              </div>
 
-                  <motion.h1 
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-4xl md:text-6xl lg:text-7xl font-light text-[#333330] leading-[1.1] tracking-tight"
-                  >
-                    {slides[currentSlide].title} <br />
-                    <span className="font-medium italic text-[#96968B]">{slides[currentSlide].subtitle}</span>
-                  </motion.h1>
+              {/* Scaled down heading sizes with more words */}
+              <h1 className="text-4xl md:text-[4rem] lg:text-[5.5rem] font-bold tracking-tight text-[#450a0a] leading-[0.9] mb-3">
+                {slides[currentSlide].title}
+              </h1>
+              <div className="flex items-center gap-6 pl-1 mb-8">
+                 <h2 className="text-2xl md:text-4xl lg:text-5xl font-black italic text-red-900 whitespace-nowrap leading-none">
+                  {slides[currentSlide].subtitle}
+                </h2>
+                <div className="hidden md:block h-px flex-1 bg-red-900/10 max-w-[120px]" />
+              </div>
 
-                  <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-base md:text-lg text-[#666660] font-light leading-relaxed max-w-sm"
-                  >
-                    {slides[currentSlide].desc}
-                  </motion.p>
-                </div>
-
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  className="flex items-center gap-8 pt-4"
-                >
+              {/* DESCRIPTION & SHOP NOW */}
+              <div className="max-w-md space-y-6">
+                <p className="text-[#7A7A75] text-base md:text-lg font-light leading-relaxed">
+                  {slides[currentSlide].desc}
+                </p>
+                <div className="flex items-center gap-6">
                   <Link 
                     to="/shop" 
-                    className="group relative inline-flex items-center gap-4 bg-[#333330] text-white px-9 py-4.5 text-[11px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#4A4A45] rounded-full overflow-hidden"
+                    className="group relative inline-flex h-14 px-10 bg-[#450a0a] text-white rounded-full items-center justify-center gap-4 transition-all hover:scale-[1.05] shadow-lg shadow-red-900/20"
                   >
-                    <span className="relative z-10">{slides[currentSlide].btnText}</span>
-                    <ArrowRight size={14} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                    <span className="text-[12px] font-bold uppercase tracking-[0.2em]">Shop Now</span>
+                    <MoveRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <Link 
-                    to="/about" 
-                    className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#333330] hover:text-[#96968B] transition-colors border-b border-[#333330]/10 pb-1"
-                  >
-                    Our Story
-                  </Link>
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Right Side: Arched Image Area with Pop-out Effect */}
-            <div className="relative flex justify-center lg:justify-end lg:-translate-x-12">
-              <div className="relative w-full max-w-[600px] aspect-[4/5] md:aspect-[5/6] flex items-end justify-center">
-                
-                {/* Background Arch Layer (Clipped) */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 overflow-hidden rounded-t-[300px] shadow-[0_50px_120px_-30px_rgba(0,0,0,0.08)] border-x border-t border-white/60 z-0"
-                >
-                  <img src={bg1} alt="" className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-white/5" />
-                </motion.div>
-
-                {/* Main Product Image - POP-OUT EFFECT */}
-                <div className="relative w-full h-full flex items-end justify-center z-10 pointer-events-none">
-                  {slides[currentSlide].image ? (
-                    <motion.img 
-                      key={`image-${currentSlide}`}
-                      initial={{ scale: 1, opacity: 0, y: 120 }}
-                      animate={{ 
-                        scale: currentSlide === 0 ? 1.4 : currentSlide === 1 ? 1.25 : 1.3, 
-                        opacity: 1, 
-                        y: currentSlide === 0 ? 40 : currentSlide === 1 ? 60 : 50 
-                      }}
-                      transition={{ delay: 0.6, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-                      src={slides[currentSlide].image} 
-                      alt="Premium Product" 
-                      className="w-full h-auto max-h-full object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.2)] drop-shadow-[0_50px_100px_rgba(0,0,0,0.3)] origin-bottom"
-                    />
-                  ) : (
-                    <div className="text-center p-12 mb-20 border-2 border-dashed border-[#333330]/10 rounded-3xl">
-                      <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#333330]/30 leading-loose">
-                        Architectural<br />Product Showcase
-                      </p>
-                    </div>
-                  )}
                 </div>
               </div>
+            </motion.div>
+          </AnimatePresence>
 
-              {/* Slide Indicators inside Hero Area */}
-              <div className="absolute -bottom-8 lg:bottom-10 right-0 lg:-right-12 flex lg:flex-col gap-3">
-                {slides.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentSlide(i)}
-                    className="group py-2"
-                  >
-                    <div className={cn(
-                      "h-[2px] transition-all duration-700 rounded-full bg-[#333330]",
-                      currentSlide === i ? "w-12 lg:w-16" : "w-6 lg:w-8 opacity-20 group-hover:opacity-50"
-                    )} />
-                  </button>
-                ))}
-              </div>
+          {/* --- RIGHT TOP AREA: CINEMATIC FRAME WITH INTEGRATED BUTTON --- */}
+          <div className="hidden lg:block relative lg:-translate-y-12">
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="relative w-[420px] h-[280px] rounded-[3.5rem] overflow-hidden shadow-2xl border border-white bg-white group"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`detail-bg-${currentSlide}`}
+                  initial={{ opacity: 0, filter: 'blur(10px)' }}
+                  animate={{ opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1 }}
+                  className="w-full h-full relative"
+                >
+                  <img src={slides[currentSlide].banner} className="w-full h-full object-cover transition-transform duration-[10000ms] group-hover:scale-110" alt="" />
+                  <div className="absolute inset-0 bg-red-950/10 mix-blend-multiply" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  
+                  {/* Integrated Heritage Label & Button Overlay */}
+                  <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col gap-4">
+                    
+                    
+                    <Link 
+                      to="/shop" 
+                      className="group/btn h-12 bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white text-white hover:text-[#450a0a] rounded-2xl flex items-center justify-between px-6 transition-all duration-500"
+                    >
+                      <span className="text-[11px] font-extrabold uppercase tracking-[0.1em]">Browse Collection</span>
+                      <MoveRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* BOTTOM SECTION: STABLE PRODUCT STAGE WITH FLOATING SPECS */}
+        <div className="relative w-full flex-1 flex items-center justify-center min-h-[500px] mt-4 overflow-visible">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`product-stage-${currentSlide}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8 }}
+                className="w-full h-full flex items-center justify-center relative"
+              >
+                <div className="relative w-full h-full max-w-[2000px] flex items-center justify-center">
+                  
+                  {/* FLOATING SPEC LABELS */}
+                  <div className="absolute inset-0 z-20 pointer-events-none">
+                    <motion.div 
+                      initial={{ opacity: 0, x: -20, y: 20 }}
+                      animate={{ opacity: 1, x: 0, y: 0 }}
+                      transition={{ delay: 0.6, duration: 0.8 }}
+                      className="absolute top-[25%] left-[20%] bg-white/80 backdrop-blur-md px-4 py-2.5 rounded-full border border-red-900/5 shadow-xl flex items-center gap-2.5"
+                    >
+                      <div className="h-6 w-6 rounded-full bg-[#450a0a] flex items-center justify-center text-white">
+                        {slides[currentSlide].specs[0].icon}
+                      </div>
+                      <span className="text-[11px] font-bold text-[#450a0a] whitespace-nowrap">{slides[currentSlide].specs[0].label}</span>
+                    </motion.div>
+
+                    <motion.div 
+                      initial={{ opacity: 0, x: 20, y: -20 }}
+                      animate={{ opacity: 1, x: 0, y: 0 }}
+                      transition={{ delay: 0.8, duration: 0.8 }}
+                      className="absolute bottom-[30%] right-[20%] bg-white/80 backdrop-blur-md px-4 py-2.5 rounded-full border border-red-900/5 shadow-xl flex items-center gap-2.5"
+                    >
+                      <div className="h-6 w-6 rounded-full bg-[#450a0a] flex items-center justify-center text-white">
+                        {slides[currentSlide].specs[1].icon}
+                      </div>
+                      <span className="text-[11px] font-bold text-[#450a0a] whitespace-nowrap">{slides[currentSlide].specs[1].label}</span>
+                    </motion.div>
+
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 1, duration: 0.8 }}
+                      className="absolute top-[20%] right-[25%] bg-[#450a0a] px-4 py-2 rounded-full shadow-2xl flex items-center gap-2"
+                    >
+                      <span className="text-[9px] font-bold text-white uppercase tracking-widest">{slides[currentSlide].specs[2].label}</span>
+                      <Sparkles size={10} className="text-white/60" />
+                    </motion.div>
+                  </div>
+
+                  <motion.img 
+                    key={`img-${currentSlide}`}
+                    initial={{ scale: 0.85, y: 30, opacity: 0 }}
+                    animate={{ scale: 1, y: 0, opacity: 1 }}
+                    exit={{ scale: 0.9, y: -20, opacity: 0 }}
+                    transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                    src={slides[currentSlide].image} 
+                    className="max-h-full max-w-full object-contain drop-shadow-[0_40px_80px_rgba(69,10,10,0.12)] relative z-10" 
+                    alt="Quality Product" 
+                  />
+                  
+                  <div className="absolute inset-0 bg-red-900/[0.02] rounded-full blur-[120px] scale-75 -z-10" />
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation Overlay */}
+          <div className="absolute inset-x-0 bottom-4 px-6 md:px-12 flex items-center justify-between z-30">
+            <div className="flex gap-2">
+              {slides.map((_, i) => (
+                <button key={i} onClick={() => setCurrentSlide(i)} className="group py-3">
+                  <div className={cn(
+                    "h-1 rounded-full transition-all duration-700",
+                    currentSlide === i ? "w-12 bg-[#450a0a]" : "w-3 bg-[#450a0a]/10 group-hover:bg-[#450a0a]/30"
+                  )} />
+                </button>
+              ))}
             </div>
 
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Side Decoration Label */}
-      <div className="absolute left-10 bottom-24 hidden 2xl:block overflow-hidden h-32">
-        <div className="flex flex-col gap-4 text-[#1A1A1A]/10">
-          <div className="w-[1px] h-12 bg-[#1A1A1A]/10 mx-auto"></div>
-          <p className="text-[9px] font-bold tracking-[0.8em] uppercase origin-bottom-left -rotate-90">Reliable Quality</p>
+            <div className="flex gap-3">
+              <button onClick={prevSlide} className="h-12 w-12 rounded-full border border-gray-200 bg-white/50 backdrop-blur-sm flex items-center justify-center text-[#450a0a] hover:bg-[#450a0a] hover:text-white transition-all duration-500">
+                <ChevronLeft size={20} />
+              </button>
+              <button onClick={nextSlide} className="h-12 w-12 rounded-full border border-gray-200 bg-white/50 backdrop-blur-sm flex items-center justify-center text-[#450a0a] hover:bg-[#450a0a] hover:text-white transition-all duration-500">
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

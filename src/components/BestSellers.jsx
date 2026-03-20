@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Heart, ShoppingCart, Plus, ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Heart, Plus, ShoppingBag, Sparkles } from "lucide-react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import { Link } from "react-router-dom";
@@ -30,50 +30,39 @@ export default function BestSellers({ products = [] }) {
   };
 
   return (
-    <section className="bg-white py-12 md:py-16 w-full font-jakarta overflow-hidden">
+    <section className="bg-[#FAF9F6] py-16 md:py-24 w-full font-jakarta overflow-hidden border-t border-gray-100">
 
-      <div className="max-w-[1920px] mx-auto px-6 lg:px-20">
+      <div className="max-w-[1920px] mx-auto px-6 lg:px-16">
         
-        {/* --- HEADER --- */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-          <div className="space-y-4">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-3"
-            >
-              <span className="w-8 h-[1px] bg-[#333330]"></span>
-              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#333330]/40">Top Performance</span>
-            </motion.div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-light text-[#333330] tracking-tight uppercase"
-            >
-              Best <span className="font-medium italic text-[#96968B]">Sellers</span>
-            </motion.h2>
-          </div>
+        {/* --- CENTERED COMPACT HEADER --- */}
+        <div className="flex flex-col items-center text-center mb-16 space-y-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-3"
+          >
+           
+          </motion.div>
           
-          <div className="hidden md:flex gap-4 border-l border-[#333330]/10 pl-12">
-            <button className="bs-prev h-12 w-12 flex items-center justify-center rounded-full border border-[#333330]/10 hover:bg-[#333330] hover:text-white transition-all duration-500">
-              <ChevronLeft size={20} strokeWidth={1.2} />
-            </button>
-            <button className="bs-next h-12 w-12 flex items-center justify-center rounded-full border border-[#333330]/10 hover:bg-[#333330] hover:text-white transition-all duration-500">
-              <ChevronRight size={20} strokeWidth={1.2} />
-            </button>
-          </div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#450a0a] tracking-tight leading-tight"
+          >
+            Market <span className="italic font-medium text-red-900">Favorites</span>
+          </motion.h2>
         </div>
 
-        {/* --- CLEAN PORTRAIT PRODUCT LIST --- */}
-        <div className="relative group/carousel">
+        {/* --- CAROUSEL --- */}
+        <div className="relative group/carousel px-2">
           <Swiper
             modules={[Navigation, Autoplay]}
-            spaceBetween={30}
+            spaceBetween={20}
             slidesPerView={1.2}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            autoplay={{ delay: 6000, disableOnInteraction: false }}
             navigation={{ prevEl: '.bs-prev', nextEl: '.bs-next' }}
             breakpoints={{
               480: { slidesPerView: 2.2 },
@@ -90,54 +79,66 @@ export default function BestSellers({ products = [] }) {
                   onMouseEnter={() => setHoveredId(p.id)}
                   onMouseLeave={() => setHoveredId(null)}
                 >
-                  {/* Image Card: Minimalist Box */}
-                  <div className="relative aspect-[4/5] w-full bg-[#F8F8F6] rounded-[2rem] flex items-center justify-center p-10 overflow-hidden transition-all duration-700 group-hover:bg-[#E5E5E0] group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)]">
+                  {/* Image Card: Refined & Less Red */}
+                  <div className="relative aspect-[4/5] w-full bg-white rounded-[2rem] flex items-center justify-center p-8 overflow-hidden transition-all duration-700 border border-gray-100 shadow-sm group-hover:shadow-xl group-hover:border-gray-200">
                     <Link to={`/product/${p.slug}`} className="absolute inset-0 z-10" />
+                    
                     <motion.img 
                       src={getImagePath(p.images)} 
                       alt={p.name} 
-                      className="max-h-full max-w-full object-contain mix-blend-multiply"
-                      animate={hoveredId === p.id ? { scale: 1.08, y: -10 } : { scale: 1, y: 0 }}
-                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                      className="max-h-full max-w-full object-contain mix-blend-multiply relative z-10"
+                      animate={hoveredId === p.id ? { scale: 1.05 } : { scale: 1 }}
+                      transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
                     />
 
-                    {/* Quick Buttons Overlay */}
-                    <div className="absolute top-6 right-6 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0 flex flex-col gap-2">
+                    {/* Quick Wishlist - Subtle */}
+                    <div className="absolute top-5 right-5 z-20">
                       <button 
                         onClick={(e) => { e.preventDefault(); toggleWishlist(p); }}
                         className={cn(
-                          "h-10 w-10 rounded-full flex items-center justify-center border border-white/50 bg-white shadow-sm transition-all",
-                          isInWishlist(p.id) ? "text-red-500" : "text-black hover:bg-black hover:text-white"
+                          "h-10 w-10 rounded-full flex items-center justify-center border border-gray-100 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300 hover:scale-110",
+                          isInWishlist(p.id) ? "text-red-500 border-red-50" : "text-gray-400 hover:text-[#450a0a]"
                         )}
                       >
                         <Heart size={16} fill={isInWishlist(p.id) ? "currentColor" : "none"} strokeWidth={1.5} />
                       </button>
                     </div>
 
-                    {/* Elegant Quick Add Bar */}
-                    <button 
-                      onClick={(e) => handleAddToCart(e, p)}
-                      className="absolute bottom-0 left-0 w-full h-14 bg-[#333330] text-white text-[10px] font-bold uppercase tracking-[0.2em] translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20 flex items-center justify-center gap-2"
-                    >
-                      Add to Cart <Plus size={14} />
-                    </button>
+                    {/* Quick Add Bottom Button - Clean & Persistent */}
+                    <div className="absolute bottom-5 left-5 right-5 z-20">
+                      <button 
+                        onClick={(e) => handleAddToCart(e, p)}
+                        className="w-full h-12 bg-[#450a0a] text-white rounded-xl flex items-center justify-center gap-2 shadow-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
+                      >
+                        <ShoppingBag size={14} />
+                        <span className="text-[10px] font-bold uppercase tracking-widest">Quick Add</span>
+                      </button>
+                    </div>
                   </div>
 
-                  {/* Details: Simple & Clear */}
-                  <div className="pt-8 px-2 space-y-2">
-                    <div className="flex justify-between items-start gap-4">
-                      <Link to={`/product/${p.slug}`} className="flex-1">
-                        <h3 className="text-[14px] font-medium text-[#333330] uppercase tracking-tight line-clamp-1 group-hover:text-[#96968B] transition-colors">
-                          {p.name}
-                        </h3>
-                      </Link>
-                      <span className="text-[14px] font-semibold text-[#333330]">${p.price}</span>
-                    </div>
+                  {/* Details - Stable & No Hover Effect */}
+                  <div className="pt-6 px-2 text-center space-y-1">
+                    <Link to={`/product/${p.slug}`} className="block">
+                      <h3 className="text-[13px] font-bold text-[#450a0a] uppercase  line-clamp-1">
+                        {p.name}
+                      </h3>
+                    </Link>
+                    <span className="text-[14px] font-medium text-gray-400 tracking-wide">${p.price}</span>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Navigation Controls - Smaller & Neutral */}
+          <div className="flex justify-center gap-4 mt-12">
+            <button className="bs-prev h-11 w-11 flex items-center justify-center rounded-full border border-gray-200 hover:bg-[#450a0a] hover:text-white transition-all duration-500 disabled:opacity-20 group">
+              <ChevronLeft size={18} />
+            </button>
+            <button className="bs-next h-11 w-11 flex items-center justify-center rounded-full border border-gray-200 hover:bg-[#450a0a] hover:text-white transition-all duration-500 disabled:opacity-20 group">
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </div>
 
       </div>

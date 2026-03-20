@@ -1,57 +1,57 @@
-import { Truck, RotateCcw, Headset, ShieldCheck } from 'lucide-react';
+import { Truck, RotateCcw, Headset, ShieldCheck, Printer, Zap, Award, BadgeCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const features = [
   {
-    icon: <Truck size={22} strokeWidth={1.2} />,
-    title: "Global Delivery",
-    desc: "Seamless shipping to your doorstep"
+    icon: <Truck size={24} strokeWidth={1} />,
+    title: "Express Printer Shipping",
+    desc: "Direct to your creative workspace"
   },
   {
-    icon: <RotateCcw size={22} strokeWidth={1.2} />,
-    title: "Extended Returns",
-    desc: "Confident 30-day trial period"
+    icon: <RotateCcw size={24} strokeWidth={1} />,
+    title: "Elite Satisfaction",
+    desc: "Quality 30-day trial period"
   },
   {
-    icon: <Headset size={22} strokeWidth={1.2} />,
-    title: "Expert Assistance",
-    desc: "24/7 dedicated support team"
+    icon: <Zap size={24} strokeWidth={1} />,
+    title: "Expert Concierge",
+    desc: "Specialized expert hardware support"
   },
   {
-    icon: <ShieldCheck size={22} strokeWidth={1.2} />,
-    title: "Secure Purchase",
-    desc: "Verified encrypted transactions"
+    icon: <ShieldCheck size={24} strokeWidth={1} />,
+    title: "Imperial Security",
+    desc: "Private encrypted transactions"
   }
 ];
 
 export default function Features() {
   return (
-    <section className="relative z-30 -mt-8 md:-mt-10 pb-16 font-jakarta">
-      <div className="w-full">
-        <div className="bg-white border-y border-[#333330]/5 shadow-[0_20px_50px_rgba(0,0,0,0.02)] rounded-none overflow-hidden backdrop-blur-md bg-white/95">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#333330]/5">
+    <section className="relative z-30 -mt-10 md:-mt-12 pb-20 font-jakarta">
+      <div className="w-full px-4 md:px-8">
+        <div className="max-w-[1600px] mx-auto bg-white border border-red-900/5 shadow-[0_30px_70px_rgba(69,10,10,0.04)] rounded-[2.5rem] overflow-hidden backdrop-blur-xl bg-white/90">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-red-900/5">
             {features.map((item, index) => (
               <motion.div 
                 key={index}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="flex items-center justify-center gap-6 p-10 lg:p-14 group hover:bg-[#F1F1E9]/30 transition-all duration-500"
+                transition={{ delay: index * 0.1, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                className="flex flex-col items-center text-center gap-6 p-12 lg:p-16 group hover:bg-red-50/30 transition-all duration-700"
               >
                 {/* Icon Container */}
-                <div className="h-14 w-14 border border-[#333330]/10 flex items-center justify-center rounded-xl bg-white group-hover:bg-[#333330] group-hover:text-white transition-all duration-500 shrink-0">
-                  <div className="group-hover:scale-110 transition-transform duration-500 text-[#333330] group-hover:text-white">
+                <div className="h-16 w-16 border border-red-900/10 flex items-center justify-center rounded-2xl bg-white shadow-sm group-hover:bg-[#450a0a] group-hover:border-[#450a0a] transition-all duration-700 shrink-0">
+                  <div className="group-hover:scale-110 group-hover:rotate-[5deg] transition-all duration-700 text-[#450a0a] group-hover:text-white">
                     {item.icon}
                   </div>
                 </div>
 
                 {/* Text Content */}
-                <div className="space-y-1">
-                  <h4 className="text-[12px] font-bold text-[#333330] tracking-wide uppercase">
+                <div className="space-y-2">
+                  <h4 className="text-[13px] font-extrabold text-[#450a0a] tracking-widest uppercase">
                     {item.title}
                   </h4>
-                  <p className="text-[11px] text-[#666660] font-light whitespace-nowrap">
+                  <p className="text-[12px] text-[#7A7A75] font-medium leading-relaxed">
                     {item.desc}
                   </p>
                 </div>

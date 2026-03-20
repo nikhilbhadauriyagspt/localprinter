@@ -25,7 +25,7 @@ export default function BrandShowcase({ brands = [] }) {
             Official Partners
           </h2>
           <p className="mt-2 text-slate-400 text-sm font-bold tracking-wide">
-            We directly collaborate with global leaders to provide authentic hardware and genuine supplies.
+            We directly collaborate with global leaders to provide authentic hardware and reliable supplies.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export default function BrandShowcase({ brands = [] }) {
                 to={`/shop?brand=${encodeURIComponent(brand.name)}`}
                 className="inline-flex shrink-0 group transition-all duration-500"
               >
-                {/* Square Premium Node - Increased Size */}
+                {/* Square Quality Node - Increased Size */}
                 <div className="h-28 w-48 md:h-36 md:w-64 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center p-6 md:p-10 transition-all duration-500 group-hover:border-blue-600/20 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-black/5 relative overflow-hidden">
                   <img 
                     src={getBrandLogo(brand)} 

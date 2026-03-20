@@ -85,7 +85,7 @@ export default function Home() {
   return (
     <div className="bg-white font-snpro overflow-x-hidden text-slate-900">
       <SEO 
-        title="Yankee's Printer | Quality Printers & Hardware"
+        title="DominicPrinters | Quality Printers & Hardware"
         description="Your trusted source for high-quality printers and printing hardware. Delivering excellence across the USA."
       />
 
@@ -102,18 +102,17 @@ export default function Home() {
       
       
       <ProductGrid products={data.mixedArrivals.slice(0, 30)} />
-       <Collections />
       <CategorySlider 
-        title="Professional Printers"  
+        title="Office Printers"  
         products={data.printers} 
       />
        
-     {/* --- PREMIUM CONTACT CTA SECTION --- */}
-<section className="py-10 md:py-12 bg-white font-jakarta">
-  <div className="max-w-[1920px] mx-auto px-6 lg:px-20">
-    <div className="relative rounded-[30px] md:rounded-[40px] p-8 md:p-12 text-center overflow-hidden bg-[#FBFBFA] border border-[#333330]/5 shadow-sm group">
+     {/* --- COMPACT CONTACT CTA SECTION --- */}
+<section className="py-12 bg-white font-jakarta">
+  <div className="max-w-[1200px] mx-auto px-6">
+    <div className="relative rounded-[2.5rem] p-10 md:p-14 text-center overflow-hidden bg-[#FAF9F6] border border-red-900/5 shadow-sm group">
       
-      <div className="max-w-3xl mx-auto space-y-6 relative z-10">
+      <div className="max-w-xl mx-auto space-y-6 relative z-10">
         <div className="space-y-3">
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
@@ -121,41 +120,39 @@ export default function Home() {
             viewport={{ once: true }}
             className="flex items-center justify-center gap-3"
           >
-            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#96968B]">Help & Advice</span>
+            <span className="text-[10px] font-extrabold tracking-[0.4em] uppercase text-[#450a0a]/40">Get in Touch</span>
           </motion.div>
           
-          <h2 className="text-2xl md:text-4xl font-light text-black leading-tight uppercase tracking-tight">
-            Need the <span className="font-medium italic text-[#96968B]">Perfect Printer?</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#450a0a] leading-tight tracking-tight">
+            How can we <span className="italic font-medium text-red-900">help you?</span>
           </h2>
-          <p className="text-[#333330] text-sm md:text-base font-light max-w-md mx-auto leading-relaxed">
-            We're here to help you find exactly what you need. Just reach out and we'll handle the rest.
+          <p className="text-[#7A7A75] text-base font-light max-w-sm mx-auto leading-relaxed">
+            Whether you have a simple question or need detailed guidance, our team is always here for you.
           </p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 pt-2">
           <Link
             to="/contact"
-            className="bg-black text-white px-8 h-12 flex items-center justify-center rounded-full font-bold text-[10px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#333330] active:scale-95"
+            className="bg-[#450a0a] text-white px-10 h-14 flex items-center justify-center rounded-2xl font-bold text-[11px] uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.02] shadow-xl shadow-red-900/10"
           >
-            Talk to us
+            Contact Us
           </Link>
           <Link
             to="/faq"
-            className="bg-white border border-[#333330]/10 text-black px-8 h-12 flex items-center justify-center rounded-full font-bold text-[10px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-black hover:text-white active:scale-95 shadow-sm"
+            className="bg-white border border-gray-100 text-[#450a0a] px-10 h-14 flex items-center justify-center rounded-2xl font-bold text-[11px] uppercase tracking-[0.2em] transition-all duration-500 hover:bg-[#FAF9F6] shadow-sm"
           >
-            Find answers
+            View FAQ
           </Link>
         </div>
       </div>
       
-      {/* Subtle Organic Background Accents */}
-      <div className="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24 blur-[60px] opacity-50" />
-      <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#F1F1E9] rounded-full -ml-16 -mb-16 blur-[40px] opacity-40" />
+      {/* Subtle Background Accents */}
+      <div className="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24 blur-[80px] opacity-50" />
+      <div className="absolute bottom-0 left-0 w-32 h-32 bg-red-900/5 rounded-full -ml-16 -mb-16 blur-[60px] opacity-40" />
     </div>
   </div>
 </section>
     </div>
-    
   );
-  
 }
