@@ -104,20 +104,20 @@ export default function Shop() {
 
       {/* Header */}
       <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-24 pb-14">
-        <div className="absolute top-0 left-1/2 h-[260px] w-[260px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
-        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-amber-100/30 blur-[90px]" />
+        <div className="absolute top-0 left-1/2 h-[260px] w-[260px] -translate-x-1/2 rounded-full bg-blue-200/30 blur-[90px]" />
+        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-blue-100/30 blur-[90px]" />
 
         <div className="relative w-full px-4 md:px-8">
           <div className="flex flex-col items-center text-center">
-            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-blue-700 mb-5">
               Explore Products
             </span>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.02] text-slate-900">
-              Our <span className="text-amber-500">Shop</span>
+              Our <span className="text-blue-500">Shop</span>
             </h1>
 
-            <div className="mt-4 h-1 w-20 rounded-full bg-amber-500" />
+            <div className="mt-4 h-1 w-20 rounded-full bg-blue-500" />
 
             <p className="mt-6 max-w-3xl text-sm md:text-base font-medium leading-relaxed text-slate-500">
               Precision-engineered printing solutions curated for professional and everyday productivity.
@@ -138,8 +138,8 @@ export default function Shop() {
                 className={cn(
                   "h-11 px-5 rounded-full text-[11px] font-black uppercase tracking-[0.16em] whitespace-nowrap transition-all border",
                   !category
-                    ? "bg-amber-500 text-slate-950 border-amber-500"
-                    : "bg-white text-slate-600 border-slate-200 hover:border-amber-300 hover:text-slate-900"
+                    ? "bg-blue-500 text-slate-950 border-blue-500"
+                    : "bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-slate-900"
                 )}
               >
                 All Products
@@ -152,8 +152,8 @@ export default function Shop() {
                   className={cn(
                     "h-11 px-5 rounded-full text-[11px] font-black uppercase tracking-[0.16em] whitespace-nowrap transition-all border",
                     category === cat.slug
-                      ? "bg-amber-500 text-slate-950 border-amber-500"
-                      : "bg-white text-slate-600 border-slate-200 hover:border-amber-300 hover:text-slate-900"
+                      ? "bg-blue-500 text-slate-950 border-blue-500"
+                      : "bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-slate-900"
                   )}
                 >
                   {cat.name}
@@ -165,7 +165,7 @@ export default function Shop() {
             <div className="flex w-full xl:w-auto items-center gap-3">
               <div className="relative flex-1 xl:w-96 group">
                 <Search
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-amber-500 transition-colors"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors"
                   size={16}
                 />
                 <input
@@ -173,7 +173,7 @@ export default function Shop() {
                   placeholder="Search products..."
                   value={search}
                   onChange={(e) => updateFilter('search', e.target.value)}
-                  className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-[13px] font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                  className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-[13px] font-semibold outline-none transition-all focus:border-blue-400 focus:bg-white"
                 />
               </div>
 
@@ -215,7 +215,7 @@ export default function Shop() {
             </div>
           ) : products.length === 0 ? (
             <div className="rounded-[32px] border border-dashed border-slate-300 bg-gradient-to-br from-[#fffaf0] to-white py-24 text-center">
-              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-amber-50 border border-amber-200 text-amber-500">
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-50 border border-blue-200 text-blue-500">
                 <Package size={34} />
               </div>
 
@@ -229,7 +229,7 @@ export default function Shop() {
 
               <button
                 onClick={() => navigate('/shop')}
-                className="rounded-full bg-amber-500 px-8 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-950 transition-all hover:bg-amber-400"
+                className="rounded-full bg-blue-500 px-8 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-950 transition-all hover:bg-blue-400"
               >
                 Clear All Filters
               </button>
@@ -251,12 +251,12 @@ export default function Shop() {
                     viewport={{ once: true }}
                   >
                     <Link to={`/product/${p.slug}`} className="block group/card">
-                      <div className="relative rounded-[30px] bg-white border border-slate-200 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(15,23,42,0.12)] hover:border-amber-200">
+                      <div className="relative rounded-[30px] bg-white border border-slate-200 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(15,23,42,0.12)] hover:border-blue-200">
 
                         {/* top bg panel */}
                         <div className="relative px-4 pt-4 pb-2">
                           <div className="relative rounded-[26px] bg-gradient-to-br from-[#fff8eb] via-[#ffffff] to-[#f8fafc] min-h-[250px] overflow-hidden">
-                            <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-amber-200/40 blur-2xl" />
+                            <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-blue-200/40 blur-2xl" />
                             <div className="absolute bottom-0 right-0 h-24 w-24 rounded-full bg-slate-200/50 blur-2xl" />
 
                             {/* Wishlist */}
@@ -270,7 +270,7 @@ export default function Shop() {
                                 "absolute top-4 right-4 z-20 h-10 w-10 rounded-full bg-white/95 border border-white shadow-md flex items-center justify-center transition-all duration-300",
                                 isInWishlist(p.id)
                                   ? "text-red-500"
-                                  : "text-slate-400 hover:text-amber-500"
+                                  : "text-slate-400 hover:text-blue-500"
                               )}
                             >
                               <Heart size={18} fill={isInWishlist(p.id) ? "currentColor" : "none"} />
@@ -292,7 +292,7 @@ export default function Shop() {
 
                         {/* Bottom content */}
                         <div className="px-5 pb-5 pt-1">
-                          <h3 className="text-[13px] font-black text-slate-800 uppercase tracking-[0.12em] leading-[1.45] line-clamp-2 min-h-[38px] max-h-[38px] overflow-hidden transition-colors duration-300 group-hover/card:text-amber-600 text-center">
+                          <h3 className="text-[13px] font-black text-slate-800 uppercase tracking-[0.12em] leading-[1.45] line-clamp-2 min-h-[38px] max-h-[38px] overflow-hidden transition-colors duration-300 group-hover/card:text-blue-600 text-center">
                             {p.name}
                           </h3>
 
@@ -307,14 +307,14 @@ export default function Shop() {
 
                           <button
                             onClick={(e) => handleAddToCart(e, p)}
-                            className="mt-4 w-full h-11 rounded-full bg-slate-900 text-white flex items-center justify-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] hover:bg-amber-500 hover:text-slate-900 transition-all"
+                            className="mt-4 w-full h-11 rounded-full bg-slate-900 text-white flex items-center justify-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] hover:bg-blue-500 hover:text-slate-900 transition-all"
                           >
                             <ShoppingBag size={15} />
                             Add to Cart
                           </button>
                         </div>
 
-                        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
                       </div>
                     </Link>
                   </motion.div>

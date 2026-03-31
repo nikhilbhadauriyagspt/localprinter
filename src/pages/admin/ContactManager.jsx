@@ -117,7 +117,7 @@ export default function ContactManager() {
                   </td>
                   <td className="px-8 py-6">
                     <span className={`px-3 py-1 rounded-full text-[9px] font-bold capitalize tracking-widest border ${contact.status === 'new' ? 'bg-blue-50 text-blue-600 border-blue-100' :
-                      contact.status === 'read' ? 'bg-amber-50 text-amber-600 border-amber-100' :
+                      contact.status === 'read' ? 'bg-blue-50 text-blue-600 border-blue-100' :
                         'bg-emerald-50 text-emerald-600 border-emerald-100'
                       }`}>
                       {contact.status}

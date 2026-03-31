@@ -126,20 +126,20 @@ export default function Orders() {
         <SEO title="Track Order | Inktrix Printers" />
 
         <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-20 md:pt-24 pb-14 md:pb-16">
-          <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
-          <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-amber-100/30 blur-[90px]" />
+          <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-blue-200/30 blur-[90px]" />
+          <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-blue-100/30 blur-[90px]" />
 
           <div className="relative w-full px-4 md:px-8 lg:px-12">
             <div className="max-w-4xl mx-auto text-center">
-              <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+              <span className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-blue-700 mb-5">
                 Track Order
               </span>
 
               <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.02] text-slate-900">
-                Find your <span className="text-amber-500">order</span>
+                Find your <span className="text-blue-500">order</span>
               </h1>
 
-              <div className="mt-4 h-1 w-20 rounded-full bg-amber-500 mx-auto" />
+              <div className="mt-4 h-1 w-20 rounded-full bg-blue-500 mx-auto" />
 
               <p className="mt-6 max-w-2xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500">
                 Enter your email address to check your order status and recent updates.
@@ -153,15 +153,15 @@ export default function Orders() {
             <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
               <div className="lg:col-span-5">
                 <div className="h-full rounded-[36px] border border-slate-200 bg-[#111111] p-8 md:p-10 text-white overflow-hidden relative">
-                  <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-amber-400/10 blur-3xl" />
+                  <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-blue-400/10 blur-3xl" />
                   <div className="relative z-10">
-                    <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-300 mb-5">
+                    <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-300 mb-5">
                       Guest Tracking
                     </span>
 
                     <h2 className="text-3xl md:text-4xl font-black leading-[1.08] tracking-tight mb-5">
                       Check your
-                      <span className="block text-amber-400">order status</span>
+                      <span className="block text-blue-400">order status</span>
                     </h2>
 
                     <p className="text-sm md:text-base font-medium leading-relaxed text-slate-300 mb-8">
@@ -178,7 +178,7 @@ export default function Orders() {
                           key={index}
                           className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4"
                         >
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-400 text-slate-950">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-blue-400 text-slate-950">
                             <CheckCircle2 size={16} />
                           </div>
                           <span className="text-sm font-semibold text-white">{item}</span>
@@ -202,7 +202,7 @@ export default function Orders() {
 
                     <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.08] text-slate-900 mb-3">
                       Enter your
-                      <span className="block text-amber-500">email address</span>
+                      <span className="block text-blue-500">email address</span>
                     </h2>
 
                     <p className="text-sm md:text-base font-medium leading-relaxed text-slate-500">
@@ -224,12 +224,12 @@ export default function Orders() {
                           placeholder="Enter your email address"
                           value={guestEmail}
                           onChange={(e) => setGuestEmail(e.target.value)}
-                          className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                          className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white"
                         />
                       </div>
                     </div>
 
-                    <button className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900">
+                    <button className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900">
                       Find Order
                       <ArrowRight size={16} />
                     </button>
@@ -238,7 +238,7 @@ export default function Orders() {
                   <div className="mt-8 border-t border-slate-200 pt-7 text-center">
                     <Link
                       to="/login"
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-amber-600 transition-colors"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors"
                     >
                       Sign in for full history
                       <ChevronRight size={16} />
@@ -258,20 +258,20 @@ export default function Orders() {
       <SEO title="Order History | Inktrix Printers" />
 
       <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-20 md:pt-24 pb-14 md:pb-16">
-        <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
-        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-amber-100/30 blur-[90px]" />
+        <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-blue-200/30 blur-[90px]" />
+        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-blue-100/30 blur-[90px]" />
 
         <div className="relative w-full px-4 md:px-8 lg:px-12">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-blue-700 mb-5">
               Order History
             </span>
 
             <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.02] text-slate-900">
-              Your <span className="text-amber-500">Orders</span>
+              Your <span className="text-blue-500">Orders</span>
             </h1>
 
-            <div className="mt-4 h-1 w-20 rounded-full bg-amber-500 mx-auto" />
+            <div className="mt-4 h-1 w-20 rounded-full bg-blue-500 mx-auto" />
 
             <p className="mt-6 max-w-2xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500">
               Review your orders, check product details, and track delivery progress.
@@ -284,12 +284,12 @@ export default function Orders() {
         <div className="w-full px-4 md:px-8 lg:px-12">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-32">
-              <Loader2 className="mb-5 h-10 w-10 animate-spin text-amber-500" />
+              <Loader2 className="mb-5 h-10 w-10 animate-spin text-blue-500" />
               <p className="text-sm font-semibold text-slate-500">Loading your orders...</p>
             </div>
           ) : orders.length === 0 ? (
             <div className="max-w-4xl mx-auto rounded-[36px] border border-slate-200 bg-gradient-to-br from-[#fff8eb] via-white to-[#f8fafc] p-8 md:p-14 text-center">
-              <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-[28px] border border-amber-200 bg-amber-50 text-amber-500">
+              <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-[28px] border border-blue-200 bg-blue-50 text-blue-500">
                 <Package size={40} />
               </div>
 
@@ -303,7 +303,7 @@ export default function Orders() {
 
               <Link
                 to="/shop"
-                className="inline-flex items-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900"
+                className="inline-flex items-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900"
               >
                 Explore Products
                 <ArrowRight size={16} />
@@ -312,7 +312,7 @@ export default function Orders() {
           ) : (
             <div className="max-w-7xl mx-auto">
               <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
-                <History size={15} className="text-amber-500" />
+                <History size={15} className="text-blue-500" />
                 {orders.length} Order{orders.length > 1 ? 's' : ''}
               </div>
 
@@ -370,7 +370,7 @@ export default function Orders() {
                                 "inline-flex rounded-full px-4 py-2 text-[10px] font-black uppercase tracking-[0.16em] border",
                                 order.status === 'delivered'
                                   ? "bg-emerald-50 text-emerald-600 border-emerald-200"
-                                  : "bg-amber-50 text-amber-700 border-amber-200"
+                                  : "bg-blue-50 text-blue-700 border-blue-200"
                               )}
                             >
                               {order.status.replace('_', ' ')}
@@ -380,7 +380,7 @@ export default function Orders() {
 
                         <button
                           onClick={() => setSelectedOrder(order)}
-                          className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-900 px-7 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900"
+                          className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-900 px-7 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900"
                         >
                           Track Order
                           <Truck size={16} />
@@ -411,7 +411,7 @@ export default function Orders() {
                                   Qty: {item.quantity}
                                 </span>
                                 <span className="h-1 w-1 rounded-full bg-slate-300" />
-                                <span className="text-sm font-black text-amber-600">
+                                <span className="text-sm font-black text-blue-600">
                                   ${parseFloat(item.price).toLocaleString()}
                                 </span>
                               </div>
@@ -419,7 +419,7 @@ export default function Orders() {
 
                             <Link
                               to={`/product/${item.product_slug}`}
-                              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-400 transition-all hover:border-amber-200 hover:text-amber-600"
+                              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-400 transition-all hover:border-blue-200 hover:text-blue-600"
                             >
                               <ExternalLink size={16} />
                             </Link>
@@ -434,7 +434,7 @@ export default function Orders() {
                             <h5 className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-900">
                               Order Progress
                             </h5>
-                            <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-amber-700">
+                            <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
                               Live Status
                             </span>
                           </div>
@@ -442,7 +442,7 @@ export default function Orders() {
                           <div className="relative pl-2">
                             <div className="absolute left-[10px] top-3 bottom-3 w-[2px] bg-slate-200" />
                             <div
-                              className="absolute left-[10px] top-3 w-[2px] bg-amber-500 transition-all duration-700"
+                              className="absolute left-[10px] top-3 w-[2px] bg-blue-500 transition-all duration-700"
                               style={{
                                 height: `${(getStatusIndex(order.status) / (statusMap.length - 1)) * 100}%`
                               }}
@@ -456,7 +456,7 @@ export default function Orders() {
                                     <div
                                       className={cn(
                                         "z-10 mt-1 h-5 w-5 rounded-full border-4 border-white",
-                                        active ? "bg-amber-500" : "bg-slate-300"
+                                        active ? "bg-blue-500" : "bg-slate-300"
                                       )}
                                     />
                                     <div>
@@ -508,7 +508,7 @@ export default function Orders() {
             >
               <div className="mb-8 flex items-start justify-between gap-4">
                 <div>
-                  <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-700 mb-4">
+                  <span className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-700 mb-4">
                     Order Tracking
                   </span>
                   <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">
@@ -518,7 +518,7 @@ export default function Orders() {
 
                 <button
                   onClick={() => setSelectedOrder(null)}
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-500 transition-all hover:border-amber-200 hover:bg-amber-50 hover:text-slate-900"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-500 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-900"
                 >
                   <X size={18} />
                 </button>
@@ -535,7 +535,7 @@ export default function Orders() {
                         className={cn(
                           "flex h-14 w-14 shrink-0 items-center justify-center rounded-[20px] border",
                           isCompleted
-                            ? "border-amber-200 bg-amber-50 text-amber-500"
+                            ? "border-blue-200 bg-blue-50 text-blue-500"
                             : "border-slate-200 bg-slate-50 text-slate-300"
                         )}
                       >
@@ -566,7 +566,7 @@ export default function Orders() {
               <div className="mt-8 pt-6 border-t border-slate-200">
                 <button
                   onClick={() => setSelectedOrder(null)}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900"
                 >
                   Close
                 </button>
@@ -579,7 +579,7 @@ export default function Orders() {
       <div className="pb-16 pt-4 flex justify-center">
         <Link
           to="/shop"
-          className="group inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500 hover:text-amber-600 transition-colors"
+          className="group inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500 hover:text-blue-600 transition-colors"
         >
           <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-1" />
           Return to Shop

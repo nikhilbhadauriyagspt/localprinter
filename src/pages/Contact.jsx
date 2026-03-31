@@ -57,20 +57,20 @@ export default function Contact() {
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-24 pb-16 md:pb-20">
-        <div className="absolute top-0 left-1/2 h-[260px] w-[260px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
-        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-amber-100/30 blur-[90px]" />
+        <div className="absolute top-0 left-1/2 h-[260px] w-[260px] -translate-x-1/2 rounded-full bg-blue-200/30 blur-[90px]" />
+        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-blue-100/30 blur-[90px]" />
 
         <div className="relative w-full px-4 md:px-8 lg:px-12">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-blue-700 mb-5">
               Contact Us
             </span>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.02] text-slate-900">
-              We’re here to <span className="text-amber-500">help</span>
+              We’re here to <span className="text-blue-500">help</span>
             </h1>
 
-            <div className="mt-4 h-1 w-20 rounded-full bg-amber-500 mx-auto" />
+            <div className="mt-4 h-1 w-20 rounded-full bg-blue-500 mx-auto" />
 
             <p className="mt-6 max-w-2xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500">
               Have a question about our products or need support with your order? Send us a message and our team will get back to you.
@@ -92,15 +92,15 @@ export default function Contact() {
               className="xl:col-span-4"
             >
               <div className="rounded-[34px] border border-slate-200 bg-[#111111] p-7 md:p-8 text-white overflow-hidden relative">
-                <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-amber-400/10 blur-3xl" />
+                <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-blue-400/10 blur-3xl" />
 
-                <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-300 mb-5">
+                <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-300 mb-5">
                   Reach Us
                 </span>
 
                 <h2 className="text-3xl md:text-4xl font-black leading-[1.08] tracking-tight mb-4">
                   Let’s make your
-                  <span className="block text-amber-400">next step easy.</span>
+                  <span className="block text-blue-400">next step easy.</span>
                 </h2>
 
                 <p className="text-sm md:text-base font-medium leading-relaxed text-slate-300 mb-8">
@@ -110,7 +110,7 @@ export default function Contact() {
                 <div className="space-y-4">
                   <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-400 text-slate-950">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-400 text-slate-950">
                         <Mail size={18} />
                       </div>
                       <div>
@@ -119,7 +119,7 @@ export default function Contact() {
                         </p>
                         <a
                           href="mailto:info@localprinter.shop"
-                          className="text-sm md:text-base font-semibold text-white break-all hover:text-amber-300 transition-colors"
+                          className="text-sm md:text-base font-semibold text-white break-all hover:text-blue-300 transition-colors"
                         >
                           info@localprinter.shop
                         </a>
@@ -129,7 +129,7 @@ export default function Contact() {
 
                   <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-400 text-slate-950">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-400 text-slate-950">
                         <MapPin size={18} />
                       </div>
                       <div>
@@ -145,7 +145,7 @@ export default function Contact() {
 
                   <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-400 text-slate-950">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-400 text-slate-950">
                         <MessageSquare size={18} />
                       </div>
                       <div>
@@ -180,7 +180,7 @@ export default function Contact() {
                       exit={{ opacity: 0, scale: 0.96 }}
                       className="py-10 md:py-14 text-center"
                     >
-                      <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full border border-amber-200 bg-amber-50 text-amber-500">
+                      <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full border border-blue-200 bg-blue-50 text-blue-500">
                         <CheckCircle2 size={38} />
                       </div>
 
@@ -194,7 +194,7 @@ export default function Contact() {
 
                       <button
                         onClick={() => setStatus(null)}
-                        className="rounded-full bg-amber-500 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-950 transition-all hover:bg-amber-400"
+                        className="rounded-full bg-blue-500 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-950 transition-all hover:bg-blue-400"
                       >
                         Send Another Message
                       </button>
@@ -215,7 +215,7 @@ export default function Contact() {
 
                         <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.08] text-slate-900 mb-3">
                           Tell us how we can
-                          <span className="block text-amber-500">help you.</span>
+                          <span className="block text-blue-500">help you.</span>
                         </h2>
 
                         <p className="text-sm md:text-base font-medium leading-relaxed text-slate-500">
@@ -232,7 +232,7 @@ export default function Contact() {
                             placeholder="Enter your name"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white"
                           />
                         </div>
 
@@ -244,7 +244,7 @@ export default function Contact() {
                             placeholder="Enter your email"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white"
                           />
                         </div>
                       </div>
@@ -257,7 +257,7 @@ export default function Contact() {
                             placeholder="Enter phone number"
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white"
                           />
                         </div>
 
@@ -267,7 +267,7 @@ export default function Contact() {
                             <select
                               value={formData.subject}
                               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                              className="h-14 w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-5 pr-12 text-sm font-semibold outline-none transition-all cursor-pointer focus:border-amber-400 focus:bg-white"
+                              className="h-14 w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-5 pr-12 text-sm font-semibold outline-none transition-all cursor-pointer focus:border-blue-400 focus:bg-white"
                             >
                               <option>General question</option>
                               <option>Product support</option>
@@ -290,14 +290,14 @@ export default function Contact() {
                           placeholder="Write your message here..."
                           value={formData.message}
                           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                          className="min-h-[180px] w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                          className="min-h-[180px] w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white"
                         />
                       </div>
 
                       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
                         <button
                           disabled={loading}
-                          className="inline-flex h-14 items-center justify-center gap-3 rounded-full bg-slate-900 px-8 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900 disabled:opacity-50"
+                          className="inline-flex h-14 items-center justify-center gap-3 rounded-full bg-slate-900 px-8 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900 disabled:opacity-50"
                         >
                           {loading ? <Loader2 size={18} className="animate-spin" /> : "Submit Message"}
                           {!loading && <Send size={17} />}

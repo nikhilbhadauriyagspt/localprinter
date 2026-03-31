@@ -87,7 +87,7 @@ export default function ProductDetail() {
   if (loading) {
     return (
       <div className="min-h-screen bg-white font-jakarta flex flex-col items-center justify-center text-slate-900">
-        <Loader2 className="h-8 w-8 animate-spin text-amber-500 mb-5" strokeWidth={1.8} />
+        <Loader2 className="h-8 w-8 animate-spin text-blue-500 mb-5" strokeWidth={1.8} />
         <p className="text-sm font-semibold text-slate-500">Loading product details...</p>
       </div>
     );
@@ -96,7 +96,7 @@ export default function ProductDetail() {
   if (!product) {
     return (
       <div className="min-h-screen bg-white font-jakarta flex flex-col items-center justify-center text-center px-6 text-slate-900">
-        <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-[28px] border border-amber-200 bg-amber-50 text-amber-500">
+        <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-[28px] border border-blue-200 bg-blue-50 text-blue-500">
           <ShoppingBag size={38} />
         </div>
 
@@ -108,7 +108,7 @@ export default function ProductDetail() {
 
         <Link
           to="/shop"
-          className="inline-flex items-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900"
+          className="inline-flex items-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900"
         >
           Return to Shop
         </Link>
@@ -133,9 +133,9 @@ export default function ProductDetail() {
 
         {/* Breadcrumbs */}
         <nav className="mb-8 flex items-center gap-2 overflow-hidden text-[11px] font-black uppercase tracking-[0.14em] text-slate-400">
-          <Link to="/" className="shrink-0 hover:text-amber-600 transition-colors">Home</Link>
+          <Link to="/" className="shrink-0 hover:text-blue-600 transition-colors">Home</Link>
           <ChevronRight size={12} className="shrink-0" />
-          <Link to="/shop" className="shrink-0 hover:text-amber-600 transition-colors">Shop</Link>
+          <Link to="/shop" className="shrink-0 hover:text-blue-600 transition-colors">Shop</Link>
           <ChevronRight size={12} className="shrink-0" />
           <span className="truncate text-slate-900">{product.name}</span>
         </nav>
@@ -147,7 +147,7 @@ export default function ProductDetail() {
           <div className="xl:col-span-6">
             <div className="rounded-[36px] border border-slate-200 bg-white p-5 md:p-6 shadow-[0_18px_45px_rgba(15,23,42,0.04)]">
               <div className="relative rounded-[30px] border border-slate-200 bg-gradient-to-br from-[#fff8eb] via-white to-[#f8fafc] min-h-[420px] md:min-h-[540px] flex items-center justify-center overflow-hidden group">
-                <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-amber-200/40 blur-2xl" />
+                <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-blue-200/40 blur-2xl" />
                 <div className="absolute bottom-0 right-0 h-24 w-24 rounded-full bg-slate-200/40 blur-2xl" />
 
                 <motion.img
@@ -166,7 +166,7 @@ export default function ProductDetail() {
                     "absolute top-5 right-5 z-20 flex h-12 w-12 items-center justify-center rounded-2xl border transition-all duration-300",
                     isInWishlist(product.id)
                       ? "border-red-500 bg-red-500 text-white"
-                      : "border-slate-200 bg-white text-slate-400 hover:border-amber-200 hover:text-red-500"
+                      : "border-slate-200 bg-white text-slate-400 hover:border-blue-200 hover:text-red-500"
                   )}
                 >
                   <Heart size={18} fill={isInWishlist(product.id) ? "currentColor" : "none"} />
@@ -182,8 +182,8 @@ export default function ProductDetail() {
                       className={cn(
                         "flex h-20 w-20 md:h-24 md:w-24 shrink-0 items-center justify-center rounded-[22px] border bg-white p-3 transition-all",
                         activeImage === idx
-                          ? "border-amber-400 shadow-sm"
-                          : "border-slate-200 hover:border-amber-200"
+                          ? "border-blue-400 shadow-sm"
+                          : "border-slate-200 hover:border-blue-200"
                       )}
                     >
                       <img
@@ -201,7 +201,7 @@ export default function ProductDetail() {
           {/* Right side info */}
           <div className="xl:col-span-6">
             <div className="rounded-[36px] border border-slate-200 bg-white p-7 md:p-8 lg:p-10 shadow-[0_18px_45px_rgba(15,23,42,0.04)]">
-              <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-700 mb-5">
+              <span className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-700 mb-5">
                 Product Details
               </span>
 
@@ -222,7 +222,7 @@ export default function ProductDetail() {
               </div>
 
               <div className="rounded-[24px] border border-slate-200 bg-slate-50 p-5 mb-8">
-                <div className="flex items-center gap-2 mb-3 text-amber-600">
+                <div className="flex items-center gap-2 mb-3 text-blue-600">
                   <Info size={16} />
                   <h4 className="text-[11px] font-black uppercase tracking-[0.16em]">
                     Description
@@ -259,7 +259,7 @@ export default function ProductDetail() {
                   <button
                     onClick={handleAddToCart}
                     disabled={isAdded}
-                    className="inline-flex flex-1 items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900 disabled:opacity-60"
+                    className="inline-flex flex-1 items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900 disabled:opacity-60"
                   >
                     {isAdded ? <CheckCircle size={16} /> : <ShoppingBag size={16} />}
                     {isAdded ? 'Added to Cart' : 'Add to Cart'}
@@ -277,7 +277,7 @@ export default function ProductDetail() {
                       key={i}
                       className="rounded-[22px] border border-slate-200 bg-slate-50 px-4 py-5 text-center"
                     >
-                      <div className="mb-3 flex justify-center text-amber-500">
+                      <div className="mb-3 flex justify-center text-blue-500">
                         {item.icon}
                       </div>
                       <span className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-600">
@@ -300,13 +300,13 @@ export default function ProductDetail() {
                   More Products
                 </span>
                 <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">
-                  Related <span className="text-amber-500">Products</span>
+                  Related <span className="text-blue-500">Products</span>
                 </h2>
               </div>
 
               <Link
                 to="/shop"
-                className="group inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500 hover:text-amber-600 transition-colors"
+                className="group inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500 hover:text-blue-600 transition-colors"
               >
                 View All
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -317,7 +317,7 @@ export default function ProductDetail() {
               {relatedProducts.slice(0, 5).map((p) => (
                 <div
                   key={p.id}
-                  className="rounded-[30px] border border-slate-200 bg-white overflow-hidden shadow-[0_18px_45px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-200 hover:shadow-[0_22px_60px_rgba(15,23,42,0.08)] group"
+                  className="rounded-[30px] border border-slate-200 bg-white overflow-hidden shadow-[0_18px_45px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_22px_60px_rgba(15,23,42,0.08)] group"
                 >
                   <Link to={`/product/${p.slug}`} className="block">
                     <div className="p-4">
@@ -331,7 +331,7 @@ export default function ProductDetail() {
                     </div>
 
                     <div className="px-5 pb-5 pt-1">
-                      <h3 className="line-clamp-2 min-h-[44px] text-[14px] font-black leading-snug text-slate-900 transition-colors group-hover:text-amber-600">
+                      <h3 className="line-clamp-2 min-h-[44px] text-[14px] font-black leading-snug text-slate-900 transition-colors group-hover:text-blue-600">
                         {p.name}
                       </h3>
 

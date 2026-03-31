@@ -30,15 +30,15 @@ export default function ProductGrid({ products = [], loading = false }) {
 
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-12">
-          <span className="inline-flex items-center px-4 py-2 rounded-full border border-amber-200 bg-amber-50 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+          <span className="inline-flex items-center px-4 py-2 rounded-full border border-blue-200 bg-blue-50 text-[11px] font-black uppercase tracking-[0.22em] text-blue-700 mb-5">
             Fresh Picks
           </span>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.05]">
-            New <span className="text-amber-500">Arrivals</span>
+            New <span className="text-blue-500">Arrivals</span>
           </h2>
 
-          <div className="h-1 w-20 bg-amber-500 mt-4 rounded-full" />
+          <div className="h-1 w-20 bg-blue-500 mt-4 rounded-full" />
 
           <p className="text-slate-500 text-sm md:text-[15px] font-medium mt-4 max-w-lg leading-relaxed">
             Discover the latest printers and accessories designed for reliable performance and everyday productivity.
@@ -70,14 +70,14 @@ export default function ProductGrid({ products = [], loading = false }) {
                 viewport={{ once: true }}
               >
                 <Link to={`/product/${p.slug}`} className="block group/card">
-                  <div className="relative rounded-[30px] bg-white border border-slate-200 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(15,23,42,0.12)] hover:border-amber-200">
+                  <div className="relative rounded-[30px] bg-white border border-slate-200 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(15,23,42,0.12)] hover:border-blue-200">
 
                     {/* top bg panel */}
                     <div className="relative px-4 pt-4 pb-2">
                       <div className="relative rounded-[26px] bg-gradient-to-br from-[#fff8eb] via-[#ffffff] to-[#f8fafc] min-h-[250px] overflow-hidden">
                         
                         {/* soft decorative shapes */}
-                        <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-amber-200/40 blur-2xl" />
+                        <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-blue-200/40 blur-2xl" />
                         <div className="absolute bottom-0 right-0 h-24 w-24 rounded-full bg-slate-200/50 blur-2xl" />
 
                         {/* Wishlist */}
@@ -91,7 +91,7 @@ export default function ProductGrid({ products = [], loading = false }) {
                             "absolute top-4 right-4 z-20 h-10 w-10 rounded-full bg-white/95 border border-white shadow-md flex items-center justify-center transition-all duration-300",
                             isInWishlist(p.id)
                               ? "text-red-500"
-                              : "text-slate-400 hover:text-amber-500"
+                              : "text-slate-400 hover:text-blue-500"
                           )}
                         >
                           <Heart size={18} fill={isInWishlist(p.id) ? "currentColor" : "none"} />
@@ -113,7 +113,7 @@ export default function ProductGrid({ products = [], loading = false }) {
 
                     {/* Bottom content */}
                     <div className="px-5 pb-5 pt-1">
-                      <h3 className="text-[13px] font-black text-slate-800 uppercase tracking-[0.12em] leading-[1.45] line-clamp-2 min-h-[38px] max-h-[38px] overflow-hidden transition-colors duration-300 group-hover/card:text-amber-600 text-center">
+                      <h3 className="text-[13px] font-black text-slate-800 uppercase tracking-[0.12em] leading-[1.45] line-clamp-2 min-h-[38px] max-h-[38px] overflow-hidden transition-colors duration-300 group-hover/card:text-blue-600 text-center">
                         {p.name}
                       </h3>
 
@@ -128,7 +128,7 @@ export default function ProductGrid({ products = [], loading = false }) {
 
                       <button
                         onClick={(e) => handleAddToCart(e, p)}
-                        className="mt-4 w-full h-11 rounded-full bg-slate-900 text-white flex items-center justify-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] hover:bg-amber-500 hover:text-slate-900 transition-all"
+                        className="mt-4 w-full h-11 rounded-full bg-slate-900 text-white flex items-center justify-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] hover:bg-blue-500 hover:text-slate-900 transition-all"
                       >
                         <ShoppingBag size={15} />
                         Add to Cart
@@ -136,7 +136,7 @@ export default function ProductGrid({ products = [], loading = false }) {
                     </div>
 
                     {/* bottom accent */}
-                    <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
                   </div>
                 </Link>
               </motion.div>
@@ -149,7 +149,7 @@ export default function ProductGrid({ products = [], loading = false }) {
           <div className="flex justify-center mt-10">
             <Link
               to="/shop"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-500 text-slate-900 text-sm font-black uppercase tracking-[0.16em] hover:bg-amber-400 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-500 text-slate-900 text-sm font-black uppercase tracking-[0.16em] hover:bg-blue-400 transition-all"
             >
               Explore All Products
               <ArrowRight size={16} />

@@ -62,20 +62,20 @@ export default function UserSignup() {
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-20 md:pt-24 pb-14 md:pb-16">
-        <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
-        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-amber-100/30 blur-[90px]" />
+        <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-blue-200/30 blur-[90px]" />
+        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-blue-100/30 blur-[90px]" />
 
         <div className="relative w-full px-4 md:px-8 lg:px-12">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-blue-700 mb-5">
               Create Account
             </span>
 
             <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.02] text-slate-900">
-              Join <span className="text-amber-500">Local Printer</span>
+              Join <span className="text-blue-500">Local Printer</span>
             </h1>
 
-            <div className="mt-4 h-1 w-20 rounded-full bg-amber-500 mx-auto" />
+            <div className="mt-4 h-1 w-20 rounded-full bg-blue-500 mx-auto" />
 
             <p className="mt-6 max-w-2xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500">
               Create your account to manage orders, save details, and enjoy a smoother shopping experience.
@@ -96,17 +96,17 @@ export default function UserSignup() {
               className="lg:col-span-5"
             >
               <div className="h-full rounded-[36px] border border-slate-200 bg-gradient-to-br from-[#fff8eb] via-white to-[#f8fafc] p-8 md:p-10 overflow-hidden relative">
-                <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-amber-200/40 blur-2xl" />
+                <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-blue-200/40 blur-2xl" />
                 <div className="absolute bottom-0 right-0 h-24 w-24 rounded-full bg-slate-200/40 blur-2xl" />
 
                 <div className="relative z-10">
-                  <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-700 mb-5">
+                  <span className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-700 mb-5">
                     New Customer
                   </span>
 
                   <h2 className="text-3xl md:text-4xl font-black leading-[1.08] tracking-tight mb-5 text-slate-900">
                     Create your
-                    <span className="block text-amber-500">account today</span>
+                    <span className="block text-blue-500">account today</span>
                   </h2>
 
                   <p className="text-sm md:text-base font-medium leading-relaxed text-slate-500 mb-8">
@@ -123,7 +123,7 @@ export default function UserSignup() {
                         key={index}
                         className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-4"
                       >
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-50 border border-amber-200 text-amber-500">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-blue-50 border border-blue-200 text-blue-500">
                           <CheckCircle2 size={16} />
                         </div>
                         <span className="text-sm font-semibold text-slate-700">{item}</span>
@@ -149,7 +149,7 @@ export default function UserSignup() {
 
                   <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.08] text-slate-900 mb-3">
                     Enter your
-                    <span className="block text-amber-500">details below</span>
+                    <span className="block text-blue-500">details below</span>
                   </h2>
 
                   <p className="text-sm md:text-base font-medium leading-relaxed text-slate-500">
@@ -184,7 +184,7 @@ export default function UserSignup() {
                         placeholder="Enter your full name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                        className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white"
                       />
                     </div>
                   </div>
@@ -202,7 +202,7 @@ export default function UserSignup() {
                         placeholder="Enter your email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                        className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white"
                       />
                     </div>
                   </div>
@@ -221,7 +221,7 @@ export default function UserSignup() {
                           placeholder="Enter password"
                           value={formData.password}
                           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                          className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                          className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white"
                         />
                       </div>
                     </div>
@@ -239,7 +239,7 @@ export default function UserSignup() {
                           placeholder="Confirm password"
                           value={formData.confirmPassword}
                           onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                          className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                          className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white"
                         />
                       </div>
                     </div>
@@ -250,7 +250,7 @@ export default function UserSignup() {
                       type="checkbox"
                       checked={showPassword}
                       onChange={(e) => setShowPassword(e.target.checked)}
-                      className="h-4 w-4 rounded border-slate-300 text-amber-500 focus:ring-amber-500"
+                      className="h-4 w-4 rounded border-slate-300 text-blue-500 focus:ring-blue-500"
                     />
                     <span className="text-sm font-semibold text-slate-600">
                       Show password fields
@@ -259,7 +259,7 @@ export default function UserSignup() {
 
                   <button
                     disabled={loading}
-                    className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900 disabled:opacity-50"
+                    className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900 disabled:opacity-50"
                   >
                     {loading ? (
                       <Loader2 className="animate-spin" size={18} />
@@ -277,7 +277,7 @@ export default function UserSignup() {
                     Already have an account?{' '}
                     <Link
                       to="/login"
-                      className="font-black text-amber-600 hover:text-amber-700 transition-colors"
+                      className="font-black text-blue-600 hover:text-blue-700 transition-colors"
                     >
                       Sign In
                     </Link>

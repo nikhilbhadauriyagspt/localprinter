@@ -58,8 +58,8 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#0f1115] text-white pt-0 pb-8">
       {/* subtle bg */}
-      <div className="pointer-events-none absolute top-0 left-1/2 h-[380px] w-[380px] -translate-x-1/2 rounded-full bg-amber-400/10 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[260px] w-[260px] rounded-full bg-amber-300/10 blur-[100px]" />
+      <div className="pointer-events-none absolute top-0 left-1/2 h-[380px] w-[380px] -translate-x-1/2 rounded-full bg-blue-400/10 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-[260px] w-[260px] rounded-full bg-blue-300/10 blur-[100px]" />
 
       <div className="relative z-10 w-full px-4 md:px-8 lg:px-12">
 
@@ -67,14 +67,14 @@ export default function Footer() {
         <div className="translate-y-[-1px] border-b border-white/10 py-8 md:py-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/20 bg-amber-400/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-amber-300 mb-4">
+              <div className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-400/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-blue-300 mb-4">
                 <Sparkles size={12} />
                 Stay Connected
               </div>
 
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.05] text-white">
                 Get updates on new arrivals,
-                <span className="text-amber-400"> offers and essentials.</span>
+                <span className="text-blue-400"> offers and essentials.</span>
               </h2>
 
               <p className="mt-3 text-sm md:text-[15px] leading-relaxed text-slate-400 max-w-xl">
@@ -98,13 +98,13 @@ export default function Footer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="h-[52px] w-full rounded-full border border-white/10 bg-white/5 pl-11 pr-4 text-sm font-semibold text-white outline-none placeholder:text-slate-500 focus:border-amber-400/40"
+                    className="h-[52px] w-full rounded-full border border-white/10 bg-white/5 pl-11 pr-4 text-sm font-semibold text-white outline-none placeholder:text-slate-500 focus:border-blue-400/40"
                   />
                 </div>
 
                 <button
                   disabled={loading}
-                  className="h-[52px] px-7 rounded-full bg-amber-400 text-slate-950 text-[11px] font-black uppercase tracking-[0.18em] hover:bg-amber-300 transition-all min-w-[150px]"
+                  className="h-[52px] px-7 rounded-full bg-blue-400 text-slate-950 text-[11px] font-black uppercase tracking-[0.18em] hover:bg-blue-300 transition-all min-w-[150px]"
                 >
                   {loading ? <Loader2 className="mx-auto animate-spin" size={16} /> : 'Subscribe'}
                 </button>
@@ -131,7 +131,7 @@ export default function Footer() {
 
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-amber-400">
+                <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-blue-400">
                   <MapPin size={16} />
                 </div>
                 <p className="text-sm font-medium leading-relaxed text-slate-300">
@@ -140,12 +140,12 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-amber-400">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-blue-400">
                   <Mail size={16} />
                 </div>
                 <a
                   href="mailto:info@localprinter.shop"
-                  className="text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors"
+                  className="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors"
                 >
                   info@localprinter.shop
                 </a>
@@ -158,7 +158,7 @@ export default function Footer() {
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
               {/* Printers */}
               <div>
-                <h4 className="text-[11px] font-black uppercase tracking-[0.24em] text-amber-400 mb-5">
+                <h4 className="text-[11px] font-black uppercase tracking-[0.24em] text-blue-400 mb-5">
                   Printers
                 </h4>
                 <ul className="space-y-3">
@@ -168,7 +168,7 @@ export default function Footer() {
                         to={`/shop?category=${cat.slug}`}
                         className="group inline-flex items-center gap-3 text-sm font-semibold text-slate-400 hover:text-white transition-colors"
                       >
-                        <span className="h-[2px] w-2 bg-amber-400/60 transition-all group-hover:w-4" />
+                        <span className="h-[2px] w-2 bg-blue-400/60 transition-all group-hover:w-4" />
                         {cat.name}
                       </Link>
                     </li>
@@ -178,7 +178,7 @@ export default function Footer() {
 
               {/* Company */}
               <div>
-                <h4 className="text-[11px] font-black uppercase tracking-[0.24em] text-amber-400 mb-5">
+                <h4 className="text-[11px] font-black uppercase tracking-[0.24em] text-blue-400 mb-5">
                   Company
                 </h4>
                 <ul className="space-y-3">
@@ -193,7 +193,7 @@ export default function Footer() {
                         to={item.path}
                         className="group inline-flex items-center gap-3 text-sm font-semibold text-slate-400 hover:text-white transition-colors"
                       >
-                        <span className="h-[2px] w-2 bg-amber-400/60 transition-all group-hover:w-4" />
+                        <span className="h-[2px] w-2 bg-blue-400/60 transition-all group-hover:w-4" />
                         {item.name}
                       </Link>
                     </li>
@@ -203,7 +203,7 @@ export default function Footer() {
 
               {/* Legal */}
               <div>
-                <h4 className="text-[11px] font-black uppercase tracking-[0.24em] text-amber-400 mb-5">
+                <h4 className="text-[11px] font-black uppercase tracking-[0.24em] text-blue-400 mb-5">
                   Legal
                 </h4>
                 <ul className="space-y-3">
@@ -219,7 +219,7 @@ export default function Footer() {
                         to={item.path}
                         className="group inline-flex items-center gap-3 text-sm font-semibold text-slate-400 hover:text-white transition-colors"
                       >
-                        <span className="h-[2px] w-2 bg-amber-400/60 transition-all group-hover:w-4" />
+                        <span className="h-[2px] w-2 bg-blue-400/60 transition-all group-hover:w-4" />
                         {item.name}
                       </Link>
                     </li>

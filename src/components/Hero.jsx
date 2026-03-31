@@ -57,7 +57,7 @@ const Hero = () => {
                   className="text-white text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight mb-5"
                 >
                   Find the Right
-                  <span className="block text-amber-400">Printer for Every Need</span>
+                  <span className="block text-blue-400">Printer for Every Need</span>
                 </motion.h1>
 
                 <motion.p
@@ -79,7 +79,7 @@ const Hero = () => {
                 >
                   <Link
                     to="/shop"
-                    className="inline-flex items-center gap-2 px-7 md:px-8 py-3.5 md:py-4 rounded-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold transition-all shadow-lg shadow-amber-500/20"
+                    className="inline-flex items-center gap-2 px-7 md:px-8 py-3.5 md:py-4 rounded-full bg-blue-500 hover:bg-blue-600 text-slate-950 font-extrabold transition-all shadow-lg shadow-blue-500/20"
                   >
                     Shop Now
                     <ArrowRight size={18} />
@@ -116,7 +116,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/80" />
 
               <div className="relative z-10 h-full p-6 flex flex-col justify-between">
-                <div className="h-12 w-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/10 flex items-center justify-center text-amber-400">
+                <div className="h-12 w-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/10 flex items-center justify-center text-blue-400">
                   <Printer size={24} />
                 </div>
 
@@ -147,7 +147,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/85" />
 
               <div className="relative z-10 h-full p-6 flex flex-col justify-between">
-                <div className="h-12 w-12 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center shadow-lg shadow-amber-500/20">
+                <div className="h-12 w-12 rounded-2xl bg-blue-500 text-slate-950 flex items-center justify-center shadow-lg shadow-blue-500/20">
                   <BadgePercent size={22} />
                 </div>
 
@@ -162,7 +162,7 @@ const Hero = () => {
 
                   <Link
                     to="/shop"
-                    className="inline-flex items-center gap-2 text-amber-400 font-bold text-sm hover:text-amber-300 transition-colors"
+                    className="inline-flex items-center gap-2 text-blue-400 font-bold text-sm hover:text-blue-300 transition-colors"
                   >
                     Explore Deals
                     <ArrowRight size={16} />
@@ -190,7 +190,7 @@ const Hero = () => {
               key={idx}
               className="flex items-center gap-3 px-5 py-4 rounded-[22px] border border-slate-200 bg-white"
             >
-              <div className="text-amber-500">{item.icon}</div>
+              <div className="text-blue-500">{item.icon}</div>
               <span className="text-sm font-extrabold tracking-wide text-slate-700 uppercase">
                 {item.label}
               </span>

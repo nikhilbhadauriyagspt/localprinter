@@ -43,15 +43,15 @@ export default function ShopByCategory({ categories = [], loading = false }) {
 
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-12">
-          <span className="inline-flex items-center px-4 py-2 rounded-full border border-amber-200 bg-amber-50 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+          <span className="inline-flex items-center px-4 py-2 rounded-full border border-blue-200 bg-blue-50 text-[11px] font-black uppercase tracking-[0.22em] text-blue-700 mb-5">
             Explore Categories
           </span>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.05]">
-            Shop By <span className="text-amber-500">Category</span>
+            Shop By <span className="text-blue-500">Category</span>
           </h2>
 
-          <div className="h-1 w-20 bg-amber-500 mt-4 rounded-full" />
+          <div className="h-1 w-20 bg-blue-500 mt-4 rounded-full" />
 
           <p className="mt-4 max-w-xl text-sm md:text-[15px] leading-relaxed text-slate-500 font-medium">
             Discover our extensive collection of high-performance printers and professional supplies.
@@ -107,14 +107,14 @@ export default function ShopByCategory({ categories = [], loading = false }) {
                       to={`/shop?category=${item.slug}`}
                       className="group/card block"
                     >
-                      <div className="relative rounded-[30px] bg-white border border-slate-200 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(15,23,42,0.12)] hover:border-amber-200">
+                      <div className="relative rounded-[30px] bg-white border border-slate-200 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(15,23,42,0.12)] hover:border-blue-200">
                         
                         {/* top bg panel */}
                         <div className="relative px-4 pt-4 pb-2">
                           <div className="relative rounded-[26px] bg-gradient-to-br from-[#fff8eb] via-[#ffffff] to-[#f8fafc] min-h-[250px] overflow-hidden">
                             
                             {/* soft decorative shapes */}
-                            <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-amber-200/40 blur-2xl" />
+                            <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-blue-200/40 blur-2xl" />
                             <div className="absolute bottom-0 right-0 h-24 w-24 rounded-full bg-slate-200/50 blur-2xl" />
 
                             {/* Image */}
@@ -138,13 +138,13 @@ export default function ShopByCategory({ categories = [], loading = false }) {
 
                         {/* Bottom content */}
                         <div className="px-5 pb-5 pt-1 text-center">
-                          <h4 className="text-[14px] md:text-[15px] font-black text-slate-800 tracking-tight leading-tight transition-colors duration-300 group-hover/card:text-amber-600">
+                          <h4 className="text-[14px] md:text-[15px] font-black text-slate-800 tracking-tight leading-tight transition-colors duration-300 group-hover/card:text-blue-600">
                             {item.name}
                           </h4>
                         </div>
 
                         {/* bottom accent */}
-                        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
                       </div>
                     </Link>
                   </motion.div>
@@ -154,11 +154,11 @@ export default function ShopByCategory({ categories = [], loading = false }) {
           </Swiper>
 
           {/* Navigation */}
-          <button className="cat-prev-modern absolute top-1/2 -left-4 -translate-y-1/2 z-10 h-12 w-12 flex items-center justify-center rounded-full bg-white shadow-[0_10px_30px_rgba(15,23,42,0.10)] border border-slate-200 text-slate-900 hover:bg-amber-500 hover:text-slate-900 transition-all opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0">
+          <button className="cat-prev-modern absolute top-1/2 -left-4 -translate-y-1/2 z-10 h-12 w-12 flex items-center justify-center rounded-full bg-white shadow-[0_10px_30px_rgba(15,23,42,0.10)] border border-slate-200 text-slate-900 hover:bg-blue-500 hover:text-slate-900 transition-all opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0">
             <ChevronLeft size={22} />
           </button>
 
-          <button className="cat-next-modern absolute top-1/2 -right-4 -translate-y-1/2 z-10 h-12 w-12 flex items-center justify-center rounded-full bg-white shadow-[0_10px_30px_rgba(15,23,42,0.10)] border border-slate-200 text-slate-900 hover:bg-amber-500 hover:text-slate-900 transition-all opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0">
+          <button className="cat-next-modern absolute top-1/2 -right-4 -translate-y-1/2 z-10 h-12 w-12 flex items-center justify-center rounded-full bg-white shadow-[0_10px_30px_rgba(15,23,42,0.10)] border border-slate-200 text-slate-900 hover:bg-blue-500 hover:text-slate-900 transition-all opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0">
             <ChevronRight size={22} />
           </button>
         </div>

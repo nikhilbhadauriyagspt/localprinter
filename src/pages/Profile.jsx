@@ -138,18 +138,18 @@ export default function Profile() {
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-20 md:pt-24 pb-14 md:pb-16">
-        <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
-        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-amber-100/30 blur-[90px]" />
+        <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-blue-200/30 blur-[90px]" />
+        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-blue-100/30 blur-[90px]" />
 
         <div className="relative w-full px-4 md:px-8 lg:px-12">
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>
-              <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+              <span className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-blue-700 mb-5">
                 My Account
               </span>
 
               <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.02] text-slate-900">
-                Account <span className="text-amber-500">Profile</span>
+                Account <span className="text-blue-500">Profile</span>
               </h1>
 
               <p className="mt-5 max-w-2xl text-sm md:text-base font-medium leading-relaxed text-slate-500">
@@ -176,20 +176,20 @@ export default function Profile() {
             {/* Left side */}
             <div className="xl:col-span-4 space-y-6">
               <div className="rounded-[36px] border border-slate-200 bg-[#111111] p-8 md:p-10 text-white overflow-hidden relative">
-                <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-amber-400/10 blur-3xl" />
+                <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-blue-400/10 blur-3xl" />
 
                 <div className="relative z-10">
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[24px] bg-amber-400 text-slate-950">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[24px] bg-blue-400 text-slate-950">
                     <User size={28} />
                   </div>
 
-                  <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-300 mb-5">
+                  <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-300 mb-5">
                     Account Summary
                   </span>
 
                   <h2 className="text-3xl md:text-4xl font-black leading-[1.08] tracking-tight mb-3">
                     Welcome
-                    <span className="block text-amber-400">{user.name}</span>
+                    <span className="block text-blue-400">{user.name}</span>
                   </h2>
 
                   <p className="text-sm md:text-base font-medium leading-relaxed text-slate-300 mb-8">
@@ -199,14 +199,14 @@ export default function Profile() {
                   <div className="space-y-4">
                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                       <div className="flex items-center gap-3">
-                        <Mail size={16} className="text-amber-300" />
+                        <Mail size={16} className="text-blue-300" />
                         <span className="text-sm font-semibold text-white break-all">{user.email}</span>
                       </div>
                     </div>
 
                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                       <div className="flex items-center gap-3">
-                        <Phone size={16} className="text-amber-300" />
+                        <Phone size={16} className="text-blue-300" />
                         <span className="text-sm font-semibold text-white">
                           {profileForm.phone || 'No phone added'}
                         </span>
@@ -215,7 +215,7 @@ export default function Profile() {
 
                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                       <div className="flex items-start gap-3">
-                        <MapPin size={16} className="text-amber-300 mt-0.5" />
+                        <MapPin size={16} className="text-blue-300 mt-0.5" />
                         <span className="text-sm font-semibold text-white leading-relaxed">
                           {profileForm.address || 'No address added'}
                         </span>
@@ -239,15 +239,15 @@ export default function Profile() {
                       className={cn(
                         "w-full flex items-center justify-between rounded-2xl px-5 py-4 text-sm font-black transition-all border",
                         activeTab === tab.id
-                          ? "bg-amber-50 text-slate-900 border-amber-200"
+                          ? "bg-blue-50 text-slate-900 border-blue-200"
                           : "bg-white text-slate-500 border-transparent hover:border-slate-200 hover:bg-slate-50"
                       )}
                     >
                       <div className="flex items-center gap-3">
-                        <tab.icon size={18} className={activeTab === tab.id ? "text-amber-600" : ""} />
+                        <tab.icon size={18} className={activeTab === tab.id ? "text-blue-600" : ""} />
                         {tab.label}
                       </div>
-                      <ChevronRight size={16} className={activeTab === tab.id ? "text-amber-600" : "text-slate-300"} />
+                      <ChevronRight size={16} className={activeTab === tab.id ? "text-blue-600" : "text-slate-300"} />
                     </button>
                   ))}
                 </div>
@@ -272,7 +272,7 @@ export default function Profile() {
 
                       <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.08] text-slate-900 mb-3">
                         Update your
-                        <span className="block text-amber-500">personal details</span>
+                        <span className="block text-blue-500">personal details</span>
                       </h2>
 
                       <p className="text-sm md:text-base font-medium leading-relaxed text-slate-500">
@@ -288,7 +288,7 @@ export default function Profile() {
                             required
                             value={profileForm.name}
                             onChange={(e) => setProfileForm({ ...profileForm, name: e.target.value })}
-                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all focus:border-blue-400 focus:bg-white"
                           />
                         </div>
 
@@ -297,7 +297,7 @@ export default function Profile() {
                           <input
                             value={profileForm.phone}
                             onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })}
-                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all focus:border-blue-400 focus:bg-white"
                           />
                         </div>
                       </div>
@@ -308,13 +308,13 @@ export default function Profile() {
                           rows="4"
                           value={profileForm.address}
                           onChange={(e) => setProfileForm({ ...profileForm, address: e.target.value })}
-                          className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm font-semibold outline-none transition-all resize-none focus:border-amber-400 focus:bg-white"
+                          className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm font-semibold outline-none transition-all resize-none focus:border-blue-400 focus:bg-white"
                         />
                       </div>
 
                       <button
                         disabled={isUpdating}
-                        className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900 disabled:opacity-50"
+                        className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900 disabled:opacity-50"
                       >
                         {isUpdating ? 'Saving...' : 'Update Profile'}
                       </button>
@@ -339,13 +339,13 @@ export default function Profile() {
 
                           <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.08] text-slate-900 mb-3">
                             Review your
-                            <span className="block text-amber-500">recent purchases</span>
+                            <span className="block text-blue-500">recent purchases</span>
                           </h2>
                         </div>
 
                         <Link
                           to="/orders"
-                          className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500 hover:text-amber-600 transition-colors"
+                          className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500 hover:text-blue-600 transition-colors"
                         >
                           View All History
                           <ArrowRight size={14} />
@@ -354,21 +354,21 @@ export default function Profile() {
 
                       {loading ? (
                         <div className="py-20 flex flex-col items-center">
-                          <Loader2 className="animate-spin text-amber-500 mb-4" />
+                          <Loader2 className="animate-spin text-blue-500 mb-4" />
                           <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
                             Loading Orders
                           </p>
                         </div>
                       ) : orders.length === 0 ? (
                         <div className="rounded-[28px] border border-slate-200 bg-gradient-to-br from-[#fff8eb] via-white to-[#f8fafc] py-16 text-center">
-                          <ShoppingCart size={42} strokeWidth={1.5} className="text-amber-400 mx-auto mb-6" />
+                          <ShoppingCart size={42} strokeWidth={1.5} className="text-blue-400 mx-auto mb-6" />
                           <p className="text-lg font-black text-slate-900 mb-3">No orders found</p>
                           <p className="text-sm font-medium text-slate-500 mb-6">
                             Start shopping to see your order history here.
                           </p>
                           <Link
                             to="/shop"
-                            className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-amber-600 hover:text-amber-700"
+                            className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-600 hover:text-blue-700"
                           >
                             Start Shopping
                             <ArrowRight size={14} />
@@ -379,7 +379,7 @@ export default function Profile() {
                           {orders.slice(0, 5).map((order) => (
                             <div
                               key={order.id}
-                              className="rounded-[24px] border border-slate-200 bg-slate-50/60 p-5 md:p-6 transition-all hover:border-amber-200"
+                              className="rounded-[24px] border border-slate-200 bg-slate-50/60 p-5 md:p-6 transition-all hover:border-blue-200"
                             >
                               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 items-center">
                                 <div>
@@ -415,7 +415,7 @@ export default function Profile() {
                                       "inline-flex rounded-full px-4 py-2 text-[10px] font-black uppercase tracking-[0.16em] border",
                                       order.status === 'delivered'
                                         ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
-                                        : 'bg-amber-50 text-amber-700 border-amber-200'
+                                        : 'bg-blue-50 text-blue-700 border-blue-200'
                                     )}
                                   >
                                     {order.status.replace('_', ' ')}
@@ -445,7 +445,7 @@ export default function Profile() {
 
                       <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.08] text-slate-900 mb-3">
                         Update your
-                        <span className="block text-amber-500">password</span>
+                        <span className="block text-blue-500">password</span>
                       </h2>
 
                       <p className="text-sm md:text-base font-medium leading-relaxed text-slate-500">
@@ -463,7 +463,7 @@ export default function Profile() {
                             required
                             value={securityForm.password}
                             onChange={(e) => setSecurityForm({ ...securityForm, password: e.target.value })}
-                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-12 text-sm font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-12 text-sm font-semibold outline-none transition-all focus:border-blue-400 focus:bg-white"
                           />
                           <button
                             type="button"
@@ -484,14 +484,14 @@ export default function Profile() {
                             required
                             value={securityForm.confirmPassword}
                             onChange={(e) => setSecurityForm({ ...securityForm, confirmPassword: e.target.value })}
-                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all focus:border-blue-400 focus:bg-white"
                           />
                         </div>
                       </div>
 
                       <button
                         disabled={isUpdating}
-                        className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900 disabled:opacity-50"
+                        className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900 disabled:opacity-50"
                       >
                         {isUpdating ? 'Processing...' : 'Update Password'}
                       </button>

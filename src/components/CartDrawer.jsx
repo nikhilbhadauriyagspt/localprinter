@@ -47,12 +47,12 @@ export default function CartDrawer() {
             <div className="border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] to-white px-6 md:px-7 pt-7 pb-6">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-amber-700 mb-4">
+                  <span className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700 mb-4">
                     Shopping Cart
                   </span>
 
                   <h2 className="text-2xl md:text-3xl font-black tracking-tight leading-[1.05] text-slate-900">
-                    Your <span className="text-amber-500">Cart</span>
+                    Your <span className="text-blue-500">Cart</span>
                   </h2>
 
                   <p className="mt-2 text-[12px] md:text-[13px] font-semibold text-slate-500">
@@ -62,7 +62,7 @@ export default function CartDrawer() {
 
                 <button
                   onClick={closeCartDrawer}
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-500 transition-all hover:border-amber-200 hover:bg-amber-50 hover:text-slate-900"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-500 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-900"
                 >
                   <X size={20} />
                 </button>
@@ -79,7 +79,7 @@ export default function CartDrawer() {
                       layout
                       initial={{ opacity: 0, y: 14 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="rounded-[28px] border border-slate-200 bg-white p-4 transition-all duration-300 hover:border-amber-200 hover:shadow-[0_14px_35px_rgba(15,23,42,0.06)]"
+                      className="rounded-[28px] border border-slate-200 bg-white p-4 transition-all duration-300 hover:border-blue-200 hover:shadow-[0_14px_35px_rgba(15,23,42,0.06)]"
                     >
                       <div className="flex gap-4">
                         {/* image */}
@@ -95,7 +95,7 @@ export default function CartDrawer() {
                         <div className="min-w-0 flex-1">
                           <div className="flex items-start justify-between gap-3">
                             <Link to={`/product/${item.slug}`} onClick={closeCartDrawer}>
-                              <h3 className="line-clamp-2 text-[14px] font-black leading-snug text-slate-900 transition-colors hover:text-amber-600">
+                              <h3 className="line-clamp-2 text-[14px] font-black leading-snug text-slate-900 transition-colors hover:text-blue-600">
                                 {item.name}
                               </h3>
                             </Link>
@@ -145,7 +145,7 @@ export default function CartDrawer() {
                 </div>
               ) : (
                 <div className="flex h-full flex-col items-center justify-center text-center px-4">
-                  <div className="mb-7 flex h-24 w-24 items-center justify-center rounded-[28px] border border-amber-200 bg-amber-50 text-amber-500">
+                  <div className="mb-7 flex h-24 w-24 items-center justify-center rounded-[28px] border border-blue-200 bg-blue-50 text-blue-500">
                     <ShoppingBag size={40} />
                   </div>
 
@@ -160,7 +160,7 @@ export default function CartDrawer() {
                   <Link
                     to="/shop"
                     onClick={closeCartDrawer}
-                    className="inline-flex items-center gap-3 rounded-full bg-slate-900 px-7 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900"
+                    className="inline-flex items-center gap-3 rounded-full bg-slate-900 px-7 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-blue-500 hover:text-slate-900"
                   >
                     Explore Products
                     <ArrowRight size={16} />
@@ -173,14 +173,14 @@ export default function CartDrawer() {
             {cart.length > 0 && (
               <div className="border-t border-slate-200 bg-white px-5 md:px-6 py-5">
                 <div className="rounded-[28px] bg-[#111111] p-5 text-white overflow-hidden relative">
-                  <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-amber-400/10 blur-3xl" />
+                  <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-blue-400/10 blur-3xl" />
 
                   <div className="relative z-10">
                     <div className="mb-5 flex items-center justify-between">
                       <span className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">
                         Order Summary
                       </span>
-                      <span className="text-sm font-black text-amber-300">
+                      <span className="text-sm font-black text-blue-300">
                         ${total.toLocaleString()}
                       </span>
                     </div>
@@ -196,7 +196,7 @@ export default function CartDrawer() {
                       <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
                         Estimated Total
                       </span>
-                      <span className="mt-1 block text-4xl font-black tracking-tight text-amber-400">
+                      <span className="mt-1 block text-4xl font-black tracking-tight text-blue-400">
                         ${total.toLocaleString()}
                       </span>
                     </div>
@@ -205,14 +205,14 @@ export default function CartDrawer() {
                       <Link
                         to="/checkout"
                         onClick={closeCartDrawer}
-                        className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-amber-400 px-6 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-950 transition-all hover:bg-amber-300"
+                        className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-blue-400 px-6 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-950 transition-all hover:bg-blue-300"
                       >
                         Proceed to Checkout
                         <ArrowRight size={16} />
                       </Link>
 
                       <div className="flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-[10px] font-black uppercase tracking-[0.16em] text-slate-300">
-                        <ShieldCheck size={14} className="text-amber-300" />
+                        <ShieldCheck size={14} className="text-blue-300" />
                         Safe & Secure Checkout
                       </div>
                     </div>

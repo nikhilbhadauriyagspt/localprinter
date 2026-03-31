@@ -68,7 +68,7 @@ export default function TrendingProducts() {
                 <h4 className="font-black text-slate-900 text-sm tracking-tight">{p.name}</h4>
                 <div className="flex items-center gap-3 mt-1">
                   <span className="text-blue-600 font-black text-sm">{p.price}</span>
-                  <div className="flex items-center gap-1 text-amber-400">
+                  <div className="flex items-center gap-1 text-blue-400">
                     <Star size={10} fill="currentColor" />
                     <span className="text-[10px] font-bold text-slate-400">4.9</span>
                   </div>

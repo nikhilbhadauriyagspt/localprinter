@@ -33,16 +33,16 @@ export default function Collections() {
 
             <div className="relative z-10 h-full flex items-center">
               <div className="max-w-2xl p-8 md:p-12 lg:p-14">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/15 border border-amber-300/20 mb-6">
-                  <Sparkles size={12} className="text-amber-300" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-300">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-400/15 border border-blue-300/20 mb-6">
+                  <Sparkles size={12} className="text-blue-300" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-300">
                     Limited Series 2026
                   </span>
                 </div>
 
                 <h3 className="text-3xl md:text-5xl xl:text-6xl font-black text-white leading-[1.02] tracking-tight mb-5">
                   Reliable Printing
-                  <span className="block text-amber-400">Solutions</span>
+                  <span className="block text-blue-400">Solutions</span>
                 </h3>
 
                 <p className="text-slate-300 text-sm md:text-base font-medium leading-relaxed max-w-lg mb-8">
@@ -52,7 +52,7 @@ export default function Collections() {
 
                 <Link
                   to="/shop"
-                  className="inline-flex items-center gap-3 rounded-full bg-amber-400 px-7 py-4 text-[11px] font-black uppercase tracking-[0.18em] text-slate-950 transition-all hover:bg-amber-300 active:scale-95"
+                  className="inline-flex items-center gap-3 rounded-full bg-blue-400 px-7 py-4 text-[11px] font-black uppercase tracking-[0.18em] text-slate-950 transition-all hover:bg-blue-300 active:scale-95"
                 >
                   Explore Now
                   <ArrowRight size={16} />
@@ -96,7 +96,7 @@ export default function Collections() {
 
                   <Link
                     to="/shop"
-                    className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-300"
+                    className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-300"
                   >
                     Shop Now
                     <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -113,16 +113,16 @@ export default function Collections() {
               transition={{ delay: 0.08 }}
               className="relative min-h-[280px] rounded-[30px] overflow-hidden border border-slate-200 bg-gradient-to-br from-[#fff8eb] via-white to-[#f8fafc] group"
             >
-              <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-amber-200/40 blur-2xl" />
+              <div className="absolute -top-10 -left-10 h-28 w-28 rounded-full bg-blue-200/40 blur-2xl" />
               <div className="absolute bottom-0 right-0 h-24 w-24 rounded-full bg-slate-200/50 blur-2xl" />
 
               <div className="relative z-10 h-full p-7 md:p-8 flex flex-col justify-between">
-                <div className="h-14 w-14 rounded-[20px] bg-slate-900 text-amber-400 flex items-center justify-center shadow-lg">
+                <div className="h-14 w-14 rounded-[20px] bg-slate-900 text-blue-400 flex items-center justify-center shadow-lg">
                   <Zap size={24} />
                 </div>
 
                 <div>
-                  <span className="inline-flex mb-4 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[9px] font-black uppercase tracking-[0.2em] text-amber-700">
+                  <span className="inline-flex mb-4 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-[9px] font-black uppercase tracking-[0.2em] text-blue-700">
                     Fast Service
                   </span>
 
