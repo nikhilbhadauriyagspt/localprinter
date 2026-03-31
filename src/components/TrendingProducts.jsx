@@ -12,7 +12,7 @@ const products = [
   },
   {
     name: "Blade Pro 16",
-    tag: "High Performance",
+    tag:",
     price: "$2,199",
     image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=400",
     color: "bg-purple-50/50"

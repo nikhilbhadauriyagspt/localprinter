@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Lock, Eye, EyeOff, Loader2, ArrowRight } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Loader2, ArrowRight, ShieldCheck } from 'lucide-react';
 import API_BASE_URL from '../config';
 import SEO from '@/components/SEO';
-import { cn } from '../lib/utils';
 
 export default function UserLogin() {
   const [email, setEmail] = useState('');
@@ -32,7 +31,7 @@ export default function UserLogin() {
     try {
       const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
@@ -57,107 +56,201 @@ export default function UserLogin() {
   };
 
   return (
-    <div className="bg-white min-h-screen font-jakarta text-slate-900 overflow-x-hidden">
-      <SEO title="Sign In |Inktrix Printers" />
+    <div className="min-h-screen overflow-x-hidden bg-white font-jakarta text-slate-900">
+      <SEO title="Sign In " />
 
-      {/* --- PAGE HEADER --- */}
-      <section className="pt-14 pb-12 bg-white border-b border-slate-50">
-        <div className="w-full px-4 md:px-12 lg:px-20">
-          <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-4xl font-black text-slate-900 tracking-tight">
-              Sign <span className="text-blue-600">In</span>
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-20 md:pt-24 pb-14 md:pb-16">
+        <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
+        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-amber-100/30 blur-[90px]" />
+
+        <div className="relative w-full px-4 md:px-8 lg:px-12">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+              Account Access
+            </span>
+
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.02] text-slate-900">
+              Sign <span className="text-amber-500">In</span>
             </h1>
-            <div className="h-1.5 w-24 bg-blue-600 mt-5 rounded-full" />
-            <p className="text-slate-500 text-lg font-bold mt-6 max-w-2xl leading-relaxed">
-              Access your professional account to manage orders and explore elite printing solutions.
+
+            <div className="mt-4 h-1 w-20 rounded-full bg-amber-500 mx-auto" />
+
+            <p className="mt-6 max-w-2xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500">
+              Access your account to manage orders and continue shopping with ease.
             </p>
           </div>
         </div>
       </section>
 
-      {/* --- LOGIN FORM SECTION --- */}
-      <section>
-        <div className="w-full px-4 flex justify-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="w-full max-w-[500px] bg-white p-8 md:p-16 rounded-[40px] border border-slate-200 shadow-2xl shadow-slate-200/50"
-          >
-            <form onSubmit={handleLogin} className="space-y-8">
-              <AnimatePresence>
-                {error && (
-                  <motion.div 
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="p-5 bg-red-50 text-red-600 text-sm font-bold rounded-2xl border border-red-100 flex items-center gap-3"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-red-600 shrink-0" />
-                    {error}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+      {/* Main layout changed */}
+      <section className="py-14 md:py-20">
+        <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
-              <div className="space-y-3">
-                <label className="text-sm font-black text-slate-900 ml-1">Email Address</label>
-                <div className="relative group">
-                  <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={20} />
-                  <input
-                    required
-                    type="email"
-                    placeholder="example@business.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full h-16 pl-14 pr-6 bg-slate-50 border border-slate-200 rounded-2xl focus:border-blue-600 focus:bg-white outline-none text-base font-bold transition-all placeholder:text-slate-300"
-                  />
+            {/* Left side info panel */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="lg:col-span-5"
+            >
+              <div className="h-full rounded-[36px] border border-slate-200 bg-[#111111] p-8 md:p-10 text-white overflow-hidden relative">
+                <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-amber-400/10 blur-3xl" />
+
+                <div className="relative z-10">
+                  <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-300 mb-5">
+                    Welcome Back
+                  </span>
+
+                  <h2 className="text-3xl md:text-4xl font-black leading-[1.08] tracking-tight mb-5">
+                    Sign in to your
+                    <span className="block text-amber-400">customer account</span>
+                  </h2>
+
+                  <p className="text-sm md:text-base font-medium leading-relaxed text-slate-300 mb-8">
+                    Log in to check your profile, review orders, and continue your shopping journey.
+                  </p>
+
+                  <div className="space-y-4">
+                    {[
+                      "Manage your account details",
+                      "Track your recent orders",
+                      "Continue shopping faster"
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4"
+                      >
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-400 text-slate-950">
+                          <ShieldCheck size={16} />
+                        </div>
+                        <span className="text-sm font-semibold text-white">{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
+            </motion.div>
 
-              <div className="space-y-3">
-                <div className="flex justify-between items-center px-1">
-                  <label className="text-sm font-black text-slate-900">Password</label>
-                  <Link to="#" className="text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors">Forgot Password?</Link>
+            {/* Right side form panel */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 }}
+              className="lg:col-span-7"
+            >
+              <div className="rounded-[36px] border border-slate-200 bg-white p-7 md:p-10 lg:p-12 shadow-[0_20px_60px_rgba(15,23,42,0.05)]">
+                <div className="mb-8">
+                  <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-600 mb-4">
+                    Sign In Form
+                  </span>
+
+                  <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.08] text-slate-900 mb-3">
+                    Access your
+                    <span className="block text-amber-500">account here</span>
+                  </h2>
+
+                  <p className="text-sm md:text-base font-medium leading-relaxed text-slate-500">
+                    Enter your login details below.
+                  </p>
                 </div>
-                <div className="relative group">
-                  <Lock className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={20} />
-                  <input
-                    required
-                    type={showPassword ? "text" : "password"}
-                    placeholder="••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full h-16 pl-14 pr-14 bg-slate-50 border border-slate-200 rounded-2xl focus:border-blue-600 focus:bg-white outline-none text-base font-bold transition-all placeholder:text-slate-300"
-                  />
+
+                <form onSubmit={handleLogin} className="space-y-7">
+                  <AnimatePresence>
+                    {error && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm font-semibold text-red-600"
+                      >
+                        {error}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <div className="space-y-3">
+                    <label className="text-[13px] font-black text-slate-900">Email Address</label>
+                    <div className="relative">
+                      <Mail
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                        size={18}
+                      />
+                      <input
+                        required
+                        type="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between gap-4">
+                      <label className="text-[13px] font-black text-slate-900">Password</label>
+                      <Link
+                        to="#"
+                        className="text-[12px] font-black text-amber-600 hover:text-amber-700 transition-colors"
+                      >
+                        Forgot Password?
+                      </Link>
+                    </div>
+
+                    <div className="relative">
+                      <Lock
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                        size={18}
+                      />
+                      <input
+                        required
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-12 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-900"
+                      >
+                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      </button>
+                    </div>
+                  </div>
+
                   <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-900 transition-colors"
+                    disabled={loading}
+                    className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900 disabled:opacity-50"
                   >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                    {loading ? (
+                      <Loader2 className="animate-spin" size={18} />
+                    ) : (
+                      <>
+                        Sign In
+                        <ArrowRight size={16} />
+                      </>
+                    )}
                   </button>
+                </form>
+
+                <div className="mt-8 border-t border-slate-200 pt-7 text-center">
+                  <p className="text-sm font-semibold text-slate-500">
+                    New here?{' '}
+                    <Link
+                      to="/signup"
+                      className="font-black text-amber-600 hover:text-amber-700 transition-colors"
+                    >
+                      Create Account
+                    </Link>
+                  </p>
                 </div>
               </div>
+            </motion.div>
 
-              <button
-                disabled={loading}
-                className="w-full h-16 bg-slate-900 text-white rounded-full font-black text-sm uppercase tracking-widest hover:bg-blue-600 transition-all shadow-2xl shadow-slate-900/10 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-4 mt-10"
-              >
-                {loading ? <Loader2 className="animate-spin" size={22} /> : (
-                  <>
-                    Sign In Account
-                    <ArrowRight size={20} />
-                  </>
-                )}
-              </button>
-            </form>
-
-            <div className="mt-12 pt-8 border-t border-slate-100 text-center">
-              <p className="text-slate-500 font-bold">
-                New toInktrix Printers?{' '}
-                <Link to="/signup" className="text-blue-600 font-black hover:text-blue-700 transition-colors">Create Account</Link>
-              </p>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

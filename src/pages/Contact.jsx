@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
-import { Mail, CheckCircle2, Loader2, ChevronDown, Send, Globe, MapPin, Phone } from 'lucide-react';
+import { Mail, CheckCircle2, Loader2, ChevronDown, Send, MapPin, MessageSquare } from 'lucide-react';
 import API_BASE_URL from '../config';
-import { cn } from '../lib/utils';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -27,10 +26,18 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
+
       const data = await response.json();
+
       if (data.status === 'success') {
         setStatus('success');
-        setFormData({ name: '', email: '', phone: '', subject: 'General question', message: '' });
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: 'General question',
+          message: ''
+        });
       } else {
         setStatus('error');
       }
@@ -42,160 +49,271 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-white min-h-screen font-jakarta text-slate-900 overflow-x-hidden">
-      <SEO 
-        title="Contact Us |Inktrix Printers" 
-        description="Connect withInktrix Printers. Our professional team is here to assist with your printing requirements."
+    <div className="min-h-screen overflow-x-hidden bg-white font-jakarta text-slate-900">
+      <SEO
+        title="Contact Us "
+        description="Get in touch with Local Printer for product questions, support, and general inquiries."
       />
-      
-      {/* --- PAGE HEADER (Home Page Style) --- */}
-      <section className="pt-24 pb-16 bg-white border-b border-slate-50">
-        <div className="w-full px-4 md:px-12 lg:px-20">
-          <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight">
-              Contact <span className="text-blue-600">Us</span>
+
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-24 pb-16 md:pb-20">
+        <div className="absolute top-0 left-1/2 h-[260px] w-[260px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
+        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-amber-100/30 blur-[90px]" />
+
+        <div className="relative w-full px-4 md:px-8 lg:px-12">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+              Contact Us
+            </span>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.02] text-slate-900">
+              We’re here to <span className="text-amber-500">help</span>
             </h1>
-            <div className="h-1.5 w-24 bg-blue-600 mt-6 rounded-full" />
-            <p className="text-slate-500 text-lg font-bold mt-8 max-w-3xl leading-relaxed">
-              Have questions about our professional printing solutions? Our support team is ready to assist you with any inquiries.
+
+            <div className="mt-4 h-1 w-20 rounded-full bg-amber-500 mx-auto" />
+
+            <p className="mt-6 max-w-2xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500">
+              Have a question about our products or need support with your order? Send us a message and our team will get back to you.
             </p>
           </div>
         </div>
       </section>
 
-      {/* --- CONTENT GRID (Full Width) --- */}
-      <section className="py-20 bg-slate-50">
-        <div className="w-full px-4 md:px-12 lg:px-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            
-            {/* LEFT: INFO CARDS */}
-            <div className="lg:col-span-4 space-y-8">
-              <div className="space-y-6">
-                <h3 className="text-3xl font-black text-slate-900 leading-tight">
-                  Get in <span className="text-blue-600">touch</span>
-                </h3>
-                <p className="text-slate-600 font-medium leading-relaxed">
-                  Connect with us through any of our official channels. We aim to respond to all professional inquiries within 24 business hours.
+      {/* Main Layout */}
+      <section className="py-14 md:py-20">
+        <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+
+            {/* Left Side */}
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="xl:col-span-4"
+            >
+              <div className="rounded-[34px] border border-slate-200 bg-[#111111] p-7 md:p-8 text-white overflow-hidden relative">
+                <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-amber-400/10 blur-3xl" />
+
+                <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-300 mb-5">
+                  Reach Us
+                </span>
+
+                <h2 className="text-3xl md:text-4xl font-black leading-[1.08] tracking-tight mb-4">
+                  Let’s make your
+                  <span className="block text-amber-400">next step easy.</span>
+                </h2>
+
+                <p className="text-sm md:text-base font-medium leading-relaxed text-slate-300 mb-8">
+                  Contact us for product questions, order support, or general help. We keep communication simple and clear.
                 </p>
-              </div>
-                
-              <div className="grid gap-6">
-                {[
-                  { icon: <Mail size={22} />, label: "Email support", val: "info@inktrixprinters.shop", link: "mailto:info@inktrixprinters.shop" },
-                  { icon: <MapPin size={22} />, label: "Visit our office", val: "1800 Surveyor Blvd, Carrollton, TX 75006, USA", link: "#" }
-                  
-                ].map((item, i) => (
-                  <div key={i} className="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm flex items-start gap-6 group hover:border-blue-600 transition-all duration-300">
-                    <div className="h-12 w-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-blue-100">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <p className="text-sm font-black text-slate-400 mb-1">{item.label}</p>
-                      {item.link !== "#" ? (
-                        <a href={item.link} className="text-lg font-black text-slate-900 break-all hover:text-blue-600 transition-colors">{item.val}</a>
-                      ) : (
-                        <p className="text-lg font-black text-slate-900">{item.val}</p>
-                      )}
+
+                <div className="space-y-4">
+                  <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-400 text-slate-950">
+                        <Mail size={18} />
+                      </div>
+                      <div>
+                        <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400 mb-2">
+                          Email
+                        </p>
+                        <a
+                          href="mailto:info@localprinter.shop"
+                          className="text-sm md:text-base font-semibold text-white break-all hover:text-amber-300 transition-colors"
+                        >
+                          info@localprinter.shop
+                        </a>
+                      </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            {/* RIGHT: CONTACT FORM */}
-            <div className="lg:col-span-8">
-              <div className="bg-white p-8 md:p-16 rounded-[40px] border border-slate-200 shadow-2xl shadow-slate-200/50">
+                  <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-400 text-slate-950">
+                        <MapPin size={18} />
+                      </div>
+                      <div>
+                        <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400 mb-2">
+                          Address
+                        </p>
+                        <p className="text-sm md:text-base font-semibold text-white leading-relaxed">
+                          2026 W Flagler St. Miami, FL 33135, USA
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-400 text-slate-950">
+                        <MessageSquare size={18} />
+                      </div>
+                      <div>
+                        <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400 mb-2">
+                          Support
+                        </p>
+                        <p className="text-sm md:text-base font-semibold text-white leading-relaxed">
+                          General questions, product help, and order-related inquiries.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
+              className="xl:col-span-8"
+            >
+              <div className="rounded-[34px] border border-slate-200 bg-white p-6 md:p-10 lg:p-12 shadow-[0_20px_60px_rgba(15,23,42,0.05)]">
                 <AnimatePresence mode="wait">
                   {status === 'success' ? (
-                    <motion.div 
-                      initial={{ opacity: 0, scale: 0.95 }}
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.96 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      className="text-center py-12"
+                      exit={{ opacity: 0, scale: 0.96 }}
+                      className="py-10 md:py-14 text-center"
                     >
-                      <div className="h-24 w-24 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner shadow-blue-100">
-                        <CheckCircle2 size={48} />
+                      <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full border border-amber-200 bg-amber-50 text-amber-500">
+                        <CheckCircle2 size={38} />
                       </div>
-                      <h2 className="text-3xl font-black text-slate-900 mb-4">Message received successfully</h2>
-                      <p className="text-slate-500 mb-10 max-w-sm mx-auto font-bold text-lg leading-relaxed">Thank you for reaching out. Our  team will review your inquiry and get back to you shortly.</p>
-                      <button 
-                        onClick={() => setStatus(null)} 
-                        className="bg-blue-600 text-white px-12 py-5 rounded-full font-black text-sm transition-all hover:bg-blue-700 shadow-xl shadow-blue-100"
+
+                      <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-4">
+                        Message sent successfully
+                      </h2>
+
+                      <p className="mx-auto mb-8 max-w-md text-sm md:text-base font-medium leading-relaxed text-slate-500">
+                        Thank you for contacting us. Our team will review your message and respond as soon as possible.
+                      </p>
+
+                      <button
+                        onClick={() => setStatus(null)}
+                        className="rounded-full bg-amber-500 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-950 transition-all hover:bg-amber-400"
                       >
-                        Send another message
+                        Send Another Message
                       </button>
                     </motion.div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-10">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <motion.form
+                      key="form"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      onSubmit={handleSubmit}
+                      className="space-y-8"
+                    >
+                      <div>
+                        <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-600 mb-4">
+                          Send a Message
+                        </span>
+
+                        <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.08] text-slate-900 mb-3">
+                          Tell us how we can
+                          <span className="block text-amber-500">help you.</span>
+                        </h2>
+
+                        <p className="text-sm md:text-base font-medium leading-relaxed text-slate-500">
+                          Fill out the form below and share your question with us.
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-3">
-                          <label className="text-sm font-black text-slate-900 ml-1">Full Name</label>
-                          <input 
-                            required type="text" placeholder="Enter your name" value={formData.name}
-                            onChange={(e) => setFormData({...formData, name: e.target.value})}
-                            className="w-full h-16 px-8 bg-slate-50 border border-slate-200 rounded-2xl focus:border-blue-600 focus:bg-white outline-none text-base font-bold transition-all placeholder:text-slate-300"
+                          <label className="text-[13px] font-black text-slate-900">Full Name</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="Enter your name"
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
                           />
                         </div>
+
                         <div className="space-y-3">
-                          <label className="text-sm font-black text-slate-900 ml-1">Email Address</label>
-                          <input 
-                            required type="email" placeholder="example@business.com" value={formData.email}
-                            onChange={(e) => setFormData({...formData, email: e.target.value})}
-                            className="w-full h-16 px-8 bg-slate-50 border border-slate-200 rounded-2xl focus:border-blue-600 focus:bg-white outline-none text-base font-bold transition-all placeholder:text-slate-300"
+                          <label className="text-[13px] font-black text-slate-900">Email Address</label>
+                          <input
+                            required
+                            type="email"
+                            placeholder="Enter your email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
                           />
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-3">
-                          <label className="text-sm font-black text-slate-900 ml-1">Phone (Optional)</label>
-                          <input 
-                            type="tel" placeholder="+1 (000) 000-0000" value={formData.phone}
-                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                            className="w-full h-16 px-8 bg-slate-50 border border-slate-200 rounded-2xl focus:border-blue-600 focus:bg-white outline-none text-base font-bold transition-all placeholder:text-slate-300"
+                          <label className="text-[13px] font-black text-slate-900">Phone (Optional)</label>
+                          <input
+                            type="tel"
+                            placeholder="Enter phone number"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
                           />
                         </div>
+
                         <div className="space-y-3">
-                          <label className="text-sm font-black text-slate-900 ml-1">Inquiry Type</label>
+                          <label className="text-[13px] font-black text-slate-900">Subject</label>
                           <div className="relative">
-                            <select 
+                            <select
                               value={formData.subject}
-                              onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                              className="w-full h-16 px-8 bg-slate-50 border border-slate-200 rounded-2xl focus:border-blue-600 focus:bg-white outline-none text-base font-bold transition-all appearance-none cursor-pointer"
+                              onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                              className="h-14 w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-5 pr-12 text-sm font-semibold outline-none transition-all cursor-pointer focus:border-amber-400 focus:bg-white"
                             >
                               <option>General question</option>
                               <option>Product support</option>
                               <option>Order help</option>
                               <option>Other</option>
                             </select>
-                            <ChevronDown className="absolute right-8 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={20} />
+                            <ChevronDown
+                              className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-slate-400"
+                              size={18}
+                            />
                           </div>
                         </div>
                       </div>
 
                       <div className="space-y-3">
-                        <label className="text-sm font-black text-slate-900 ml-1">Detailed Message</label>
-                        <textarea 
-                          required rows="5" placeholder="Please describe your requirements..." value={formData.message}
-                          onChange={(e) => setFormData({...formData, message: e.target.value})}
-                          className="w-full p-8 bg-slate-50 border border-slate-200 rounded-2xl focus:border-blue-600 focus:bg-white outline-none text-base font-bold transition-all resize-none min-h-[180px] placeholder:text-slate-300"
-                        ></textarea>
+                        <label className="text-[13px] font-black text-slate-900">Message</label>
+                        <textarea
+                          required
+                          rows="6"
+                          placeholder="Write your message here..."
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                          className="min-h-[180px] w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                        />
                       </div>
 
-                      <div className="pt-4">
-                        <button 
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+                        <button
                           disabled={loading}
-                          className="w-full md:w-auto inline-flex items-center justify-center gap-4 bg-slate-900 text-white h-16 px-16 rounded-full font-black text-sm transition-all hover:bg-blue-600 shadow-2xl shadow-slate-900/10 active:scale-95 disabled:opacity-50 group"
+                          className="inline-flex h-14 items-center justify-center gap-3 rounded-full bg-slate-900 px-8 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900 disabled:opacity-50"
                         >
-                          {loading ? <Loader2 size={20} className="animate-spin" /> : "Submit Message"}
-                          {!loading && <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+                          {loading ? <Loader2 size={18} className="animate-spin" /> : "Submit Message"}
+                          {!loading && <Send size={17} />}
                         </button>
+
+                        {status === 'error' && (
+                          <p className="text-sm font-semibold text-red-600">
+                            Failed to send message. Please try again.
+                          </p>
+                        )}
                       </div>
-                      {status === 'error' && <p className="text-red-600 text-sm font-black mt-6">Failed to send message. Please verify your connection and try again.</p>}
-                    </form>
+                    </motion.form>
                   )}
                 </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>

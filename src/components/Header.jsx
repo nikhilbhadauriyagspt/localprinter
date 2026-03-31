@@ -13,13 +13,10 @@ import {
   Loader2,
   ChevronDown,
   Mail,
-  Smartphone,
   LayoutGrid,
   MapPin,
   ChevronRight,
-  LogOut,
-  Clock,
-  CheckCircle2
+  LogOut
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../lib/utils';
@@ -135,7 +132,6 @@ export default function Header() {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Shop', path: '/shop'},
-    { name: 'Track Order', path: '/orders' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
     { name: 'FAQ', path: '/faq' },
@@ -143,101 +139,142 @@ export default function Header() {
 
   return (
     <>
-      
-
       <header className={cn(
         "w-full z-[100] transition-all duration-300 bg-white sticky top-0",
-        isScrolled ? "shadow-xl border-b border-slate-100" : "border-b border-slate-100"
+        isScrolled ? "shadow-xl border-b border-slate-100" : "border-b border-slate-50"
       )}>
         {/* --- MAIN HEADER --- */}
-        <div className="w-full mx-auto px-4 md:px-8 py-3 md:py-5 flex items-center justify-between gap-4 lg:gap-12">
+        <div className="w-full mx-auto px-4 md:px-8 py-3 md:py-4 flex items-center justify-between gap-4 lg:gap-10">
           {/* Logo */}
           <Link to="/" className="shrink-0">
             <img 
               src="/logo/logo.png" 
               alt="Logo" 
-              className="h-8 md:h-10 lg:h-12"
+              className="h-8 md:h-14 lg:h-14"
             />
           </Link>
 
-          {/* Search Bar - Clean & Professional */}
-          <div className="hidden lg:flex flex-1 max-w-3xl relative">
-            <form onSubmit={handleSearch} className="w-full flex items-center bg-slate-50 rounded-lg border-2 border-slate-100 focus-within:border-blue-600 focus-within:bg-white transition-all overflow-hidden h-12">
-              
-              
-              <input 
-                type="text" 
-                placeholder="Search for printers, ink, or accessories..." 
-                className="flex-1 bg-transparent px-5 py-2 text-[14px] text-slate-900 outline-none placeholder:text-slate-400 font-medium"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              
-              <button type="submit" className="bg-blue-600 hover:bg-blue-600 text-white h-full px-6 flex items-center justify-center transition-all">
-                <Search size={20} strokeWidth={2.5} />
+          {/* Shop By Category & Search Bar Container */}
+          <div className="hidden lg:flex flex-1 max-w-4xl items-center gap-3">
+            {/* Category Dropdown */}
+            <div className="relative shrink-0" ref={dropdownRef}>
+              <button 
+                onClick={() => setIsAllDropdownOpen(!isAllDropdownOpen)}
+                className={cn(
+                  "flex items-center gap-2 h-11 px-5 text-[12px] font-black uppercase tracking-wider transition-all rounded-full border-2",
+                  isAllDropdownOpen 
+                    ? "bg-amber-500 border-amber-500 text-white shadow-lg shadow-amber-100" 
+                    : "bg-white border-slate-100 text-slate-700 hover:border-amber-500 hover:text-amber-600"
+                )}
+              >
+                <LayoutGrid size={16} />
+                Categories
+                <ChevronDown size={14} className={cn("transition-transform duration-200", isAllDropdownOpen && "rotate-180")} />
               </button>
-            </form>
 
-            {/* Suggestions Dropdown */}
-            <AnimatePresence>
-              {searchQuery.length > 0 && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full left-0 w-full bg-white shadow-2xl rounded-b-xl overflow-hidden z-[110] border border-slate-100 mt-1"
-                >
-                  {isSearching ? (
-                    <div className="flex items-center justify-center py-8 gap-3">
-                      <Loader2 size={20} className="animate-spin text-blue-600" />
-                      <span className="text-sm text-slate-500 font-bold">Searching...</span>
+              <AnimatePresence>
+                {isAllDropdownOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-full left-0 w-[240px] bg-white shadow-2xl z-[500] border border-slate-100 rounded-2xl mt-2 overflow-hidden"
+                  >
+                    <div className="py-2">
+                      {categories.map(cat => (
+                        <Link 
+                          key={cat.id} to={`/shop?category=${cat.slug}`} onClick={() => setIsAllDropdownOpen(false)}
+                          className="flex items-center justify-between px-5 py-3 hover:bg-yellow-50 text-slate-700 font-bold text-[13px] transition-all group"
+                        >
+                          {cat.name}
+                          <ChevronRight size={14} className="text-slate-300 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
+                        </Link>
+                      ))}
+                      <div className="p-2 border-t border-slate-50">
+                        <Link to="/shop" onClick={() => setIsAllDropdownOpen(false)} className="flex items-center justify-center gap-2 py-2.5 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-amber-500 transition-colors">
+                           View All Inventory <ArrowRight size={14} />
+                        </Link>
+                      </div>
                     </div>
-                  ) : suggestions.products.length > 0 ? (
-                    <div className="p-2">
-                      {suggestions.products.map(p => {
-                        const rawImg = p.images ? (typeof p.images === 'string' ? JSON.parse(p.images)[0] : p.images[0]) : '';
-                        const imageSrc = rawImg && !rawImg.startsWith('http') && !rawImg.startsWith('/') ? `/${rawImg}` : rawImg;
-                        return (
-                          <Link 
-                            key={p.id} to={`/product/${p.slug}`} onClick={() => setSearchQuery('')}
-                            className="flex items-center gap-4 p-3 hover:bg-slate-50 rounded-lg transition-all border-b border-slate-50 last:border-0 group"
-                          >
-                            <div className="h-12 w-12 bg-white rounded border border-slate-100 flex items-center justify-center shrink-0 overflow-hidden">
-                              <img src={imageSrc} className="max-h-full max-w-full object-contain p-1 group-hover:scale-110 transition-transform" alt="" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="text-[14px] font-bold text-slate-800 line-clamp-1 group-hover:text-blue-600 transition-colors">{p.name}</h4>
-                              <p className="text-[12px] font-black text-blue-600">${p.price}</p>
-                            </div>
-                            <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  ) : (
-                    <div className="py-8 text-center text-sm text-slate-400 font-bold">No results found</div>
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Pill Search Bar */}
+            <div className="flex-1 relative">
+              <form onSubmit={handleSearch} className="w-full flex items-center bg-slate-50 rounded-full border-2 border-transparent focus-within:border-amber-500 focus-within:bg-white transition-all overflow-hidden h-11">
+                <input 
+                  type="text" 
+                  placeholder="Search for printers, ink, or accessories..." 
+                  className="flex-1 bg-transparent px-6 py-2 text-[14px] text-slate-900 outline-none placeholder:text-slate-400 font-medium"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button type="submit" className="bg-amber-500 hover:bg-amber-600 text-white h-full px-6 flex items-center justify-center transition-all">
+                  <Search size={18} strokeWidth={2.5} />
+                </button>
+              </form>
+
+              {/* Suggestions Dropdown */}
+              <AnimatePresence>
+                {searchQuery.length > 0 && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-full left-0 w-full bg-white shadow-2xl rounded-2xl overflow-hidden z-[110] border border-slate-100 mt-2"
+                  >
+                    {isSearching ? (
+                      <div className="flex items-center justify-center py-8 gap-3">
+                        <Loader2 size={20} className="animate-spin text-amber-500" />
+                        <span className="text-sm text-slate-500 font-bold">Searching...</span>
+                      </div>
+                    ) : suggestions.products.length > 0 ? (
+                      <div className="p-2">
+                        {suggestions.products.map(p => {
+                          const rawImg = p.images ? (typeof p.images === 'string' ? JSON.parse(p.images)[0] : p.images[0]) : '';
+                          const imageSrc = rawImg && !rawImg.startsWith('http') && !rawImg.startsWith('/') ? `/${rawImg}` : rawImg;
+                          return (
+                            <Link 
+                              key={p.id} to={`/product/${p.slug}`} onClick={() => setSearchQuery('')}
+                              className="flex items-center gap-4 p-3 hover:bg-yellow-50 rounded-xl transition-all border-b border-slate-50 last:border-0 group"
+                            >
+                              <div className="h-12 w-12 bg-white rounded-lg border border-slate-100 flex items-center justify-center shrink-0 overflow-hidden">
+                                <img src={imageSrc} className="max-h-full max-w-full object-contain p-1 group-hover:scale-110 transition-transform" alt="" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="text-[13px] font-bold text-slate-800 line-clamp-1 group-hover:text-amber-600 transition-colors">{p.name}</h4>
+                                <p className="text-[12px] font-black text-amber-600">${p.price}</p>
+                              </div>
+                              <ChevronRight size={16} className="text-slate-300 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div className="py-8 text-center text-sm text-slate-400 font-bold">No results found</div>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* User & Actions */}
-          <div className="flex items-center gap-3 md:gap-6">
+          <div className="flex items-center gap-3 md:gap-5">
             {/* Account */}
             <Link to={user ? "/profile" : "/login"} className="hidden sm:flex items-center gap-3 group">
-               <div className="h-11 w-11 bg-slate-50 rounded-full flex items-center justify-center text-slate-600 group-hover:bg-cyan-50 group-hover:text-blue-600 transition-all border border-slate-100 shadow-sm">
-                  <User size={22} />
+               <div className="h-11 w-11 bg-slate-50 rounded-full flex items-center justify-center text-slate-600 group-hover:bg-amber-50 group-hover:text-amber-600 transition-all border border-slate-100">
+                  <User size={20} />
                </div>
-               <div className="hidden xl:block">
-                  <p className="text-[10px] text-slate-400 font-black uppercase tracking-wider mb-0.5">Hello, {user ? user.name.split(' ')[0] : 'Sign In'}</p>
-                  <p className="text-[13px] font-black text-slate-900 leading-none">Your Account</p>
+               <div className="hidden xl:block text-left">
+                  <p className="text-[9px] text-slate-400 font-black uppercase tracking-wider mb-0.5">{user ? user.name.split(' ')[0] : 'Sign In'}</p>
+                  <p className="text-[12px] font-black text-slate-900 leading-none">Account</p>
                </div>
             </Link>
 
             {/* Wishlist */}
-            <Link to="/wishlist" className="hidden md:flex items-center justify-center h-11 w-11 bg-slate-50 text-slate-600 hover:bg-red-50 hover:text-red-500 rounded-full transition-all relative border border-slate-100 shadow-sm">
-              <Heart size={22} className={cn(wishlistCount > 0 && "fill-current")} />
+            <Link to="/wishlist" className="hidden md:flex items-center justify-center h-11 w-11 bg-slate-50 text-slate-600 hover:bg-amber-50 hover:text-amber-600 rounded-full transition-all relative border border-slate-100">
+              <Heart size={20} className={cn(wishlistCount > 0 && "fill-current text-amber-500")} />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-white shadow-md">
+                <span className="absolute -top-1 -right-1 h-5 w-5 bg-amber-500 text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-white shadow-md">
                   {wishlistCount}
                 </span>
               )}
@@ -246,108 +283,74 @@ export default function Header() {
             {/* Cart Button */}
             <button 
                onClick={openCartDrawer} 
-               className="flex items-center gap-3 bg-slate-900 text-white hover:bg-blue-600 py-2.5 px-3 md:px-5 rounded-lg transition-all shadow-lg shadow-slate-200 active:scale-95 group"
+               className="flex items-center gap-2.5 bg-slate-900 text-white hover:bg-amber-500 py-2.5 px-4 md:px-5 rounded-full transition-all shadow-lg shadow-slate-200 active:scale-95 group"
             >
               <div className="relative">
-                <ShoppingCart size={22} />
-                <span className="absolute -top-3 -right-3 h-5 w-5 bg-blue-600 text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-slate-900 group-hover:border-white transition-colors">
+                <ShoppingCart size={20} />
+                <span className="absolute -top-3 -right-3 h-5 w-5 bg-amber-500 text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-slate-900 group-hover:border-white transition-colors">
                   {cartCount}
                 </span>
               </div>
               <div className="hidden sm:block text-left">
-                <p className="text-[10px] font-bold opacity-70 leading-none mb-1">Total Items</p>
-                <p className="text-[13px] font-black leading-none uppercase tracking-wide">My Cart</p>
+                <p className="text-[12px] font-black leading-none uppercase tracking-wide">Cart</p>
               </div>
             </button>
             
             {/* Mobile Toggle */}
-            <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden flex items-center justify-center h-10 w-10 bg-slate-50 text-slate-900 hover:bg-slate-100 rounded-lg border border-slate-200">
-              <Menu size={24} />
+            <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden flex items-center justify-center h-10 w-10 bg-slate-50 text-slate-900 hover:bg-amber-50 hover:text-amber-600 rounded-full border border-slate-100">
+              <Menu size={22} />
             </button>
           </div>
         </div>
 
         {/* --- SECONDARY NAVIGATION --- */}
-        <div className="hidden lg:block bg-slate-50/50 border-t border-slate-100">
+        <div className="hidden lg:block border-t border-slate-50 bg-white">
           <div className="w-full mx-auto px-8 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="relative" ref={dropdownRef}>
-                <button 
-                  onClick={() => setIsAllDropdownOpen(!isAllDropdownOpen)}
+            <nav className="flex items-center">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.name} to={link.path} 
                   className={cn(
-                    "flex items-center gap-3 py-3 px-6 text-[13px] font-black uppercase tracking-widest transition-all",
-                    isAllDropdownOpen ? "bg-blue-600 text-white" : "bg-blue-600 text-white hover:bg-blue-600"
+                    "py-3.5 px-6 text-[12px] font-black uppercase tracking-[0.1em] transition-all relative group",
+                    location.pathname === link.path ? "text-amber-600" : "text-slate-500 hover:text-amber-600"
                   )}
                 >
-                  <LayoutGrid size={18} />
-                  Shop By Category
-                  <ChevronDown size={14} className={cn("transition-transform duration-200", isAllDropdownOpen && "rotate-180")} />
-                </button>
+                  {link.name}
+                  <div className={cn(
+                    "absolute bottom-0 left-6 right-6 h-0.5 bg-amber-500 transition-transform origin-center",
+                    location.pathname === link.path ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  )} />
+                </Link>
+              ))}
+            </nav>
 
-                <AnimatePresence>
-                  {isAllDropdownOpen && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 w-[280px] bg-white shadow-2xl z-[500] border border-slate-200 rounded-b-xl overflow-hidden"
-                    >
-                      <div className="py-2">
-                        {categories.map(cat => (
-                          <Link 
-                            key={cat.id} to={`/shop?category=${cat.slug}`} onClick={() => setIsAllDropdownOpen(false)}
-                            className="flex items-center justify-between px-5 py-3 hover:bg-cyan-50 text-slate-700 font-bold text-[14px] transition-all group"
-                          >
-                            {cat.name}
-                            <ChevronRight size={14} className="text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
-                          </Link>
-                        ))}
-                        <Link to="/shop" onClick={() => setIsAllDropdownOpen(false)} className="mx-4 my-2 flex items-center justify-center gap-2 py-3 bg-slate-900 text-white rounded-lg text-xs font-black uppercase tracking-widest hover:bg-blue-600 transition-colors">
-                           View All Inventory <ArrowRight size={14} />
-                        </Link>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <nav className="flex items-center ml-4">
-                {navLinks.map((link) => (
-                  <Link 
-                    key={link.name} to={link.path} 
-                    className={cn(
-                      "py-3 px-5 text-[13px] font-black uppercase tracking-widest transition-all relative group",
-                      location.pathname === link.path ? "text-blue-600" : "text-slate-600 hover:text-blue-600"
-                    )}
-                  >
-                    {link.name}
-                    <div className={cn(
-                      "absolute bottom-0 left-5 right-5 h-0.5 bg-blue-600 transition-transform origin-center",
-                      location.pathname === link.path ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                    )} />
-                  </Link>
-                ))}
-              </nav>
-            </div>
-
-            <div className="flex items-center gap-2 text-slate-500">
-               <Mail size={14} className="text-blue-600" />
-               <span className="text-[12px] font-bold">info@inktrixprinters.shop</span>
+            <div className="flex items-center gap-6">
+               <div className="flex items-center gap-2 text-slate-400 group">
+                  <Mail size={14} className="text-amber-500" />
+                  <span className="text-[11px] font-bold group-hover:text-slate-600 transition-colors">info@localprinter.shop</span>
+               </div>
+               <div className="h-4 w-[1px] bg-slate-100"></div>
+               <Link to="/orders" className="flex items-center gap-2 text-amber-600 hover:text-amber-700 transition-all font-black uppercase tracking-wider text-[11px]">
+                  <MapPin size={14} />
+                  Track Order
+               </Link>
             </div>
           </div>
         </div>
       </header>
 
       {/* --- MOBILE SEARCH --- */}
-      <div className="lg:hidden bg-white px-4 py-3 border-b border-slate-100 shadow-sm">
-        <form onSubmit={handleSearch} className="flex items-center bg-slate-50 rounded-lg border border-slate-200 overflow-hidden h-11">
+      <div className="lg:hidden bg-white px-4 py-3 border-b border-slate-50">
+        <form onSubmit={handleSearch} className="flex items-center bg-slate-50 rounded-full border border-slate-100 overflow-hidden h-10">
           <input 
             type="text" 
             placeholder="Search our store..." 
-            className="flex-1 bg-transparent px-4 py-2 text-[14px] outline-none"
+            className="flex-1 bg-transparent px-5 py-2 text-[13px] outline-none"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button type="submit" className="bg-slate-900 text-white px-4 h-full">
-            <Search size={18} />
+          <button type="submit" className="bg-slate-900 text-white px-5 h-full">
+            <Search size={16} />
           </button>
         </form>
       </div>
@@ -366,7 +369,7 @@ export default function Header() {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="fixed top-0 left-0 bottom-0 w-[85%] max-w-[320px] bg-white z-[210] flex flex-col shadow-2xl"
             >
-              <div className="bg-blue-600 text-white p-6">
+              <div className="bg-amber-500 text-white p-6">
                 <div className="flex justify-between items-center mb-6">
                    <img src="/logo/logo.png" alt="" className="h-8 brightness-0 invert" />
                    <button onClick={() => setIsSidebarOpen(false)} className="h-8 w-8 bg-white/20 rounded-full flex items-center justify-center">
@@ -389,8 +392,8 @@ export default function Header() {
                   <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[2px] mb-3 px-4">Menu Navigation</h3>
                   <div className="grid gap-1">
                     {navLinks.map(link => (
-                      <Link key={link.name} to={link.path} onClick={() => setIsSidebarOpen(false)} className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-bold transition-all">
-                        <div className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                      <Link key={link.name} to={link.path} onClick={() => setIsSidebarOpen(false)} className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 font-bold transition-all">
+                        <div className="h-1.5 w-1.5 rounded-full bg-amber-500" />
                         {link.name}
                       </Link>
                     ))}
@@ -401,23 +404,23 @@ export default function Header() {
                   <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[2px] mb-3 px-4">Categories</h3>
                   <div className="grid gap-1">
                     {categories.slice(0, 8).map(cat => (
-                       <Link key={cat.id} to={`/shop?category=${cat.slug}`} onClick={() => setIsSidebarOpen(false)} className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-cyan-50 text-slate-700 font-bold transition-all group">
+                       <Link key={cat.id} to={`/shop?category=${cat.slug}`} onClick={() => setIsSidebarOpen(false)} className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-yellow-50 text-slate-700 font-bold transition-all group">
                          {cat.name} 
-                         <ChevronRight size={14} className="text-slate-300 group-hover:text-blue-600" />
+                         <ChevronRight size={14} className="text-slate-300 group-hover:text-amber-600" />
                        </Link>
                     ))}
                   </div>
                 </div>
               </div>
 
-              <div className="p-4 border-t border-slate-100">
+              <div className="p-4 border-t border-slate-50">
                 {user ? (
-                   <button onClick={() => { localStorage.clear(); window.location.reload(); }} className="flex items-center justify-center gap-3 w-full py-4 bg-red-50 text-red-600 rounded-lg font-black uppercase tracking-widest text-[11px] hover:bg-red-100 transition-all">
+                   <button onClick={() => { localStorage.clear(); window.location.reload(); }} className="flex items-center justify-center gap-3 w-full py-4 bg-red-50 text-red-600 rounded-xl font-black uppercase tracking-widest text-[11px] hover:bg-red-100 transition-all">
                      <LogOut size={18} />
                      Sign Out
                    </button>
                 ) : (
-                  <Link to="/login" onClick={() => setIsSidebarOpen(false)} className="flex items-center justify-center gap-3 w-full py-4 bg-blue-600 text-white rounded-lg font-black uppercase tracking-widest text-[11px] hover:bg-slate-900 transition-all shadow-lg shadow-cyan-100">
+                  <Link to="/login" onClick={() => setIsSidebarOpen(false)} className="flex items-center justify-center gap-3 w-full py-4 bg-amber-500 text-white rounded-xl font-black uppercase tracking-widest text-[11px] hover:bg-slate-900 transition-all shadow-lg shadow-yellow-100">
                     <User size={18} />
                     Login Account
                   </Link>

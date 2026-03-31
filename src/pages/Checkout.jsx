@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ChevronLeft,
   CreditCard,
-  Truck,
-  ShieldCheck,
   ArrowRight,
   Lock,
   MapPin,
@@ -14,7 +12,8 @@ import {
   CheckCircle2,
   Package,
   Phone,
-  Wallet
+  Wallet,
+  User
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PayPalButtons } from "@paypal/react-paypal-js";
@@ -25,12 +24,13 @@ import { cn } from '../lib/utils';
 export default function Checkout() {
   const { cart, clearCart } = useCart();
   const navigate = useNavigate();
+
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [orderId, setOrderId] = useState(null);
- 
+
   const user = JSON.parse(localStorage.getItem('user') || 'null');
- 
+
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',
@@ -39,11 +39,12 @@ export default function Checkout() {
     city: '',
     zipCode: '',
     phone: '',
-    paymentMethod: 'paypal', 
+    paymentMethod: 'paypal',
   });
- 
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user') || 'null');
+
     if (user) {
       setFormData(prev => ({
         ...prev,
@@ -53,37 +54,40 @@ export default function Checkout() {
         phone: user.phone || '',
       }));
     }
- 
+
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         try {
           const { latitude, longitude } = position.coords;
           const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
           const data = await res.json();
-         
+
           if (data && data.address) {
             const addr = data.address;
             setFormData(prev => ({
               ...prev,
               city: addr.city || addr.town || addr.village || addr.suburb || '',
               zipCode: addr.postcode || '',
-              address: `${addr.road || ''} ${addr.neighbourhood || addr.suburb || ''}`.trim() || data.display_name.split(',')[0]
+              address:
+                `${addr.road || ''} ${addr.neighbourhood || addr.suburb || ''}`.trim() ||
+                data.display_name.split(',')[0]
             }));
           }
-        } catch (err) { }
+        } catch (err) {}
       });
     }
   }, []);
- 
+
   const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const subtotal = total;
- 
+
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
- 
+
   const handleOrderSuccess = async (paymentDetails = null) => {
     setLoading(true);
+
     try {
       const orderData = {
         ...formData,
@@ -93,14 +97,15 @@ export default function Checkout() {
         payment_details: paymentDetails,
         source: 'axelprinting.shop',
       };
- 
+
       const response = await fetch(`${API_BASE_URL}/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData),
       });
- 
+
       const data = await response.json();
+
       if (data.status === 'success') {
         setOrderId(data.order_id || data.data?.order_code || data.data?.id);
         setStep(3);
@@ -114,262 +119,522 @@ export default function Checkout() {
       setLoading(false);
     }
   };
- 
+
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
+
     if (step === 1) {
-        window.scrollTo(0, 0);
-        setStep(2);
+      window.scrollTo(0, 0);
+      setStep(2);
+    } else if (formData.paymentMethod === 'cod') {
+      await handleOrderSuccess();
     }
-    else if (formData.paymentMethod === 'cod') await handleOrderSuccess();
   };
 
   const getImagePath = (images) => {
     try {
       const imgs = typeof images === 'string' ? JSON.parse(images) : images;
       if (Array.isArray(imgs) && imgs.length > 0) return `/${imgs[0]}`;
-    } catch (e) { }
+    } catch (e) {}
     return "https://via.placeholder.com/100x100?text=Product";
   };
- 
+
   if (cart.length === 0 && step !== 3) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-white font-jakarta">
-        <div className="bg-white p-10 rounded-2xl border border-gray-100 shadow-sm text-center max-w-md">
-            <Package size={48} className="text-gray-300 mx-auto mb-4" />
-            <h2 className="text-xl font-bold mb-2">Your cart is empty</h2>
-            <p className="text-gray-500 mb-8 text-sm font-medium leading-relaxed">Please add some items to your cart before proceeding to checkout.</p>
-            <Link to="/shop" className="inline-flex items-center gap-2 bg-slate-900 text-white px-10 py-3 rounded-lg font-bold text-xs hover:bg-blue-600 transition-all active:scale-95 shadow-lg">
-                Return to Shop
+      <div className="min-h-screen overflow-x-hidden bg-white font-jakarta text-slate-900">
+        <SEO title="Empty Cart " />
+
+        <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-24 pb-16">
+          <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
+          <div className="relative w-full px-4 md:px-8 lg:px-12 text-center">
+            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+              Checkout
+            </span>
+
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.02] text-slate-900">
+              No items for <span className="text-amber-500">checkout</span>
+            </h1>
+
+            <div className="mt-4 h-1 w-20 rounded-full bg-amber-500 mx-auto" />
+          </div>
+        </section>
+
+        <section className="py-16 md:py-20 px-4 md:px-8 lg:px-12">
+          <div className="max-w-3xl mx-auto rounded-[36px] border border-slate-200 bg-gradient-to-br from-[#fff8eb] via-white to-[#f8fafc] p-8 md:p-14 text-center">
+            <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-[28px] border border-amber-200 bg-amber-50 text-amber-500">
+              <Package size={40} />
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 mb-4">
+              Your cart is empty
+            </h2>
+
+            <p className="max-w-xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500 mb-8">
+              Please add some products to your cart before moving to checkout.
+            </p>
+
+            <Link
+              to="/shop"
+              className="inline-flex items-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900"
+            >
+              Return to Shop
+              <ArrowRight size={16} />
             </Link>
-        </div>
+          </div>
+        </section>
       </div>
     );
   }
- 
+
   if (step === 3) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center pt-20 px-6 font-jakarta text-slate-900">
-        <SEO title="Order Confirmed |Inktrix Printers" />
-        <div className="max-w-[500px] w-full text-center space-y-10">
-          <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="h-24 w-24 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto border border-green-100 shadow-xl">
-            <CheckCircle2 size={48} />
-          </motion.div>
-          <div className="space-y-4">
-            <h1 className="text-4xl font-bold tracking-tight leading-none">Order confirmed!</h1>
-            <p className="text-slate-500 font-medium leading-relaxed">
-                Thank you for your purchase. Your order ID is <span className="font-bold text-slate-900">#{orderId}</span>.
-                We've sent a confirmation email to <a href={`mailto:${formData.email}`} className="font-bold text-slate-900 hover:text-cyan-600 transition-colors underline decoration-cyan-500/30 underline-offset-4">{formData.email}</a>.
+      <div className="min-h-screen overflow-x-hidden bg-white font-jakarta text-slate-900">
+        <SEO title="Order Confirmed " />
+
+        <section className="min-h-screen flex items-center justify-center px-4 md:px-8 lg:px-12 py-24">
+          <div className="max-w-3xl mx-auto w-full rounded-[40px] border border-slate-200 bg-white p-8 md:p-14 text-center shadow-[0_20px_60px_rgba(15,23,42,0.05)]">
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full border border-amber-200 bg-amber-50 text-amber-500"
+            >
+              <CheckCircle2 size={42} />
+            </motion.div>
+
+            <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-700 mb-5">
+              Order Confirmed
+            </span>
+
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.05] text-slate-900 mb-4">
+              Thank you for your order
+            </h1>
+
+            <p className="max-w-xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500 mb-3">
+              Your order has been placed successfully.
             </p>
+
+            <p className="max-w-xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500 mb-10">
+              Order ID: <span className="font-black text-slate-900">#{orderId}</span><br />
+              Confirmation sent to <span className="font-black text-slate-900">{formData.email}</span>
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/orders"
+                className="inline-flex items-center justify-center rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900"
+              >
+                Track Order
+              </Link>
+
+              <Link
+                to="/"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 transition-all hover:bg-slate-900 hover:text-white"
+              >
+                Return Home
+              </Link>
+            </div>
           </div>
-          <div className="pt-4 flex flex-col gap-4">
-            <Link to="/orders" className="w-full h-16 bg-slate-900 text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-lg hover:bg-blue-600 transition-all">
-              Track my order
-            </Link>
-            <Link to="/" className="w-full h-16 bg-gray-50 text-slate-900 rounded-xl flex items-center justify-center font-bold text-sm hover:bg-gray-100 transition-all">
-              Return to home
-            </Link>
-          </div>
-        </div>
+        </section>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white font-jakarta text-slate-900 overflow-x-hidden pt-32 pb-24 px-4 md:px-10">
-      <SEO title="Secure Checkout |Inktrix Printers" />
-      
-      <div className="w-full px-0 md:px-4">
-        
-        {/* --- HEADER --- */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-12 mb-12 border-b border-gray-100">
-          <div className="space-y-2 text-left">
-            <div className="flex items-center gap-3 mb-2">
-                {[1, 2].map((s) => (
-                    <div key={s} className={cn("h-2 w-8 rounded-full transition-all duration-500", step >= s ? "bg-blue-500" : "bg-gray-100")} />
-                ))}
+    <div className="min-h-screen overflow-x-hidden bg-white font-jakarta text-slate-900">
+      <SEO title="Secure Checkout " />
+
+      {/* Header */}
+      <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-24 pb-14">
+        <div className="absolute top-0 left-1/2 h-[240px] w-[240px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
+        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-amber-100/30 blur-[90px]" />
+
+        <div className="relative w-full px-4 md:px-8 lg:px-12">
+          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div>
+              <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-700 mb-5">
+                Secure Checkout
+              </span>
+
+              <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.02] text-slate-900">
+                {step === 1 ? 'Shipping Details' : 'Payment Method'}
+              </h1>
+
+              <p className="mt-4 text-sm md:text-base font-medium text-slate-500">
+                Step {step} of 2
+              </p>
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-none">
-              {step === 1 ? 'Shipping details' : 'Payment method'}
-            </h1>
-            <p className="text-slate-500 font-medium text-base">Step {step} of 2 — Secure checkout</p>
-          </div>
-          
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-50 text-cyan-600 border border-cyan-100 text-xs font-bold">
-              <ShieldCheck size={16} /> SSL Encrypted Connection
+
+            <div className="flex items-center gap-3">
+              {[1, 2].map((s) => (
+                <div
+                  key={s}
+                  className={cn(
+                    "h-2 rounded-full transition-all duration-300",
+                    step >= s ? "w-12 bg-amber-500" : "w-8 bg-slate-200"
+                  )}
+                />
+              ))}
             </div>
           </div>
         </div>
+      </section>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          
-          {/* --- LEFT: STEP CONTENT --- */}
-          <div className="lg:col-span-7">
+      {/* Main */}
+      <section className="py-12 md:py-16 px-4 md:px-8 lg:px-12">
+        <form onSubmit={handleSubmit} className="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+
+          {/* Left content */}
+          <div className="xl:col-span-8">
             <AnimatePresence mode="wait">
               {step === 1 ? (
-                <motion.div key="step1" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-12">
-                  <div className="space-y-8">
-                    <div className="flex items-center gap-4">
-                      <div className="h-10 w-10 rounded bg-gray-50 flex items-center justify-center text-slate-900 border border-gray-100"><Mail size={20} /></div>
-                      <h2 className="text-2xl font-bold">Contact info</h2>
+                <motion.div
+                  key="step1"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  className="space-y-8"
+                >
+                  {/* Contact block */}
+                  <div className="rounded-[34px] border border-slate-200 bg-white p-6 md:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.04)]">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-200 bg-amber-50 text-amber-500">
+                        <Mail size={20} />
+                      </div>
+                      <div>
+                        <span className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">
+                          Contact
+                        </span>
+                        <h2 className="text-2xl font-black text-slate-900">Contact Information</h2>
+                      </div>
                     </div>
-                    <div className="space-y-2 group">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Email address</label>
-                      <input required type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="john@example.com" className="w-full h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl focus:border-cyan-600 focus:bg-white outline-none text-sm font-medium transition-all" />
+
+                    <div className="space-y-3">
+                      <label className="text-[13px] font-black text-slate-900">Email Address</label>
+                      <input
+                        required
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Enter your email"
+                        className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all placeholder:text-slate-400 focus:border-amber-400 focus:bg-white"
+                      />
                     </div>
                   </div>
 
-                  <div className="space-y-8">
-                    <div className="flex items-center gap-4">
-                      <div className="h-10 w-10 rounded bg-gray-50 flex items-center justify-center text-slate-900 border border-gray-100"><MapPin size={20} /></div>
-                      <h2 className="text-2xl font-bold">Shipping details</h2>
+                  {/* Shipping block */}
+                  <div className="rounded-[34px] border border-slate-200 bg-white p-6 md:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.04)]">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-200 bg-amber-50 text-amber-500">
+                        <MapPin size={20} />
+                      </div>
+                      <div>
+                        <span className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">
+                          Shipping
+                        </span>
+                        <h2 className="text-2xl font-black text-slate-900">Shipping Details</h2>
+                      </div>
                     </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">First name</label>
-                        <input required type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-600 focus:bg-white outline-none text-sm font-medium transition-all" />
+                      <div className="space-y-3">
+                        <label className="text-[13px] font-black text-slate-900">First Name</label>
+                        <div className="relative">
+                          <User size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                          <input
+                            required
+                            type="text"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleInputChange}
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                          />
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Last name</label>
-                        <input required type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-600 focus:bg-white outline-none text-sm font-medium transition-all" />
+
+                      <div className="space-y-3">
+                        <label className="text-[13px] font-black text-slate-900">Last Name</label>
+                        <div className="relative">
+                          <User size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                          <input
+                            required
+                            type="text"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleInputChange}
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-3 md:col-span-2">
+                        <label className="text-[13px] font-black text-slate-900">Street Address</label>
+                        <input
+                          required
+                          type="text"
+                          name="address"
+                          value={formData.address}
+                          onChange={handleInputChange}
+                          className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                        />
+                      </div>
+
+                      <div className="space-y-3">
+                        <label className="text-[13px] font-black text-slate-900">City</label>
+                        <input
+                          required
+                          type="text"
+                          name="city"
+                          value={formData.city}
+                          onChange={handleInputChange}
+                          className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                        />
+                      </div>
+
+                      <div className="space-y-3">
+                        <label className="text-[13px] font-black text-slate-900">Zip Code</label>
+                        <input
+                          required
+                          type="text"
+                          name="zipCode"
+                          value={formData.zipCode}
+                          onChange={handleInputChange}
+                          className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                        />
+                      </div>
+
+                      <div className="space-y-3 md:col-span-2">
+                        <label className="text-[13px] font-black text-slate-900">Phone Number</label>
+                        <div className="relative">
+                          <Phone size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                          <input
+                            required
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                            className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-5 text-sm font-semibold outline-none transition-all focus:border-amber-400 focus:bg-white"
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Street address</label>
-                      <input required type="text" name="address" value={formData.address} onChange={handleInputChange} className="w-full h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-600 focus:bg-white outline-none text-sm font-medium transition-all" />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">City</label>
-                        <input required type="text" name="city" value={formData.city} onChange={handleInputChange} className="w-full h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-600 focus:bg-white outline-none text-sm font-medium transition-all" />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Zip code</label>
-                        <input required type="text" name="zipCode" value={formData.zipCode} onChange={handleInputChange} className="w-full h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-600 focus:bg-white outline-none text-sm font-medium transition-all" />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Phone number</label>
-                      <input required type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className="w-full h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-600 outline-none text-sm font-medium transition-all" />
+
+                    <div className="pt-8">
+                      <button
+                        type="submit"
+                        className="inline-flex w-full md:w-auto items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900"
+                      >
+                        Continue to Payment
+                        <ArrowRight size={16} />
+                      </button>
                     </div>
                   </div>
-                  <button type="submit" className="w-full h-16 bg-slate-900 text-white rounded-xl font-bold text-sm shadow-xl hover:bg-blue-600 transition-all flex items-center justify-center gap-3">
-                    Continue to payment <ArrowRight size={20} />
-                  </button>
                 </motion.div>
               ) : (
-                <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-12">
-                  <div className="space-y-8">
-                    <div className="flex items-center gap-4">
-                      <div className="h-10 w-10 rounded bg-gray-50 flex items-center justify-center text-slate-900 border border-gray-100"><CreditCard size={20} /></div>
-                      <h2 className="text-2xl font-bold">Payment method</h2>
+                <motion.div
+                  key="step2"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  className="space-y-8"
+                >
+                  <div className="rounded-[34px] border border-slate-200 bg-white p-6 md:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.04)]">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-200 bg-amber-50 text-amber-500">
+                        <CreditCard size={20} />
+                      </div>
+                      <div>
+                        <span className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">
+                          Payment
+                        </span>
+                        <h2 className="text-2xl font-black text-slate-900">Choose Payment Method</h2>
+                      </div>
                     </div>
-                    
-                    <div className="grid grid-cols-1 gap-4">
-                        {[
-                            { id: 'paypal', label: 'PayPal / Card', icon: CreditCard, desc: 'Pay securely with your PayPal account or credit card.' },
-                            { id: 'cod', label: 'Cash on delivery', icon: Wallet, desc: 'Pay with cash when your printer arrives at your doorstep.' }
-                        ].map((method) => (
-                            <div 
-                                key={method.id} onClick={() => setFormData({...formData, paymentMethod: method.id})}
-                                className={cn(
-                                    "p-6 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between",
-                                    formData.paymentMethod === method.id ? "border-blue-600 bg-blue-50/10 shadow-lg shadow-blue-600/5" : "border-gray-100 bg-white hover:border-gray-200"
-                                )}
-                            >
-                                <div className="flex items-center gap-5">
-                                    <div className={cn("h-6 w-6 rounded-full border-2 flex items-center justify-center transition-colors", formData.paymentMethod === method.id ? "border-blue-600" : "border-gray-300")}>
-                                        {formData.paymentMethod === method.id && <div className="h-3 w-3 bg-blue-600 rounded-full" />}
-                                    </div>
-                                    <div className="space-y-0.5">
-                                        <p className="text-base font-bold text-slate-900">{method.label}</p>
-                                        <p className="text-xs text-slate-500 font-medium">{method.desc}</p>
-                                    </div>
-                                </div>
-                                <method.icon size={24} className={cn("transition-colors", formData.paymentMethod === method.id ? "text-blue-600" : "text-gray-300")} />
-                            </div>
-                        ))}
-                    </div>
-                  </div>
 
-                  <div className="pt-4 space-y-6 flex flex-col items-center">
-                    {formData.paymentMethod === 'paypal' ? (
-                        <div className="relative z-10 w-full max-w-md mx-auto">
-                            <PayPalButtons 
-                                style={{ layout: "vertical", shape: "rect", label: "pay" }}
-                                createOrder={(data, actions) => {
-                                    return actions.order.create({
-                                        purchase_units: [{
-                                            amount: { value: total.toString() }
-                                        }]
-                                    });
-                                }}
-                                onApprove={(data, actions) => {
-                                    return actions.order.capture().then((details) => {
-                                        handleOrderSuccess(details);
-                                    });
-                                }}
-                            />
-                        </div>
-                    ) : (
-                        <button type="submit" disabled={loading} className="w-full max-w-md h-16 bg-slate-900 text-white rounded-xl font-bold text-xs shadow-xl hover:bg-blue-600 transition-all flex items-center justify-center gap-3 disabled:opacity-50 active:scale-[0.98]">
-                            {loading ? <Loader2 size={20} className="animate-spin" /> : "Complete order"}
-                            {!loading && <CheckCircle2 size={20} />}
+                    <div className="grid gap-4">
+                      {[
+                        {
+                          id: 'paypal',
+                          label: 'PayPal / Card',
+                          icon: CreditCard,
+                          desc: 'Pay securely with PayPal or card.'
+                        },
+                        {
+                          id: 'cod',
+                          label: 'Cash on Delivery',
+                          icon: Wallet,
+                          desc: 'Pay when your order is delivered.'
+                        }
+                      ].map((method) => (
+                        <button
+                          type="button"
+                          key={method.id}
+                          onClick={() => setFormData({ ...formData, paymentMethod: method.id })}
+                          className={cn(
+                            "w-full rounded-[24px] border p-5 text-left transition-all duration-300",
+                            formData.paymentMethod === method.id
+                              ? "border-amber-300 bg-amber-50"
+                              : "border-slate-200 bg-white hover:border-amber-200"
+                          )}
+                        >
+                          <div className="flex items-center justify-between gap-4">
+                            <div className="flex items-center gap-4">
+                              <div className={cn(
+                                "flex h-10 w-10 items-center justify-center rounded-2xl border",
+                                formData.paymentMethod === method.id
+                                  ? "border-amber-300 bg-white text-amber-500"
+                                  : "border-slate-200 bg-slate-50 text-slate-400"
+                              )}>
+                                <method.icon size={18} />
+                              </div>
+
+                              <div>
+                                <p className="text-base font-black text-slate-900">
+                                  {method.label}
+                                </p>
+                                <p className="text-sm font-medium text-slate-500">
+                                  {method.desc}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className={cn(
+                              "h-5 w-5 rounded-full border-2 flex items-center justify-center",
+                              formData.paymentMethod === method.id
+                                ? "border-amber-500"
+                                : "border-slate-300"
+                            )}>
+                              {formData.paymentMethod === method.id && (
+                                <div className="h-2.5 w-2.5 rounded-full bg-amber-500" />
+                              )}
+                            </div>
+                          </div>
                         </button>
-                    )}
-                    
-                    <button type="button" onClick={() => setStep(1)} className="w-full h-12 text-slate-400 font-bold text-xs flex items-center justify-center gap-3 hover:text-slate-900 transition-all">
-                        <ChevronLeft size={16} /> Change shipping info
-                    </button>
+                      ))}
+                    </div>
+
+                    <div className="pt-8 flex flex-col items-start gap-4">
+                      {formData.paymentMethod === 'paypal' ? (
+                        <div className="w-full max-w-md">
+                          <PayPalButtons
+                            style={{ layout: "vertical", shape: "rect", label: "pay" }}
+                            createOrder={(data, actions) => {
+                              return actions.order.create({
+                                purchase_units: [
+                                  {
+                                    amount: { value: total.toString() }
+                                  }
+                                ]
+                              });
+                            }}
+                            onApprove={(data, actions) => {
+                              return actions.order.capture().then((details) => {
+                                handleOrderSuccess(details);
+                              });
+                            }}
+                          />
+                        </div>
+                      ) : (
+                        <button
+                          type="submit"
+                          disabled={loading}
+                          className="inline-flex w-full md:w-auto items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900 disabled:opacity-50"
+                        >
+                          {loading ? <Loader2 size={18} className="animate-spin" /> : 'Complete Order'}
+                          {!loading && <CheckCircle2 size={16} />}
+                        </button>
+                      )}
+
+                      <button
+                        type="button"
+                        onClick={() => setStep(1)}
+                        className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500 hover:text-amber-600 transition-colors"
+                      >
+                        <ChevronLeft size={16} />
+                        Change Shipping Info
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          {/* --- RIGHT: SUMMARY --- */}
-          <div className="lg:col-span-5">
-            <div className="bg-gray-50 rounded-3xl p-8 md:p-10 border border-gray-100 space-y-8 sticky top-32 shadow-sm">
-              <h2 className="text-2xl font-bold">Order summary</h2>
-              <div className="max-h-[300px] overflow-y-auto pr-2 custom-scrollbar space-y-6">
-                {cart.map((item) => (
-                  <div key={item.id} className="flex gap-5">
-                    <div className="h-16 w-16 bg-white rounded-xl border border-gray-100 p-2 shrink-0 flex items-center justify-center shadow-sm">
-                      <img src={getImagePath(item.images)} className="max-h-full max-w-full object-contain mix-blend-multiply transition-transform group-hover:scale-110" alt="" />
+          {/* Right summary */}
+          <div className="xl:col-span-4">
+            <div className="sticky top-28 rounded-[34px] border border-slate-200 bg-[#111111] p-6 md:p-8 text-white overflow-hidden">
+              <div className="absolute top-0 right-0 h-28 w-28 rounded-full bg-amber-400/10 blur-3xl" />
+
+              <div className="relative z-10">
+                <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-300 mb-5">
+                  Order Summary
+                </span>
+
+                <h2 className="text-3xl font-black leading-[1.08] tracking-tight mb-6">
+                  Review your
+                  <span className="block text-amber-400">items</span>
+                </h2>
+
+                <div className="space-y-4 max-h-[320px] overflow-y-auto pr-1 custom-scrollbar">
+                  {cart.map((item) => (
+                    <div key={item.id} className="flex gap-4 rounded-[22px] border border-white/10 bg-white/5 p-4">
+                      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white p-2">
+                        <img
+                          src={getImagePath(item.images)}
+                          alt={item.name}
+                          className="max-h-full max-w-full object-contain"
+                        />
+                      </div>
+
+                      <div className="min-w-0 flex-1">
+                        <h4 className="line-clamp-1 text-sm font-black text-white">
+                          {item.name}
+                        </h4>
+                        <p className="mt-1 text-xs font-semibold text-slate-400">
+                          Qty: {item.quantity}
+                        </p>
+                      </div>
+
+                      <p className="text-sm font-black text-amber-300">
+                        ${(item.price * item.quantity).toLocaleString()}
+                      </p>
                     </div>
-                    <div className="flex-1 min-w-0 flex flex-col justify-center">
-                      <h4 className="text-sm font-bold line-clamp-1">{item.name}</h4>
-                      <p className="text-xs text-slate-400 font-medium">Qty: {item.quantity}</p>
-                    </div>
-                    <p className="text-sm font-bold flex items-center">${(item.price * item.quantity).toLocaleString()}</p>
+                  ))}
+                </div>
+
+                <div className="mt-6 space-y-4 border-t border-white/10 pt-6">
+                  <div className="flex items-center justify-between text-sm font-semibold text-slate-300">
+                    <span>Subtotal</span>
+                    <span className="text-white">${subtotal.toLocaleString()}</span>
                   </div>
-                ))}
-              </div>
-              <div className="space-y-4 pt-6 border-t border-gray-200">
-                <div className="flex justify-between text-sm font-medium text-slate-500">
-                  <span>Subtotal</span>
-                  <span className="text-slate-900 font-bold">${subtotal.toLocaleString()}</span>
+
+                  <div className="flex items-center justify-between text-sm font-semibold text-slate-300">
+                    <span>Shipping</span>
+                    <span className="text-amber-300">Free</span>
+                  </div>
+
+                  <div className="h-px w-full bg-white/10" />
+
+                  <div className="flex items-end justify-between gap-4">
+                    <span className="text-sm font-black uppercase tracking-[0.16em] text-slate-400">
+                      Grand Total
+                    </span>
+                    <span className="text-4xl font-black tracking-tight text-amber-400">
+                      ${total.toLocaleString()}
+                    </span>
+                  </div>
                 </div>
-                <div className="flex justify-between text-sm font-medium text-slate-500">
-                  <span>Shipping</span>
-                  <span className="text-blue-600 font-bold uppercase text-[10px] tracking-widest">Free</span>
+
+                <div className="mt-6 flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-[10px] font-black uppercase tracking-[0.16em] text-slate-300">
+                  <Lock size={14} className="text-amber-300" />
+                  Secure Checkout
                 </div>
-                <div className="h-px bg-gray-200 w-full" />
-                <div className="flex justify-between items-end">
-                  <span className="text-base font-bold text-slate-900">Grand total</span>
-                  <span className="text-4xl font-bold text-blue-600 leading-none tracking-tighter">${total.toLocaleString()}</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-center gap-3 text-slate-300">
-                <Lock size={14} />
-                <span className="text-[10px] font-bold uppercase tracking-widest">Secure checkout</span>
               </div>
             </div>
           </div>
 
         </form>
-      </div>
+      </section>
     </div>
   );
 }

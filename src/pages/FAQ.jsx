@@ -1,54 +1,47 @@
 import React, { useState } from 'react';
 import SEO from '@/components/SEO';
-import { ChevronDown, ArrowRight, MessageCircle, HelpCircle, Info, ShieldCheck, Truck, RotateCcw, Headphones } from 'lucide-react';
+import { ChevronDown, ArrowRight, MessageCircle, ShieldCheck, Truck, Info, RotateCcw } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../lib/utils';
 
 const faqs = [
   {
-    category: "Orders & purchasing",
-    icon: <ShieldCheck size={20} />,
+    category: "Orders",
+    icon: <ShieldCheck size={18} />,
     questions: [
-      { q: "How do I place an order for a printer?", a: "To place an order, simply browse our catalog, select your desired model, and add it to your cart. Follow the secure checkout process to provide your shipping and payment information." },     
-      { q: "Is a user account required to shop?", a: "No, we offer a guest checkout option. However, creating an account allows you to track your order history and manage your preferences more efficiently." },
-      { q: "How can I verify my order status?", a: "Upon completing your purchase, an order confirmation email will be sent immediately. You can also use the 'Track Order' feature in your account dashboard." },
-      { q: "Can I modify or cancel my order?", a: "Orders can be modified or cancelled if they have not yet entered the shipping phase. Please contact our support team immediately for assistance with changes." },
-      { q: "What payment methods are accepted?", a: "We accept all major credit cards and PayPal. All transactions are processed through encrypted, secure payment gateways to ensure your data is protected." }
+      { q: "How do I place an order?", a: "Browse products, add the item to your cart, and complete checkout with your shipping and payment details." },
+      { q: "Do I need an account to order?", a: "No, you can place an order as a guest. Creating an account simply makes future orders easier." },
+      { q: "Can I cancel my order?", a: "If your order has not been shipped yet, you can contact support to request a cancellation." }
     ]
   },
   {
-    category: "Shipping & logistics",
-    icon: <Truck size={20} />,
+    category: "Shipping",
+    icon: <Truck size={18} />,
     questions: [
-      { q: "What are your delivery locations?", a: "We provide nationwide shipping to all residential and commercial addresses across the United States." },
-      { q: "What is the estimated delivery timeframe?", a: "Standard delivery typically takes between 3 to 7 business days. You will receive a notification with a precise delivery window once your order is dispatched." },
-      { q: "How are shipping costs calculated?", a: "Shipping fees are determined based on the destination and the weight of the printer. The final cost will be clearly displayed during the checkout process." },
-      { q: "How can I track my shipment?", a: "A tracking number will be provided via email as soon as your order leaves our warehouse. You can monitor the real-time progress of your delivery through our carrier's portal." },
-      { q: "What happens if I am unavailable for delivery?", a: "Our carriers typically attempt delivery on the following business day or leave a notification with instructions for local pickup or rescheduling." }
+      { q: "Where do you ship?", a: "We ship across the United States to both home and business addresses." },
+      { q: "How long does delivery take?", a: "Delivery times may vary, but standard shipping usually takes a few business days." },
+      { q: "How can I track my shipment?", a: "Once your order is shipped, you will receive tracking details by email." }
     ]
   },
   {
-    category: "Product specifications",
-    icon: <Info size={20} />,
+    category: "Products",
+    icon: <Info size={18} />,
     questions: [
-      { q: "Are all products original and new?", a: "Yes, we exclusively sell brand-new, authentic printers in original manufacturer packaging with all factory seals intact." },
-      { q: "Is there a warranty provided with the Printers?", a: "All printers include a full manufacturer's warranty, ensuring you have access to official support and repairs if required." },
-      { q: "Do you provide  setup assistance?", a: "Yes, our  team is available to guide you through the initial installation and configuration of your new printer." },
-      { q: "Are original consumables available for purchase?", a: "We maintain a comprehensive inventory of original ink and toner cartridges for all models we carry to ensure optimal performance." },
-      { q: "How can I determine the right model for my needs?", a: "Consider your primary use case: high-speed text (Laser) or high-quality graphics (Inkjet). Our specialists are available to provide tailored recommendations." }
+      { q: "Are your products new?", a: "Yes, all listed products are new and ready for purchase unless otherwise stated." },
+      { q: "Do printers come with warranty?", a: "Warranty details depend on the product and manufacturer. You can review the details on the product page." },
+      { q: "How do I choose the right printer?", a: "You can compare features on the product pages or contact us if you need help selecting the right option." }
     ]
   },
   {
-    category: "Returns & cancellations",
-    icon: <RotateCcw size={20} />,
+    category: "Returns",
+    icon: <RotateCcw size={18} />,
     questions: [
-      { q: "What is your return policy?", a: "Unused products in their original, unopened packaging may be returned within 14 days of delivery for a full refund." },
-      { q: "How is the refund processed?", a: "Once the returned item is inspected and approved, a refund will be issued to your original payment method within 5-7 business days." },
-      { q: "What if the product arrives damaged?", a: "In the unlikely event of shipping damage, please report the issue immediately. We will arrange for a priority replacement or full refund." }
+      { q: "Can I return a product?", a: "Return eligibility depends on the product condition and return policy terms." },
+      { q: "What if my item arrives damaged?", a: "If your item arrives damaged, contact us as soon as possible so we can assist you." },
+      { q: "How are refunds processed?", a: "Approved refunds are sent back to the original payment method." }
     ]
-  },
-  
+  }
 ];
 
 export default function FAQ() {
@@ -63,163 +56,219 @@ export default function FAQ() {
   const filteredFaqs = currentCategoryData?.questions || [];
 
   return (
-    <div className="bg-white min-h-screen font-jakarta text-slate-900 overflow-x-hidden">
-      <SEO 
-        title="Frequently Asked Questions |Inktrix Printers" 
-        description="Find professional answers to your questions regarding printing support."
+    <div className="min-h-screen overflow-x-hidden bg-white font-jakarta text-slate-900">
+      <SEO
+        title="Frequently Asked Questions "
+        description="Find answers to common questions about orders, shipping, products, and returns."
       />
 
-      {/* --- PAGE HEADER (Home Page Style) --- */}
-      <section className="pt-24 pb-16 bg-white border-b border-slate-50">
-        <div className="w-full px-4 md:px-12 lg:px-20">
-          <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight">
-              Frequently Asked <span className="text-blue-600">Questions</span>
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-[#fffaf0] via-white to-white pt-24 pb-16 md:pb-20">
+        <div className="absolute top-0 left-1/2 h-[260px] w-[260px] -translate-x-1/2 rounded-full bg-amber-200/30 blur-[90px]" />
+        <div className="absolute right-0 top-10 h-[220px] w-[220px] rounded-full bg-amber-100/30 blur-[90px]" />
+
+        <div className="relative w-full px-4 md:px-8 lg:px-12">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-700 mb-5">
+              Help Center
+            </span>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.02] text-slate-900">
+              Frequently Asked <span className="text-amber-500">Questions</span>
             </h1>
-            <div className="h-1.5 w-24 bg-blue-600 mt-6 rounded-full" />
-            <p className="text-slate-500 text-lg font-bold mt-8 max-w-3xl leading-relaxed">
-              Find comprehensive answers to common inquiries regarding our professional printing  support services.
+
+            <div className="mt-4 h-1 w-20 rounded-full bg-amber-500 mx-auto" />
+
+            <p className="mt-6 max-w-2xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500">
+              Find quick answers about orders, shipping, products, and returns.
             </p>
           </div>
         </div>
       </section>
 
-      {/* --- CONTENT GRID (Full Width) --- */}
-      <div className="w-full px-4 md:px-12 lg:px-20 py-20 bg-slate-50">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          
-          {/* LEFT: CATEGORY NAV */}
-          <div className="lg:col-span-4 space-y-8">
-            <div className="bg-white p-10 rounded-[40px] border border-slate-200 shadow-sm space-y-8">
-              <h3 className="text-2xl font-black text-slate-900">Support Categories</h3>
-              <div className="flex flex-col gap-3">
-                {faqs.map((f) => (
-                  <button
-                    key={f.category}
-                    onClick={() => { setActiveCategory(f.category); setActiveIdx(null); }}
-                    className={cn(
-                      "w-full text-left px-8 py-5 rounded-2xl text-[15px] font-black transition-all border flex items-center gap-4",
-                      activeCategory === f.category 
-                        ? "bg-blue-600 text-white border-blue-600 shadow-xl shadow-blue-100" 
-                        : "bg-slate-50 text-slate-500 border-slate-100 hover:border-blue-600 hover:text-blue-600 hover:bg-white"
-                    )}
-                  >
-                    <span className={cn(
-                      "shrink-0",
-                      activeCategory === f.category ? "text-white" : "text-blue-600"
-                    )}>
-                      {f.icon}
-                    </span>
-                    {f.category}
-                  </button>
-                ))}
-              </div>
-            </div>
+      {/* New layout */}
+      <section className="py-14 md:py-20">
+        <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
 
-            <div className="bg-slate-900 p-10 rounded-[40px] text-white space-y-6 overflow-hidden relative group">
-               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-blue-600/30 transition-colors" />
-               <div className="flex items-center gap-3 relative z-10 text-blue-500">
-                  <MessageCircle size={24} />
-                  <h4 className="text-xl font-black">Direct Assistance</h4>
-               </div>
-               <p className="text-slate-400 font-medium leading-relaxed relative z-10">
-                 Our support team is available to provide personalized assistance for complex inquiries or specific printer requirements.
-               </p>
-               <Link to="/contact" className="inline-flex items-center gap-2 font-black text-white hover:text-blue-500 transition-colors relative z-10 group/link">
-                 Contact support team <ArrowRight size={18} className="group-hover/link:translate-x-1 transition-transform" />
-               </Link>
-            </div>
-          </div>
+            {/* Left sidebar */}
+            <div className="xl:col-span-4">
+              <div className="rounded-[34px] border border-slate-200 bg-[#111111] p-6 md:p-8 text-white sticky top-28">
+                <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-300 mb-5">
+                  Browse Topics
+                </span>
 
-          {/* RIGHT: ACCORDION PANEL */}
-          <div className="lg:col-span-8">
-            <div className="mb-10 flex items-center gap-4">
-              <div className="h-10 w-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-100">
-                {currentCategoryData?.icon}
-              </div>
-              <h2 className="text-3xl font-black text-slate-900">{activeCategory}</h2>
-            </div>
+                <h2 className="text-3xl md:text-4xl font-black leading-[1.08] tracking-tight mb-4">
+                  Need quick
+                  <span className="block text-amber-400">answers?</span>
+                </h2>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCategory}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-6"
-              >
-                {filteredFaqs.map((faq, i) => (
-                  <div 
-                    key={i}
-                    className={cn(
-                      "bg-white rounded-[32px] transition-all duration-500 overflow-hidden border shadow-sm",
-                      activeIdx === i ? "shadow-2xl shadow-slate-200 border-blue-600/30" : "border-slate-200/60 hover:border-blue-600/50"
-                    )}
-                  >
+                <p className="text-sm md:text-base font-medium leading-relaxed text-slate-300 mb-8">
+                  Choose a category and view the most common questions in one place.
+                </p>
+
+                <div className="space-y-3">
+                  {faqs.map((f) => (
                     <button
-                      onClick={() => toggle(i)}
-                      className="w-full flex items-center justify-between p-8 md:p-10 text-left group"
-                    >
-                      <span className={cn(
-                        "text-xl font-black transition-colors leading-snug pr-8",
-                        activeIdx === i ? "text-blue-600" : "text-slate-900 group-hover:text-blue-600"
-                      )}>
-                        {faq.q}
-                      </span>
-                      <div className={cn(
-                        "h-12 w-12 rounded-2xl border flex items-center justify-center transition-all duration-500 shrink-0",
-                        activeIdx === i ? "bg-blue-600 text-white border-blue-600 rotate-180 shadow-xl shadow-blue-100" : "bg-slate-50 border-slate-100 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 group-hover:border-blue-100"
-                      )}>
-                        <ChevronDown size={22} />
-                      </div>
-                    </button>
-
-                    <AnimatePresence>
-                      {activeIdx === i && (
-                        <motion.div 
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.4, ease: "easeOut" }}
-                        >
-                          <div className="px-10 pb-10 pt-2">
-                            <div className="h-px w-full bg-slate-100 mb-8" />
-                            <p className="text-slate-600 text-lg font-medium leading-relaxed max-w-4xl">
-                              {faq.a}
-                            </p>
-                          </div>
-                        </motion.div>
+                      key={f.category}
+                      onClick={() => {
+                        setActiveCategory(f.category);
+                        setActiveIdx(null);
+                      }}
+                      className={cn(
+                        "w-full text-left rounded-2xl px-5 py-4 border transition-all duration-300 flex items-center gap-3 text-sm font-black uppercase tracking-[0.08em]",
+                        activeCategory === f.category
+                          ? "bg-amber-400 text-slate-950 border-amber-400"
+                          : "bg-white/5 text-white border-white/10 hover:border-amber-300 hover:text-amber-300"
                       )}
-                    </AnimatePresence>
+                    >
+                      <span>{f.icon}</span>
+                      {f.category}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-8 rounded-[24px] border border-white/10 bg-white/5 p-5">
+                  <div className="flex items-center gap-3 mb-3 text-amber-300">
+                    <MessageCircle size={18} />
+                    <h4 className="text-sm font-black uppercase tracking-[0.14em]">
+                      Need More Help
+                    </h4>
                   </div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+
+                  <p className="text-sm font-medium leading-relaxed text-slate-300 mb-4">
+                    If you still need help, contact us and our team will assist you.
+                  </p>
+
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 text-sm font-black text-white hover:text-amber-300 transition-colors"
+                  >
+                    Contact Us
+                    <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Right accordion area */}
+            <div className="xl:col-span-8">
+              <div className="mb-8 flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 border border-amber-200 text-amber-500">
+                  {currentCategoryData?.icon}
+                </div>
+
+                <div>
+                  <span className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">
+                    Selected Category
+                  </span>
+                  <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
+                    {activeCategory}
+                  </h2>
+                </div>
+              </div>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeCategory}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.25 }}
+                  className="space-y-4"
+                >
+                  {filteredFaqs.map((faq, i) => (
+                    <div
+                      key={i}
+                      className={cn(
+                        "rounded-[28px] border overflow-hidden transition-all duration-300 bg-white",
+                        activeIdx === i
+                          ? "border-amber-200 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                          : "border-slate-200 hover:border-amber-200"
+                      )}
+                    >
+                      <button
+                        onClick={() => toggle(i)}
+                        className="w-full flex items-center justify-between gap-6 px-6 md:px-8 py-6 text-left group"
+                      >
+                        <span
+                          className={cn(
+                            "text-lg md:text-xl font-black leading-snug transition-colors",
+                            activeIdx === i ? "text-amber-600" : "text-slate-900 group-hover:text-amber-600"
+                          )}
+                        >
+                          {faq.q}
+                        </span>
+
+                        <div
+                          className={cn(
+                            "flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border transition-all duration-300",
+                            activeIdx === i
+                              ? "bg-amber-500 text-slate-950 border-amber-500 rotate-180"
+                              : "bg-slate-50 text-slate-500 border-slate-200 group-hover:border-amber-200 group-hover:text-amber-500"
+                          )}
+                        >
+                          <ChevronDown size={20} />
+                        </div>
+                      </button>
+
+                      <AnimatePresence>
+                        {activeIdx === i && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <div className="px-6 md:px-8 pb-6 md:pb-8">
+                              <div className="mb-5 h-px w-full bg-slate-200" />
+                              <p className="text-sm md:text-base font-medium leading-relaxed text-slate-600 max-w-3xl">
+                                {faq.a}
+                              </p>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
           </div>
-
         </div>
-      </div>
+      </section>
 
-      {/* --- BOTTOM CTA --- */}
-      <section className="py-24 text-center bg-white border-t border-slate-50">
-        <div className="w-full px-4 md:px-12 lg:px-20">
-          <div className="max-w-4xl mx-auto space-y-12">
-            <h2 className="text-4xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-              Still require specialized <span className="text-blue-600">assistance?</span>
+      {/* Bottom CTA */}
+      <section className="py-14 md:py-20">
+        <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="rounded-[36px] border border-slate-200 bg-gradient-to-br from-[#fff8eb] via-white to-[#f8fafc] p-8 md:p-12 text-center">
+            <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-amber-700 mb-5">
+              Still Need Help
+            </span>
+
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.08] text-slate-900 mb-4">
+              Looking for more support?
             </h2>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link 
-                to="/contact" 
-                className="w-full sm:w-auto bg-slate-900 text-white px-16 h-16 flex items-center justify-center rounded-full font-black text-sm transition-all hover:bg-blue-600 shadow-2xl shadow-slate-900/10 active:scale-95 group"
+
+            <p className="max-w-2xl mx-auto text-sm md:text-base font-medium leading-relaxed text-slate-500 mb-8">
+              Contact us for more help or browse our products to find the right option for your needs.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white transition-all hover:bg-amber-500 hover:text-slate-900"
               >
-                Inquire Directly <ArrowRight size={20} className="ml-3 group-hover:translate-x-1 transition-transform" />
+                Contact Us
+                <ArrowRight size={16} />
               </Link>
-              <Link 
-                to="/shop" 
-                className="w-full sm:w-auto bg-white text-slate-900 border-2 border-slate-900 px-16 h-16 flex items-center justify-center rounded-full font-black text-sm transition-all hover:bg-slate-900 hover:text-white active:scale-95"
+
+              <Link
+                to="/shop"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-slate-300 px-8 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 transition-all hover:bg-slate-900 hover:text-white"
               >
-                Explore Catalog
+                Explore Products
               </Link>
             </div>
           </div>
